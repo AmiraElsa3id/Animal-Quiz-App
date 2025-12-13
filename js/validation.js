@@ -18,7 +18,7 @@ const validateUsername =(value , message=null ,regex=/^[a-zA-Z][a-zA-Z0-9_]{2,15
 // SIGNUP VALIDATIONS
 // ============================================
 
-function validateSignupUsername(username) {
+function validateSignupUsername(username,users) {
   if (!username || username.trim() === '') {
     return { isValid: false, error: 'Username is required' };
   }
@@ -34,9 +34,16 @@ function validateSignupUsername(username) {
   if (!/^[a-zA-Z0-9_]+$/.test(username)) {
     return { isValid: false, error: 'Username can only contain letters, numbers, and underscores' };
   }
+  if(isExist(username,users)){
+    return { isValid: false, error: 'Username already exists' };
+  }
   return { isValid: true };
 }
 
+function isExist(user,users){
+let exist=users.find((u)=>u.username===user.username);
+return exist;
+}
 function validateSignupPassword(password) {
   if (!password || password.trim() === '') {
     return { isValid: false, error: 'Password is required' };
@@ -116,10 +123,10 @@ function validateSignupProfilePicture(profilePicture) {
 }
 
 // Complete signup validation
-function validateSignupForm(formData) {
+function validateSignupForm(formData,users) {
   const errors = {};
   
-  const usernameValidation = validateSignupUsername(formData.username);
+  const usernameValidation = validateSignupUsername(formData.username,users);
   if (!usernameValidation.isValid) {
     errors.username = usernameValidation.error;
   }

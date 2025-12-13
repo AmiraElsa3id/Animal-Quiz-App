@@ -115,6 +115,7 @@
                         <span
                             class="material-symbols-outlined absolute right-4 text-text-sub-light dark:text-text-sub-dark pointer-events-none">person</span>
                     </div>
+                    <span class="text-red-500" id="userNameError"></span>
                 </label>
                 <!-- Password -->
                 <label class="flex flex-col gap-1.5">
@@ -130,6 +131,7 @@
                             <span class="material-symbols-outlined">visibility</span>
                         </button>
                     </div>
+                    <span class="text-red-500" id="passwordError"></span>
                 </label>
                 <!-- Mobile Number -->
                 <label class="flex flex-col gap-1.5">
@@ -141,7 +143,9 @@
                             placeholder="123 456 7890" type="tel" />
                         <span
                             class="material-symbols-outlined absolute right-4 text-text-sub-light dark:text-text-sub-dark pointer-events-none">smartphone</span>
+                           
                     </div>
+                    <span class="text-red-500" id="stdPhoneError"></span>
                 </label>
                 <!-- Grade Selection -->
                 <div class="flex flex-col gap-2">
@@ -163,6 +167,7 @@
                                 <span class="font-bold text-lg leading-none">2</span>
                                 <span class="text-[10px] font-medium leading-none mt-0.5 opacity-70">Grade</span>
                             </div>
+                            
                         </label>
                         <label class="cursor-pointer group">
                             <input class="peer sr-only" name="grade" type="radio" value="3" />
@@ -174,6 +179,7 @@
                         </label>
                     </div>
                 </div>
+                <span id="gradeError"></span>
                 <!-- Action Button -->
                 <button id="signup-btn"
                     class="mt-4 w-full h-12 bg-primary hover:bg-green-400 text-text-main-light text-base font-bold rounded-full transition-all transform active:scale-[0.98] shadow-md shadow-primary/20 flex items-center justify-center gap-2"
@@ -194,6 +200,7 @@
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-400/5 rounded-full blur-[120px]"></div>
     </div>
+    <script src="../js/signup.js" type="module"></script>
 </body>
 
 </html>
