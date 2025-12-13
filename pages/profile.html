@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Profile - Animal Expert Quiz</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "primary-hover": "#25d660",
+                        "background-light": "#f8fcf9",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2e22",
+                        "text-main-light": "#0d1b12",
+                        "text-main-dark": "#f0fdf4",
+                        "text-sub-light": "#4c9a66",
+                        "text-sub-dark": "#8ecfa3",
+                        "border-light": "#e7f3eb",
+                        "border-dark": "#2a4535",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cfe7d7;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #2a4535;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-display min-h-screen flex flex-col transition-colors duration-200 selection:bg-primary selection:text-text-main-light">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-border-light dark:border-border-dark bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="container mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-2xl">pets</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight hidden sm:block">Animal Expert</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Library</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Leaderboard</a>
+</nav>
+<div class="flex items-center gap-3 pl-6 border-l border-border-light dark:border-border-dark">
+<button class="hidden sm:flex h-10 px-5 items-center justify-center rounded-full bg-primary hover:bg-primary-hover text-[#0d1b12] text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                        Take a Quiz
+                    </button>
+<button class="size-10 rounded-full overflow-hidden border-2 border-white dark:border-[#2a4535] shadow-sm">
+<div class="w-full h-full bg-cover bg-center" data-alt="User profile avatar of a smiling young man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCGdIFTLmDfJFfenVt9e39SNVE3lxu3pc2ed-w5dY2LvzjI24XgyXo4K9f9Op7BkXihxRZfpBPR_xOajASg4GmPYSSXo1tb9Az2yA3A5uYBGC8FPU4C4h4AhQx5AwawxI67RWO7JpleeMxdSs86AqqGwuHdCsGU41wEeUVmAucOJ9T5MY63PHN4lqLsvcK-ixcRxKnncvu8QHKZcOxZf3JzRP_-0ueACPXa7ib59YHILylbZ4iSQB9S9FgkfofV5Xgv_l98gk37I8");'></div>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="container mx-auto px-4 md:px-6 lg:px-8 py-8 flex-grow">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Sidebar (Profile & Stats) -->
+<aside class="lg:col-span-4 xl:col-span-3 flex flex-col gap-6">
+<!-- Profile Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 border border-border-light dark:border-border-dark shadow-sm flex flex-col items-center text-center relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-primary/10 to-transparent"></div>
+<div class="relative mt-4 mb-4">
+<div class="size-28 rounded-full border-4 border-white dark:border-surface-dark shadow-md overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="Close up portrait of a student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0oFx8vUBc2omP4kutomw9tGBbiaM9-tYCTDw_4eC6jCgpA9C1K5d3B7_lSKwKEnPW9RyEe4oeMOoJQw1lkAFsiCeVDj4E19Xg3IefZE2j4dOQv9Jly0tnmugV25amxbc7BrOk8Rw15IhOFFUXbvkpB3ADXI8U5mDIAfZ2ZRqU_ztBpXpKk-T699AxJyofY34-xYYY4p3KhCdQyn2sVxH7NG-INvXwoa74HBz54R8vNMiO8ZHNIVxFTZii_lGXVBlJgeeP5EyJcSA");'></div>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary text-[#0d1b12] rounded-full p-1.5 border-2 border-white dark:border-surface-dark" title="Verified Student">
+<span class="material-symbols-outlined text-sm font-bold block">check</span>
+</div>
+</div>
+<h2 class="text-2xl font-bold tracking-tight">Alex Smith</h2>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm mb-1">Student ID: 987654</p>
+<div class="mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">school</span>
+                        Novice Expert
+                    </div>
+<div class="w-full mt-6 pt-6 border-t border-border-light dark:border-border-dark grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<span class="text-2xl font-bold">12</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark font-medium uppercase">Quizzes</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-2xl font-bold">88%</span>
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark font-medium uppercase">Avg Score</span>
+</div>
+</div>
+<button class="w-full mt-6 h-10 rounded-full border border-border-light dark:border-border-dark hover:bg-background-light dark:hover:bg-background-dark/50 text-sm font-bold transition-colors">
+                        Edit Profile
+                    </button>
+</div>
+<!-- Theme Toggle -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-2 border border-border-light dark:border-border-dark shadow-sm">
+<div class="relative flex w-full p-1 bg-background-light dark:bg-background-dark rounded-full">
+<div class="w-1/2">
+<input checked="" class="peer sr-only" id="light-mode" name="theme" onclick="document.documentElement.classList.remove('dark')" type="radio"/>
+<label class="flex items-center justify-center gap-2 w-full h-9 rounded-full cursor-pointer text-sm font-medium text-text-sub-light dark:text-text-sub-dark peer-checked:bg-white dark:peer-checked:bg-surface-dark peer-checked:text-[#0d1b12] dark:peer-checked:text-white peer-checked:shadow-sm transition-all" for="light-mode">
+<span class="material-symbols-outlined text-[18px]">light_mode</span>
+                                Light
+                            </label>
+</div>
+<div class="w-1/2">
+<input class="peer sr-only" id="dark-mode" name="theme" onclick="document.documentElement.classList.add('dark')" type="radio"/>
+<label class="flex items-center justify-center gap-2 w-full h-9 rounded-full cursor-pointer text-sm font-medium text-text-sub-light dark:text-text-sub-dark peer-checked:bg-white dark:peer-checked:bg-surface-dark peer-checked:text-[#0d1b12] dark:peer-checked:text-white peer-checked:shadow-sm transition-all" for="dark-mode">
+<span class="material-symbols-outlined text-[18px]">dark_mode</span>
+                                Dark
+                            </label>
+</div>
+</div>
+</div>
+<!-- Mini Leaderboard Widget -->
+<div class="bg-primary/10 rounded-xl p-5 border border-primary/20">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-sm uppercase tracking-wide text-primary-darker">Weekly Rank</h3>
+<span class="material-symbols-outlined text-primary">trophy</span>
+</div>
+<div class="flex items-end gap-2 mb-2">
+<span class="text-4xl font-black text-[#0d1b12] dark:text-white">#5</span>
+<span class="text-sm mb-1.5 text-text-sub-light dark:text-text-sub-dark">Top 10%</span>
+</div>
+<p class="text-xs text-text-sub-light dark:text-text-sub-dark">You need 150 more points to reach #4!</p>
+</div>
+</aside>
+<!-- Right Content Area -->
+<div class="lg:col-span-8 xl:col-span-9 flex flex-col gap-8">
+<!-- Welcome Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-4 border-b border-border-light dark:border-border-dark">
+<div>
+<h2 class="text-3xl md:text-4xl font-black tracking-tight mb-2">Welcome back, Alex! 👋</h2>
+<p class="text-text-sub-light dark:text-text-sub-dark text-lg">Ready to test your animal knowledge today?</p>
+</div>
+<div class="hidden md:block">
+<span class="text-sm font-medium text-text-sub-light dark:text-text-sub-dark bg-background-light dark:bg-background-dark px-4 py-2 rounded-full border border-border-light dark:border-border-dark">
+                            Current Date: Oct 24, 2023
+                        </span>
+</div>
+</div>
+<!-- Upcoming Exams Section -->
+<section>
+<div class="flex items-center justify-between mb-5">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">event_upcoming</span>
+                            Upcoming Exams
+                        </h3>
+<a class="text-sm font-bold text-primary hover:text-primary-hover hover:underline" href="#">View Calendar</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+<!-- Exam Card 1 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl overflow-hidden border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary/50 transition-all group flex flex-col h-full">
+<div class="h-40 w-full bg-cover bg-center relative" data-alt="Fox sitting in the grass looking alert" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjOJbNJgd87tHxK_XmOcd4NLtcjIXnJP2ob2oBR4W164AZzxev6lwiYuqLHEN55bvdm3y8cGMVHHTO54oJnt5S3m08wykZKRDI4RH34Lyt4H4qvkth4NsuLC4dgLo659EKxZRpDFMdf3oJS4EB66FTfdwoyx3_EJR_Lfz7OTkYMLuhBrmJafRKZuYO4RjfaqQ5nPr40Au-tRMTPhOGNCPe8zqFWrH9VBn88D5D6YcZPS9SHdlKg-ig5NXl8tJebkrsFfT4x_q1xMY");'>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-full text-[#0d1b12] dark:text-white shadow-sm">
+                                    Required
+                                </div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="flex-grow">
+<h4 class="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Mammals 101</h4>
+<div class="flex items-center gap-2 text-sm text-text-sub-light dark:text-text-sub-dark mb-4">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>Due: Oct 24th</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-full bg-[#0d1b12] dark:bg-white text-white dark:text-[#0d1b12] font-bold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                                    Start Quiz
+                                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Exam Card 2 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl overflow-hidden border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary/50 transition-all group flex flex-col h-full">
+<div class="h-40 w-full bg-cover bg-center relative" data-alt="Green chameleon blending into leaves" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCbzdal6siB2E8VEioH1QNVxTdwDTFbZ1nKv4mfwnMqCLypfEL8BL6grlYzrP1xUnR21NSNVbJpTvfm-Svrdtxy5E-VgndY0D3ZBP_hHySQ9IClEO-JZIQMKaZBawHuBcFaSNjRwQGwiLe_A8Tksn2_ayMtHjgvePKp8OoknT3nJvmYRt0tcpbSIZraDnIUGZN5ygBF39Tm76p4l08AzlAK7_rJiQfW9U_Vjqp5yrEhOSmqtpVIc4ROStwaKibMnTtxyHUn_UOsGAY");'>
+<div class="absolute top-3 right-3 bg-primary/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full text-[#0d1b12] shadow-sm">
+                                    New
+                                </div>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="flex-grow">
+<h4 class="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Reptile Identification</h4>
+<div class="flex items-center gap-2 text-sm text-text-sub-light dark:text-text-sub-dark mb-4">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>Due: Oct 30th</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-full bg-[#0d1b12] dark:bg-white text-white dark:text-[#0d1b12] font-bold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                                    Start Quiz
+                                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Empty State / Optional Card -->
+<div class="bg-background-light dark:bg-background-dark rounded-xl border-2 border-dashed border-border-light dark:border-border-dark flex flex-col items-center justify-center p-6 text-center h-full min-h-[300px]">
+<div class="size-12 rounded-full bg-surface-light dark:bg-surface-dark flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-text-sub-light dark:text-text-sub-dark">add</span>
+</div>
+<h4 class="font-bold text-base mb-1">Browse Library</h4>
+<p class="text-sm text-text-sub-light dark:text-text-sub-dark mb-4">Find more quizzes to challenge yourself.</p>
+<button class="px-5 py-2 rounded-full border border-border-light dark:border-border-dark text-sm font-bold hover:bg-surface-light dark:hover:bg-surface-dark transition-colors">
+                                Explore
+                            </button>
+</div>
+</div>
+</section>
+<!-- History Section -->
+<section>
+<div class="flex items-center justify-between mb-5">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history_edu</span>
+                            Completed Exams
+                        </h3>
+<div class="flex gap-2">
+<button class="size-8 rounded-full flex items-center justify-center border border-border-light dark:border-border-dark hover:bg-surface-light dark:hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-background-light dark:bg-background-dark border-b border-border-light dark:border-border-dark text-xs uppercase text-text-sub-light dark:text-text-sub-dark font-bold tracking-wider">
+<th class="px-6 py-4">Exam Name</th>
+<th class="px-6 py-4">Date Taken</th>
+<th class="px-6 py-4">Score</th>
+<th class="px-6 py-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark">
+<!-- Row 1 -->
+<tr class="group hover:bg-background-light/50 dark:hover:bg-background-dark/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+<span class="material-symbols-outlined">flutter_dash</span>
+</div>
+<span class="font-bold">Bird Calls &amp; Songs</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-text-sub-light dark:text-text-sub-dark">Oct 10, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
+                                                95%
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-sm font-medium text-text-sub-light dark:text-text-sub-dark hover:text-primary transition-colors">Review</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-background-light/50 dark:hover:bg-background-dark/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 flex items-center justify-center">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<span class="font-bold">Marine Life Basics</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-text-sub-light dark:text-text-sub-dark">Oct 05, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400">
+                                                82%
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-sm font-medium text-text-sub-light dark:text-text-sub-dark hover:text-primary transition-colors">Review</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-background-light/50 dark:hover:bg-background-dark/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+<span class="material-symbols-outlined">bug_report</span>
+</div>
+<span class="font-bold">Insects of Amazon</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-text-sub-light dark:text-text-sub-dark">Sep 28, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400">
+                                                55%
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-sm font-medium text-text-sub-light dark:text-text-sub-dark hover:text-primary transition-colors">Retake</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation Bar (Bottom) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark flex justify-around p-3 z-50 pb-safe">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-text-sub-light dark:text-text-sub-dark" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Dash</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-text-sub-light dark:text-text-sub-dark" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-bold">Library</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-text-sub-light dark:text-text-sub-dark" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</a>
+</nav>
+<!-- Simple JS to handle theme toggle manually if clicked -->
+<script>
+        // Check for saved theme preference or system preference (optional logic simulated here)
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('dark-mode').checked = true;
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.getElementById('light-mode').checked = true;
+        }
+
+        // Add event listeners to sync state
+        document.getElementById('light-mode').addEventListener('click', () => {
+            localStorage.theme = 'light';
+            document.documentElement.classList.remove('dark');
+        });
+        document.getElementById('dark-mode').addEventListener('click', () => {
+            localStorage.theme = 'dark';
+            document.documentElement.classList.add('dark');
+        });
+    </script>
+</body></html>

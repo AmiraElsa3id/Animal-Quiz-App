@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Student Registration - Animal Expert Quiz</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2c20",
+                        "text-main-light": "#0d1b12",
+                        "text-main-dark": "#e7f3eb",
+                        "text-sub-light": "#4c9a66",
+                        "text-sub-dark": "#8fc6a3",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display antialiased transition-colors duration-200">
+    <!-- Top Navigation -->
+    <header
+        class="w-full border-b border-[#e7f3eb] dark:border-[#2a4535] bg-card-light/80 dark:bg-card-dark/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="size-8 text-primary flex items-center justify-center bg-primary/10 rounded-full">
+                        <span class="material-symbols-outlined text-2xl">pets</span>
+                    </div>
+                    <h1 class="text-text-main-light dark:text-text-main-dark text-lg font-bold tracking-tight">Animal
+                        Expert Quiz</h1>
+                </div>
+                <button
+                    class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-text-main-light dark:text-text-main-dark text-sm font-bold transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">login</span>
+                    <a href="../index.html">Login</a>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center py-10 px-4">
+        <div
+            class="w-full max-w-[520px] bg-card-light dark:bg-card-dark rounded-xl shadow-xl border border-[#e7f3eb] dark:border-[#2a4535] overflow-hidden">
+            <!-- Page Heading & Avatar Upload -->
+            <div class="p-8 pb-4 text-center">
+                <h2 class="text-3xl font-black text-text-main-light dark:text-text-main-dark mb-2 tracking-tight">Join
+                    the Quiz!</h2>
+                <p class="text-text-sub-light dark:text-text-sub-dark font-medium">Become an Animal Expert today.</p>
+            <form >
+
+                <div class="mt-8 relative group w-28 h-28 mx-auto cursor-pointer">
+                    <label for="std-img"
+                        class="block w-full h-full rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary transition-colors bg-[#e7f3eb] dark:bg-[#2a4535] relative">
+                        <input type="file" class="hidden" id="std-img" name="std-img">
+                        <img alt="Avatar Preview"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity"
+                            data-alt="Placeholder silhouette of a student avatar"
+                            src="../assets/image/avatar.webp" />
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span
+                                class="material-symbols-outlined text-3xl text-text-main-light dark:text-text-main-dark opacity-0 group-hover:opacity-100 transition-opacity">photo_camera</span>
+                        </div>
+                    </label>
+                    <label for="std-img"
+                        class="pointer-cursor absolute bottom-0 right-0 bg-primary text-text-main-light rounded-full p-1.5 border-2 border-white dark:border-card-dark flex items-center justify-center shadow-sm">
+                        <span class="material-symbols-outlined text-lg">add</span>
+                    </label>
+                </div>
+                <p class="mt-3 text-sm text-text-sub-light dark:text-text-sub-dark font-medium">Upload Profile Picture
+                </p>
+            </div>
+            <!-- Form -->
+            <div class="p-8 pt-2 flex flex-col gap-5">
+                <!-- Username -->
+                <label class="flex flex-col gap-1.5">
+                    <span class="text-text-main-light dark:text-text-main-dark text-sm font-bold ml-2">Username</span>
+                    <div class="relative flex items-center">
+                        <input
+                            class="w-full h-12 pl-5 pr-12 rounded-full border border-[#cfe7d7] dark:border-[#3d5a45] bg-[#f8fcf9] dark:bg-[#152a1e] text-text-main-light dark:text-text-main-dark placeholder:text-text-sub-light/60 dark:placeholder:text-text-sub-dark/60 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow text-base"
+                            placeholder="Pick a Username" type="text" />
+                        <span
+                            class="material-symbols-outlined absolute right-4 text-text-sub-light dark:text-text-sub-dark pointer-events-none">person</span>
+                    </div>
+                </label>
+                <!-- Password -->
+                <label class="flex flex-col gap-1.5">
+                    <span class="text-text-main-light dark:text-text-main-dark text-sm font-bold ml-2">Secret
+                        Password</span>
+                    <div class="relative flex items-center">
+                        <input
+                            class="w-full h-12 pl-5 pr-12 rounded-full border border-[#cfe7d7] dark:border-[#3d5a45] bg-[#f8fcf9] dark:bg-[#152a1e] text-text-main-light dark:text-text-main-dark placeholder:text-text-sub-light/60 dark:placeholder:text-text-sub-dark/60 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow text-base"
+                            placeholder="Make it secure" type="password" />
+                        <button
+                            class="absolute right-4 text-text-sub-light dark:text-text-sub-dark hover:text-primary transition-colors focus:outline-none"
+                            type="button">
+                            <span class="material-symbols-outlined">visibility</span>
+                        </button>
+                    </div>
+                </label>
+                <!-- Mobile Number -->
+                <label class="flex flex-col gap-1.5">
+                    <span class="text-text-main-light dark:text-text-main-dark text-sm font-bold ml-2">Mobile
+                        Number</span>
+                    <div class="relative flex items-center">
+                        <input id="phone" name="phone"
+                            class="w-full h-12 pl-5 pr-12 rounded-full border border-[#cfe7d7] dark:border-[#3d5a45] bg-[#f8fcf9] dark:bg-[#152a1e] text-text-main-light dark:text-text-main-dark placeholder:text-text-sub-light/60 dark:placeholder:text-text-sub-dark/60 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow text-base"
+                            placeholder="123 456 7890" type="tel" />
+                        <span
+                            class="material-symbols-outlined absolute right-4 text-text-sub-light dark:text-text-sub-dark pointer-events-none">smartphone</span>
+                    </div>
+                </label>
+                <!-- Grade Selection -->
+                <div class="flex flex-col gap-2">
+                    <span class="text-text-main-light dark:text-text-main-dark text-sm font-bold ml-2">What Grade are
+                        you in?</span>
+                    <div class="grid grid-cols-3 gap-3">
+                        <label class="cursor-pointer group">
+                            <input class="peer sr-only" name="grade" type="radio" value="1" />
+                            <div
+                                class="h-14 rounded-xl border-2 border-[#cfe7d7] dark:border-[#3d5a45] bg-[#f8fcf9] dark:bg-[#152a1e] flex flex-col items-center justify-center transition-all peer-checked:bg-primary peer-checked:border-primary peer-checked:text-text-main-light hover:border-primary/50">
+                                <span class="font-bold text-lg leading-none">1</span>
+                                <span class="text-[10px] font-medium leading-none mt-0.5 opacity-70">Grade</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input class="peer sr-only" name="grade" type="radio" value="2" />
+                            <div
+                                class="h-14 rounded-xl border-2 border-[#cfe7d7] dark:border-[#3d5a45] bg-[#f8fcf9] dark:bg-[#152a1e] flex flex-col items-center justify-center transition-all peer-checked:bg-primary peer-checked:border-primary peer-checked:text-text-main-light hover:border-primary/50">
+                                <span class="font-bold text-lg leading-none">2</span>
+                                <span class="text-[10px] font-medium leading-none mt-0.5 opacity-70">Grade</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input class="peer sr-only" name="grade" type="radio" value="3" />
+                            <div
+                                class="h-14 rounded-xl border-2 border-[#cfe7d7] dark:border-[#3d5a45] bg-[#f8fcf9] dark:bg-[#152a1e] flex flex-col items-center justify-center transition-all peer-checked:bg-primary peer-checked:border-primary peer-checked:text-text-main-light hover:border-primary/50">
+                                <span class="font-bold text-lg leading-none">3</span>
+                                <span class="text-[10px] font-medium leading-none mt-0.5 opacity-70">Grade</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <!-- Action Button -->
+                <button id="signup-btn"
+                    class="mt-4 w-full h-12 bg-primary hover:bg-green-400 text-text-main-light text-base font-bold rounded-full transition-all transform active:scale-[0.98] shadow-md shadow-primary/20 flex items-center justify-center gap-2"
+                    type="submit">
+                    <span>Start Learning</span>
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </button>
+                <!-- Footer Link -->
+                <p class="text-center text-sm text-text-sub-light dark:text-text-sub-dark mt-2">
+                    Already a member? <a class="font-bold text-primary hover:underline ml-1" href="../index.html">Log In</a>
+                </p>
+            </div>
+            </form>
+        </div>
+    </main>
+    <!-- Background decorative elements -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-400/5 rounded-full blur-[120px]"></div>
+    </div>
+</body>
+
+</html>

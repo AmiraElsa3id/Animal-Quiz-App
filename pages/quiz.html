@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Animal Expert - Quiz</title>
+    <!-- Tailwind CSS -->
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- tailwind -->
+    <link rel="stylesheet" href="../css/output.css">
+    <!-- custom -->
+    <link rel="stylesheet" href="./css/custom.css">
+    <!-- Theme Configuration -->
+    <!-- <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1c3022",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script> -->
+    <!-- <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style> -->
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#0d1b12] dark:text-[#e7f3eb] font-display min-h-screen flex flex-col antialiased selection:bg-primary selection:text-[#0d1b12]">
+    <!-- Navbar -->
+    <header class="w-full px-4 py-4 md:px-8 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex items-center gap-3 text-[#0d1b12] dark:text-white group cursor-pointer">
+            <div
+                class="bg-primary/20 p-2 rounded-full text-primary-dark group-hover:bg-primary group-hover:text-[#0d1b12] transition-colors">
+                <span class="material-symbols-outlined icon-filled text-2xl">pets</span>
+            </div>
+            <span class="font-bold text-lg tracking-tight hidden sm:block">Animal Expert</span>
+        </div>
+        <button
+            class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-surface-dark border border-[#e7f3eb] dark:border-[#2a4533] hover:border-red-200 dark:hover:border-red-900/50 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-all text-sm font-bold shadow-sm">
+            <span class="material-symbols-outlined text-lg">logout</span>
+            <span>Quit Quiz</span>
+        </button>
+    </header>
+    <!-- Main Quiz Area -->
+    <main class="flex-1 flex flex-col items-center justify-center p-4 w-full">
+        <!-- Quiz Card Container -->
+        <div
+            class="w-full max-w-5xl bg-surface-light dark:bg-surface-dark rounded-xl shadow-xl border border-[#e7f3eb] dark:border-[#2a4533] overflow-hidden flex flex-col relative">
+            <!-- Progress & Timer Header -->
+            <div
+                class="px-6 py-6 md:px-10 border-b border-[#e7f3eb] dark:border-[#2a4533] bg-gradient-to-b from-[#f8fcf9] to-white dark:from-[#16291d] dark:to-surface-dark">
+                <div class="flex flex-col sm:flex-row justify-between items-end sm:items-center gap-4 mb-4">
+                    <div>
+                        <span
+                            class="inline-block px-3 py-1 rounded-full bg-[#e7f3eb] dark:bg-[#2a4533] text-xs font-bold text-[#4c9a66] dark:text-[#7cd19a] uppercase tracking-wide mb-2">
+                            Question 5 of 10
+                        </span>
+                        <h2 class="text-xl font-bold dark:text-white flex items-center gap-2">
+                            Mammal Anatomy
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-2 bg-[#e7f3eb] dark:bg-[#2a4533] px-4 py-2 rounded-full">
+                        <span class="material-symbols-outlined text-primary icon-filled animate-pulse">timer</span>
+                        <span class="font-mono font-bold text-lg tabular-nums">0:24</span>
+                    </div>
+                </div>
+                <!-- Animated Progress Bar -->
+                <div class="w-full bg-[#e7f3eb] dark:bg-[#2a4533] rounded-full h-3 overflow-hidden shadow-inner">
+                    <div class="bg-primary h-full rounded-full transition-all duration-1000 ease-linear relative overflow-hidden"
+                        style="width: 45%">
+                        <div class="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Quiz Content Body -->
+            <div class="p-6 md:p-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
+                <!-- Left Column: Question & Visuals -->
+                <div class="flex-1 flex flex-col gap-6">
+                    <h3
+                        class="text-2xl md:text-[28px] font-bold leading-[1.3] text-[#0d1b12] dark:text-white tracking-tight">
+                        Which mammal is known to have the most powerful bite force relative to its size?
+                    </h3>
+                    <!-- Image Card -->
+                    <div
+                        class="w-full relative group rounded-xl overflow-hidden shadow-md ring-1 ring-black/5 dark:ring-white/10">
+                        <div class="w-full aspect-[16/10] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                            data-alt="A large hippopotamus partially submerged in water looking towards the camera"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAeEuMyIExT4qaOKABDbLIZ4zwEdUvMYu5jnfWqei7_09ehqkIDELJPUw5bSLKtfR66EaOql0PXX7amd-7KCWJoTs_xfNHbU3TaJPoL4d8aa-0O37lyobhqDm367PYdHIJFJu4T_F5m6Y53Ru393riHvPQqzGKTTkw8Y2EQfXMEm5CO5Mq7AYJg6f94u_-VxdwcIilDOGZVUtDDDYj5afk-u-KmWSdZuKLpvYOrtU9xxEuw1qWTsJMxUni9UTGmnlv1p2oSerhtcR8');">
+                        </div>
+                        <div
+                            class="absolute bottom-3 left-3 bg-black/50 backdrop-blur-md text-white text-xs px-2 py-1 rounded">
+                            Image: Wildlife Archive
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column: Answer Grid -->
+                <div class="flex-1 flex flex-col justify-center">
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider mb-4 pl-1">
+                        Select an answer</p>
+                    <div class="flex flex-col gap-3">
+                        <!-- Option A (Unselected) -->
+                        <button
+                            class="group w-full p-4 pl-6 rounded-full border-2 border-[#e7f3eb] dark:border-[#2a4533] bg-white dark:bg-[#1A2C20] hover:border-primary hover:bg-[#f0fdf4] dark:hover:bg-[#163320] transition-all duration-200 flex items-center justify-between text-left">
+                            <span
+                                class="font-bold text-lg text-[#0d1b12] dark:text-gray-200 group-hover:text-primary-dark transition-colors">A.
+                                Lion</span>
+                            <div
+                                class="size-6 rounded-full border-2 border-gray-300 dark:border-gray-600 group-hover:border-primary flex items-center justify-center transition-colors">
+                            </div>
+                        </button>
+                        <!-- Option B (Selected - Correct) -->
+                        <button
+                            class="w-full p-4 pl-6 rounded-full border-2 border-primary bg-[#f0fdf4] dark:bg-[#163320] shadow-[0_0_0_1px_rgba(43,238,108,0.5)] flex items-center justify-between text-left relative overflow-hidden transition-all duration-200">
+                            <span class="font-bold text-lg text-[#0d1b12] dark:text-white">B. Hippopotamus</span>
+                            <div
+                                class="size-6 rounded-full bg-primary flex items-center justify-center text-[#0d1b12] shadow-sm">
+                                <span class="material-symbols-outlined text-sm font-bold">check</span>
+                            </div>
+                        </button>
+                        <!-- Option C (Unselected) -->
+                        <button
+                            class="group w-full p-4 pl-6 rounded-full border-2 border-[#e7f3eb] dark:border-[#2a4533] bg-white dark:bg-[#1A2C20] hover:border-primary hover:bg-[#f0fdf4] dark:hover:bg-[#163320] transition-all duration-200 flex items-center justify-between text-left">
+                            <span
+                                class="font-bold text-lg text-[#0d1b12] dark:text-gray-200 group-hover:text-primary-dark transition-colors">C.
+                                Grizzly Bear</span>
+                            <div
+                                class="size-6 rounded-full border-2 border-gray-300 dark:border-gray-600 group-hover:border-primary flex items-center justify-center transition-colors">
+                            </div>
+                        </button>
+                        <!-- Option D (Unselected) -->
+                        <button
+                            class="group w-full p-4 pl-6 rounded-full border-2 border-[#e7f3eb] dark:border-[#2a4533] bg-white dark:bg-[#1A2C20] hover:border-primary hover:bg-[#f0fdf4] dark:hover:bg-[#163320] transition-all duration-200 flex items-center justify-between text-left">
+                            <span
+                                class="font-bold text-lg text-[#0d1b12] dark:text-gray-200 group-hover:text-primary-dark transition-colors">D.
+                                Hyena</span>
+                            <div
+                                class="size-6 rounded-full border-2 border-gray-300 dark:border-gray-600 group-hover:border-primary flex items-center justify-center transition-colors">
+                            </div>
+                        </button>
+                    </div>
+                    <!-- Instant Feedback Message -->
+                    <div
+                        class="mt-6 p-4 bg-[#e7f3eb] dark:bg-[#1a3825] rounded-xl flex items-start gap-3 border border-primary/20 animate-in fade-in slide-in-from-top-2 duration-300">
+                        <div class="bg-primary text-[#0d1b12] rounded-full p-1 mt-0.5">
+                            <span class="material-symbols-outlined text-lg block">thumb_up</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#0d1b12] dark:text-white text-sm mb-0.5">Correct Answer!</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 leading-snug">Hippos have a bite force of
+                                around 1,800 PSI, which is strong enough to snap a crocodile in half.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Action Area -->
+            <div
+                class="px-6 py-6 md:px-10 border-t border-[#e7f3eb] dark:border-[#2a4533] bg-[#f8fcf9] dark:bg-[#16291d] flex justify-between items-center">
+                <!-- Empty div for spacing/flex layout balance if needed, or previous button -->
+                <button
+                    class="hidden sm:flex text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 font-bold text-sm items-center gap-1 transition-colors">
+                    <span class="material-symbols-outlined text-lg">flag</span>
+                    Report Issue
+                </button>
+                <!-- Next Button -->
+                <button
+                    class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-primary hover:bg-[#25d360] active:scale-95 text-[#0d1b12] font-bold text-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all flex items-center justify-center gap-2 group">
+                    <span>Next Question</span>
+                    <span
+                        class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </main>
+    <!-- Simple copyright footer -->
+    <footer class="py-6 text-center text-xs text-gray-400 dark:text-gray-600 font-medium">
+        © 2024 Animal Expert Quiz System. All rights reserved.
+    </footer>
+    <script></script>
+</body>
+
+</html>

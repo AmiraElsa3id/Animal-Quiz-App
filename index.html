@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Login - Animal Expert Quiz</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+        <!-- tailwind -->
+        <link rel="stylesheet" href="./css/output.css">
+        <!-- custom -->
+         <link rel="stylesheet" href="./css/custom.css">
+    <!-- Tailwind CSS -->
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
+    <!-- Tailwind Configuration -->
+     <!-- <script src="tailwind.config.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "background-light": "#f8fcf9",
+                        "background-dark": "#102216",
+                        "text-main": "#0d1b12",
+                        "text-sub": "#4c9a66",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script> -->
+    <!-- <style>
+        /* Custom scrollbar to match theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style> -->
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 font-display min-h-screen flex flex-col transition-colors duration-300">
+    <!-- Top Navigation -->
+    <header
+        class="w-full border-b border-[#e7f3eb] dark:border-white/10 px-6 py-4 lg:px-40 bg-background-light dark:bg-background-dark/95 backdrop-blur-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="size-8 text-primary">
+                    <!-- Custom SVG Logo for Animal Expert -->
+                    <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_6_535)">
+                            <path clip-rule="evenodd"
+                                d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                        </g>
+                        <defs>
+                            <clippath id="clip0_6_535">
+                                <rect fill="white" height="48" width="48"></rect>
+                            </clippath>
+                        </defs>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold tracking-tight text-text-main dark:text-white hidden sm:block">Animal
+                    Expert Quiz</h2>
+            </div>
+            <div class="flex gap-3">
+                <button
+                    class="h-10 px-5 rounded-full bg-slate-100 dark:bg-slate-800 text-text-main dark:text-white text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    Home
+                </button>
+                <a
+                 href="./pages/signup.html"
+                    class="flex items-center h-10 px-5 rounded-full bg-primary text-[#0d1b12] text-sm font-bold hover:bg-green-400 transition-colors shadow-lg shadow-green-500/20 ">
+                    Register
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-1 flex items-center justify-center p-4 sm:p-8">
+        <div class="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <!-- Left Side: Login Form -->
+            <div class="flex flex-col gap-6 w-full max-w-md mx-auto lg:mx-0 order-2 lg:order-1">
+                <!-- Heading -->
+                <div class="space-y-2">
+                    <h1 class="text-4xl font-black tracking-tight text-text-main dark:text-white">Welcome Back</h1>
+                    <p class="text-text-sub dark:text-gray-400 text-lg">Log in to track your quiz progress.</p>
+                </div>
+                <!-- Role Switcher -->
+                <div class="bg-slate-100 dark:bg-slate-800/50 p-1.5 rounded-full flex relative w-full">
+                    <label class="flex-1 text-center cursor-pointer relative z-10">
+                        <input checked="" class="peer sr-only" name="role" type="radio" value="student" />
+                        <div
+                            class="py-2 px-4 rounded-full text-sm font-semibold text-text-sub dark:text-gray-400 transition-all peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:text-text-main dark:peer-checked:text-white peer-checked:shadow-sm">
+                            Student
+                        </div>
+                    </label>
+                    <label class="flex-1 text-center cursor-pointer relative z-10">
+                        <input class="peer sr-only" name="role" type="radio" value="teacher" />
+                        <div
+                            class="py-2 px-4 rounded-full text-sm font-semibold text-text-sub dark:text-gray-400 transition-all peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:text-text-main dark:peer-checked:text-white peer-checked:shadow-sm">
+                            Teacher
+                        </div>
+                    </label>
+                </div>
+                <!-- Form Inputs -->
+                <form class="flex flex-col gap-4" onsubmit="event.preventDefault()">
+                    <!-- Username Input -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium ml-1 text-text-main dark:text-gray-300"
+                            for="username">Username or Email</label>
+                        <div class="relative">
+                            <input
+                                class="w-full h-14 pl-5 pr-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-text-main dark:text-white placeholder:text-text-sub/50 dark:placeholder:text-gray-500"
+                                id="username" placeholder="Enter your username" type="text" />
+                            <span
+                                class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-sub dark:text-gray-500 select-none pointer-events-none">person</span>
+                        </div>
+                    </div>
+                    <!-- Password Input -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center ml-1">
+                            <label class="text-sm font-medium text-text-main dark:text-gray-300"
+                                for="password">Password</label>
+                            <a class="text-sm font-medium text-text-sub hover:text-primary transition-colors"
+                                href="#">Forgot Password?</a>
+                        </div>
+                        <div class="relative group">
+                            <input
+                                class="w-full h-14 pl-5 pr-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-text-main dark:text-white placeholder:text-text-sub/50 dark:placeholder:text-gray-500"
+                                id="password" placeholder="Enter your password" type="password" />
+                            <button
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-text-sub dark:text-gray-500 hover:text-text-main dark:hover:text-white transition-colors"
+                                type="button">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Error Message (Hidden by default, can be toggled via JS logic normally) -->
+                    <!-- 
+                    <div class="p-3 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 flex items-center gap-2 text-red-600 dark:text-red-400 text-sm">
+                        <span class="material-symbols-outlined text-[20px]">error</span>
+                        <span>Incorrect username or password.</span>
+                    </div>
+                    -->
+                    <!-- Submit Button -->
+                    <button
+                        class="mt-2 h-14 w-full rounded-full bg-primary hover:bg-green-400 text-[#0d1b12] text-base font-bold tracking-wide shadow-lg shadow-green-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
+                        type="submit">
+                        <span>Login</span>
+                        <span
+                            class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+                    </button>
+                </form>
+                <!-- Footer -->
+                <p class="text-center text-text-sub dark:text-gray-400 text-sm mt-2">
+                    Don't have an account?
+                    <a class="text-text-main dark:text-white font-bold hover:underline decoration-primary decoration-2 underline-offset-4"
+                        href="./pages/signup.html">Create an Account</a>
+                </p>
+            </div>
+            <!-- Right Side: Decorative Image -->
+            <div
+                class="relative h-[400px] lg:h-[600px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl order-1 lg:order-2 group">
+                <!-- Abstract Nature Image -->
+                <img alt="Abstract minimalist green texture resembling leaves or biology"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    data-alt="Abstract minimalist green texture resembling leaves or biology"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZJA_W_CilJm_37WD3Wz4GlTp2V49G72AXJ-FHm2eltj6Zki1uQ-3MtW6hcO7cx3Yg7sMydMF4AiNH6Mg-MPbvTIednJRjb_9K46YU6xrwRRAyCPoMglnjtr2eJZw_im0dN9TR8HrP8oNyWKI577Zmqap4gNRkBu9k_UbUf29axJsag7QSylUiGMvfhzgxxFht46YGdQeK-lrer5WfM7PFhL-Tqw4gzHp9sMw9LfAlGrWMT2ZCgGHSQVyMg9fEyc3GjUVnFAK9ArE" />
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-8 lg:p-12">
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-3xl max-w-sm">
+                        <div class="flex items-center gap-2 mb-2 text-primary">
+                            <span class="material-symbols-outlined">school</span>
+                            <span class="text-sm font-bold uppercase tracking-wider text-white">Did you know?</span>
+                        </div>
+                        <p class="text-white text-lg font-medium leading-relaxed">
+                            Owls can rotate their necks 270 degrees. Test your knowledge on more fun facts today!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./js/signup.js"></script>
+</body>
+
+</html>

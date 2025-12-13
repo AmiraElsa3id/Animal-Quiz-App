@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Teacher Dashboard - Animal Expert Quiz</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a3524",
+                        "text-main-light": "#0d1b12",
+                        "text-main-dark": "#e7f3eb",
+                        "text-sec-light": "#4c9a66",
+                        "text-sec-dark": "#8bc9a0",
+                        "border-light": "#e7f3eb",
+                        "border-dark": "#2a4c35"
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark overflow-hidden h-screen flex transition-colors duration-300">
+    <!-- Sidebar -->
+    <aside
+        class="w-20 lg:w-72 flex-shrink-0 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark flex flex-col h-full transition-all duration-300 z-20">
+        <!-- Logo Area -->
+        <div
+            class="h-20 flex items-center justify-center lg:justify-start lg:px-8 border-b border-border-light dark:border-border-dark">
+            <div class="size-10 bg-primary rounded-xl flex items-center justify-center text-background-dark shrink-0">
+                <span class="material-symbols-outlined">pets</span>
+            </div>
+            <div class="hidden lg:flex flex-col ml-3">
+                <h1 class="text-lg font-bold leading-none">ZooQuiz</h1>
+                <p class="text-xs text-text-sec-light dark:text-text-sec-dark mt-1">Teacher Portal</p>
+            </div>
+        </div>
+        <!-- Navigation -->
+        <nav class="flex-1 flex flex-col gap-2 p-4 overflow-y-auto">
+            <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+                href="#">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+                <span class="hidden lg:block font-medium">Dashboard</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-full bg-primary/20 text-text-main-light dark:text-white dark:bg-primary/20 transition-colors"
+                href="#">
+                <span class="material-symbols-outlined text-primary-dark dark:text-primary fill-1">add_circle</span>
+                <span class="hidden lg:block font-medium">Create Exam</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+                href="#">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors">folder_open</span>
+                <span class="hidden lg:block font-medium">Question Bank</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+                href="#">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors">group</span>
+                <span class="hidden lg:block font-medium">Students</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+                href="#">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors">bar_chart</span>
+                <span class="hidden lg:block font-medium">Results</span>
+            </a>
+        </nav>
+        <!-- User Profile (Bottom Sidebar) -->
+        <div class="p-4 border-t border-border-light dark:border-border-dark">
+            <div
+                class="flex items-center gap-3 p-2 rounded-full hover:bg-background-light dark:hover:bg-background-dark cursor-pointer transition-colors">
+                <div class="size-10 rounded-full bg-cover bg-center shrink-0" data-alt="Portrait of a female teacher"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAiWobiADlr1TGpPJEQsYGRkAGqROHowZzCZeiRMES1vjLDWM5WBfn6Zt1FIQuMNroPhm3U4hQlEKWF-PkfUL5CwLAN2HZVn5CHnGJ3CaAD8l7DSMNbEKoQBrNyGr7XoU4g6yk8K_d5hDiJfGWPGcVCGZJKJWVi__NmXoJK2LRay5QBZ06Kvaw7s_5MhWHldjpkNnotEslkMxH_g367Z946OriEOjyw04TDlHD3f4WMa825YvUQcNGfBVfkDCV_5Div1DIWul9I77w');">
+                </div>
+                <div class="hidden lg:flex flex-col overflow-hidden">
+                    <p class="text-sm font-bold truncate">Sarah Johnson</p>
+                    <p class="text-xs text-text-sec-light dark:text-text-sec-dark truncate">Biology Dept.</p>
+                </div>
+                <span
+                    class="material-symbols-outlined hidden lg:block ml-auto text-text-sec-light dark:text-text-sec-dark">expand_more</span>
+            </div>
+        </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+        <!-- Top Header -->
+        <header
+            class="h-20 flex items-center justify-between px-6 lg:px-10 border-b border-border-light dark:border-border-dark bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-10 shrink-0">
+            <div class="flex flex-col">
+                <h2 class="text-xl font-bold">Exam Creator</h2>
+                <div class="flex items-center gap-2 text-xs text-text-sec-light dark:text-text-sec-dark">
+                    <span>Dashboard</span>
+                    <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                    <span class="text-primary font-medium">New Exam</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle -->
+                <button
+                    class="flex items-center justify-center size-10 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-sec-light dark:text-text-sec-dark hover:text-primary hover:border-primary dark:hover:border-primary transition-all">
+                    <span class="material-symbols-outlined">dark_mode</span>
+                </button>
+                <button
+                    class="flex items-center justify-center size-10 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-sec-light dark:text-text-sec-dark hover:text-primary hover:border-primary dark:hover:border-primary transition-all relative">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span
+                        class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-white dark:border-surface-dark"></span>
+                </button>
+                <button
+                    class="bg-primary text-background-dark px-6 h-10 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors hidden sm:flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg">save</span>
+                    <span>Save Draft</span>
+                </button>
+            </div>
+        </header>
+        <!-- Scrollable Content Area -->
+        <div class="flex-1 overflow-y-auto p-6 lg:p-10 scroll-smooth">
+            <div class="max-w-6xl mx-auto flex flex-col gap-8">
+                <!-- Section: Exam Configuration -->
+                <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div
+                        class="lg:col-span-2 bg-surface-light dark:bg-surface-dark p-6 rounded-[2rem] shadow-sm border border-border-light dark:border-border-dark">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-bold flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">edit_document</span>
+                                Exam Details
+                            </h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <label class="col-span-2 md:col-span-2 flex flex-col gap-2">
+                                <span class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Exam
+                                    Name</span>
+                                <input
+                                    class="w-full h-12 px-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-400 dark:text-white"
+                                    placeholder="e.g. Mammals of the Savannah" type="text" />
+                            </label>
+                            <label class="flex flex-col gap-2">
+                                <span class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Duration
+                                    (minutes)</span>
+                                <input
+                                    class="w-full h-12 px-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white"
+                                    placeholder="45" type="number" />
+                            </label>
+                            <label class="flex flex-col gap-2">
+                                <span class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Passing
+                                    Score (%)</span>
+                                <input
+                                    class="w-full h-12 px-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white"
+                                    placeholder="70" type="number" />
+                            </label>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark p-6 rounded-[2rem] shadow-sm border border-border-light dark:border-border-dark flex flex-col">
+                        <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">assignment_ind</span>
+                            Assign Students
+                        </h3>
+                        <div class="flex-1 flex flex-col gap-4">
+                            <div class="relative">
+                                <span
+                                    class="material-symbols-outlined absolute left-3 top-3 text-text-sec-light dark:text-text-sec-dark">search</span>
+                                <input
+                                    class="w-full h-10 pl-10 pr-4 rounded-full bg-background-light dark:bg-background-dark border-none text-sm focus:ring-1 focus:ring-primary dark:text-white"
+                                    placeholder="Search students..." type="text" />
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary-dark dark:text-primary text-xs font-medium border border-primary/20">
+                                    Class A
+                                    <button class="hover:text-red-500"><span
+                                            class="material-symbols-outlined text-sm">close</span></button>
+                                </span>
+                                <span
+                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary-dark dark:text-primary text-xs font-medium border border-primary/20">
+                                    Biology 101
+                                    <button class="hover:text-red-500"><span
+                                            class="material-symbols-outlined text-sm">close</span></button>
+                                </span>
+                            </div>
+                            <button
+                                class="mt-auto w-full py-2 rounded-full border border-dashed border-text-sec-light dark:border-text-sec-dark text-text-sec-light dark:text-text-sec-dark text-sm hover:border-primary hover:text-primary transition-colors">
+                                + Add Student Group
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section: Question Editor -->
+                <section
+                    class="bg-surface-light dark:bg-surface-dark rounded-[2rem] shadow-sm border border-border-light dark:border-border-dark overflow-hidden">
+                    <div
+                        class="p-6 border-b border-border-light dark:border-border-dark flex flex-wrap items-center justify-between gap-4">
+                        <h3 class="text-lg font-bold">Question Builder</h3>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-text-sec-light dark:text-text-sec-dark">Question 1 of 1</span>
+                            <div class="flex gap-1">
+                                <button
+                                    class="size-8 rounded-full bg-background-light dark:bg-background-dark flex items-center justify-center hover:bg-primary hover:text-background-dark transition-colors disabled:opacity-50"
+                                    disabled="">
+                                    <span class="material-symbols-outlined text-sm">chevron_left</span>
+                                </button>
+                                <button
+                                    class="size-8 rounded-full bg-background-light dark:bg-background-dark flex items-center justify-center hover:bg-primary hover:text-background-dark transition-colors">
+                                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        <!-- Left Column: Content -->
+                        <div class="lg:col-span-8 flex flex-col gap-6">
+                            <!-- Question Text -->
+                            <div class="flex flex-col gap-2">
+                                <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Question
+                                    Text</label>
+                                <textarea
+                                    class="w-full h-32 p-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none dark:text-white transition-all"
+                                    placeholder="Which animal is known as the 'King of the Jungle'?"></textarea>
+                            </div>
+                            <!-- Image Upload -->
+                            <div class="flex flex-col gap-2">
+                                <span class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Reference
+                                    Image (Optional)</span>
+                                <div
+                                    class="border-2 border-dashed border-border-light dark:border-border-dark rounded-xl h-48 flex flex-col items-center justify-center bg-background-light/50 dark:bg-background-dark/50 hover:bg-background-light dark:hover:bg-background-dark hover:border-primary transition-all cursor-pointer group">
+                                    <div
+                                        class="size-12 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center mb-3 shadow-sm group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined text-primary">add_photo_alternate</span>
+                                    </div>
+                                    <p class="text-sm font-medium">Drag &amp; drop or <span
+                                            class="text-primary underline">browse</span></p>
+                                    <p class="text-xs text-text-sec-light dark:text-text-sec-dark mt-1">Supports JPG,
+                                        PNG, WEBP</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right Column: Settings & Answers -->
+                        <div class="lg:col-span-4 flex flex-col gap-6">
+                            <!-- Settings -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="flex flex-col gap-2">
+                                    <span
+                                        class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Difficulty</span>
+                                    <div class="relative">
+                                        <select
+                                            class="w-full h-12 px-4 appearance-none rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none dark:text-white cursor-pointer">
+                                            <option>Easy</option>
+                                            <option>Medium</option>
+                                            <option>Hard</option>
+                                        </select>
+                                        <span
+                                            class="material-symbols-outlined absolute right-3 top-3 text-text-sec-light pointer-events-none">expand_more</span>
+                                    </div>
+                                </label>
+                                <label class="flex flex-col gap-2">
+                                    <span
+                                        class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Score</span>
+                                    <input
+                                        class="w-full h-12 px-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none dark:text-white"
+                                        type="number" value="10" />
+                                </label>
+                            </div>
+                            <!-- Answers -->
+                            <div class="flex flex-col gap-3">
+                                <div class="flex justify-between items-end mb-1">
+                                    <span class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Answer
+                                        Options</span>
+                                    <span class="text-xs text-text-sec-light dark:text-text-sec-dark">Select correct
+                                        answer</span>
+                                </div>
+                                <!-- Option A -->
+                                <div
+                                    class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark hover:border-primary/50 transition-colors group focus-within:border-primary">
+                                    <label class="relative flex items-center justify-center cursor-pointer p-2">
+                                        <input class="peer sr-only" name="correct_answer" type="radio" />
+                                        <div
+                                            class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 rounded-full ring-4 ring-primary/20 scale-0 peer-checked:scale-100 transition-transform">
+                                        </div>
+                                    </label>
+                                    <input
+                                        class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
+                                        placeholder="Option A" type="text" value="Lion" />
+                                    <button
+                                        class="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-red-500"><span
+                                            class="material-symbols-outlined text-lg">delete</span></button>
+                                </div>
+                                <!-- Option B -->
+                                <div
+                                    class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark hover:border-primary/50 transition-colors group focus-within:border-primary">
+                                    <label class="relative flex items-center justify-center cursor-pointer p-2">
+                                        <input class="peer sr-only" name="correct_answer" type="radio" />
+                                        <div
+                                            class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
+                                        </div>
+                                    </label>
+                                    <input
+                                        class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
+                                        placeholder="Option B" type="text" value="Tiger" />
+                                    <button
+                                        class="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-red-500"><span
+                                            class="material-symbols-outlined text-lg">delete</span></button>
+                                </div>
+                                <!-- Option C -->
+                                <div
+                                    class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark hover:border-primary/50 transition-colors group focus-within:border-primary">
+                                    <label class="relative flex items-center justify-center cursor-pointer p-2">
+                                        <input class="peer sr-only" name="correct_answer" type="radio" />
+                                        <div
+                                            class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
+                                        </div>
+                                    </label>
+                                    <input
+                                        class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
+                                        placeholder="Option C" type="text" value="Elephant" />
+                                    <button
+                                        class="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-red-500"><span
+                                            class="material-symbols-outlined text-lg">delete</span></button>
+                                </div>
+                                <!-- Option D -->
+                                <div
+                                    class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark hover:border-primary/50 transition-colors group focus-within:border-primary">
+                                    <label class="relative flex items-center justify-center cursor-pointer p-2">
+                                        <input class="peer sr-only" name="correct_answer" type="radio" />
+                                        <div
+                                            class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
+                                        </div>
+                                    </label>
+                                    <input
+                                        class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
+                                        placeholder="Option D" type="text" />
+                                    <button
+                                        class="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-red-500"><span
+                                            class="material-symbols-outlined text-lg">delete</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="px-6 py-4 bg-background-light/50 dark:bg-background-dark/50 border-t border-border-light dark:border-border-dark flex justify-between items-center">
+                        <button
+                            class="text-red-500 hover:bg-red-50 px-4 py-2 rounded-full text-sm font-medium transition-colors dark:hover:bg-red-900/20">Delete
+                            Question</button>
+                        <div class="flex gap-3">
+                            <button
+                                class="px-6 py-2.5 rounded-full border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-bold transition-colors">
+                                Add Another
+                            </button>
+                            <button
+                                class="px-6 py-2.5 rounded-full bg-primary text-background-dark hover:bg-primary/90 text-sm font-bold transition-colors shadow-lg shadow-primary/20">
+                                Save Question
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section: Existing Questions & Recent Results -->
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                    <!-- Questions List -->
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark rounded-[2rem] shadow-sm border border-border-light dark:border-border-dark p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold">Question Bank</h3>
+                            <span
+                                class="bg-primary/20 text-primary-dark dark:text-primary px-3 py-1 rounded-full text-xs font-bold">3
+                                Questions</span>
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <!-- Question Item 1 -->
+                            <div
+                                class="p-4 rounded-2xl bg-background-light dark:bg-background-dark hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-between group cursor-pointer border border-transparent hover:border-border-light dark:hover:border-border-dark">
+                                <div class="flex flex-col gap-1">
+                                    <p class="font-medium text-sm line-clamp-1">Which animal is the fastest land animal?
+                                    </p>
+                                    <div class="flex gap-2">
+                                        <span
+                                            class="text-[10px] uppercase font-bold tracking-wider text-text-sec-light dark:text-text-sec-dark bg-white dark:bg-surface-dark px-2 py-0.5 rounded">Medium</span>
+                                        <span
+                                            class="text-[10px] uppercase font-bold tracking-wider text-text-sec-light dark:text-text-sec-dark bg-white dark:bg-surface-dark px-2 py-0.5 rounded">15
+                                            Pts</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button
+                                        class="size-8 rounded-full bg-white dark:bg-surface-dark shadow-sm flex items-center justify-center hover:text-primary"><span
+                                            class="material-symbols-outlined text-sm">edit</span></button>
+                                    <button
+                                        class="size-8 rounded-full bg-white dark:bg-surface-dark shadow-sm flex items-center justify-center hover:text-red-500"><span
+                                            class="material-symbols-outlined text-sm">delete</span></button>
+                                </div>
+                            </div>
+                            <!-- Question Item 2 -->
+                            <div
+                                class="p-4 rounded-2xl bg-background-light dark:bg-background-dark hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-between group cursor-pointer border border-transparent hover:border-border-light dark:hover:border-border-dark">
+                                <div class="flex flex-col gap-1">
+                                    <p class="font-medium text-sm line-clamp-1">Identify the reptile in the image below.
+                                    </p>
+                                    <div class="flex gap-2">
+                                        <span
+                                            class="text-[10px] uppercase font-bold tracking-wider text-text-sec-light dark:text-text-sec-dark bg-white dark:bg-surface-dark px-2 py-0.5 rounded">Hard</span>
+                                        <span
+                                            class="text-[10px] uppercase font-bold tracking-wider text-text-sec-light dark:text-text-sec-dark bg-white dark:bg-surface-dark px-2 py-0.5 rounded">20
+                                            Pts</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button
+                                        class="size-8 rounded-full bg-white dark:bg-surface-dark shadow-sm flex items-center justify-center hover:text-primary"><span
+                                            class="material-symbols-outlined text-sm">edit</span></button>
+                                    <button
+                                        class="size-8 rounded-full bg-white dark:bg-surface-dark shadow-sm flex items-center justify-center hover:text-red-500"><span
+                                            class="material-symbols-outlined text-sm">delete</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent Results Table -->
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark rounded-[2rem] shadow-sm border border-border-light dark:border-border-dark p-6 overflow-hidden">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold">Recent Results</h3>
+                            <button class="text-primary text-sm font-medium hover:underline">View All</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr
+                                        class="text-xs text-text-sec-light dark:text-text-sec-dark border-b border-border-light dark:border-border-dark">
+                                        <th class="font-medium py-2 pl-2">Student</th>
+                                        <th class="font-medium py-2">Exam</th>
+                                        <th class="font-medium py-2">Score</th>
+                                        <th class="font-medium py-2 pr-2 text-right">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm">
+                                    <tr
+                                        class="group border-b border-border-light/50 dark:border-border-dark/50 hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors">
+                                        <td class="py-3 pl-2 flex items-center gap-2">
+                                            <div class="size-6 rounded-full bg-gray-200 dark:bg-gray-700 bg-cover bg-center"
+                                                data-alt="Student Avatar"
+                                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBSDu--18I3oPHXLOI3RUkZMD0Bt36w8X_kfaNTOlS2YNQ3kIoNkE2L9BkZFFnqxdE3WV_oRu8z_P0XoIoA3vEW1235stV6AXCigsXo12t6rFCrjcwWnRFXWZGedWv7goK_Y2VA5r2Jcu-rIdsrNfxeAWyzdOpPocdaKA7goLgusgSjdj0lsuvlmmYoi3FitoCPRMUAvG-FJdPWbDmcVIDLrW_FSbF6MvTBebPkGOrvzkg3XbX_x5Svqr397fcP90HLrlDxELb4fhQ');">
+                                            </div>
+                                            <span class="font-medium">Alex M.</span>
+                                        </td>
+                                        <td class="py-3 text-text-sec-light dark:text-text-sec-dark">Jungle 101</td>
+                                        <td class="py-3"><span
+                                                class="text-green-600 font-bold bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-md">92%</span>
+                                        </td>
+                                        <td class="py-3 pr-2 text-right text-text-sec-light dark:text-text-sec-dark">Oct
+                                            24</td>
+                                    </tr>
+                                    <tr
+                                        class="group border-b border-border-light/50 dark:border-border-dark/50 hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors">
+                                        <td class="py-3 pl-2 flex items-center gap-2">
+                                            <div class="size-6 rounded-full bg-gray-200 dark:bg-gray-700 bg-cover bg-center"
+                                                data-alt="Student Avatar"
+                                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCypKbvJ9QCCAbwgZjTeLZ9g4U_MMDXQpT_AF2eWRU5MNOEL5kSiwzc6haePQBMzXPLmbf_Aim5hggoLo3Sni7bGaoAuzyFQE1AKyS4BkI9gxmzDAuOePETguEfO4pk6wmtwKNS7Ow3sRaM3hX-0V2Td0ZSXTs_H4pzb8ic8urwNzzLw-8wiRqM1ZYIYtypAflkQbx5C5wTCBvKXjQMvXlc2xisZQoDlHtPnqPYFHKz28Yr6iHJlBi8t0sAF5F3qPaT-B2bMDILkTU');">
+                                            </div>
+                                            <span class="font-medium">Sam K.</span>
+                                        </td>
+                                        <td class="py-3 text-text-sec-light dark:text-text-sec-dark">Ocean Life</td>
+                                        <td class="py-3"><span
+                                                class="text-yellow-600 font-bold bg-yellow-100 dark:bg-yellow-900/30 px-2 py-0.5 rounded-md">78%</span>
+                                        </td>
+                                        <td class="py-3 pr-2 text-right text-text-sec-light dark:text-text-sec-dark">Oct
+                                            23</td>
+                                    </tr>
+                                    <tr
+                                        class="group hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors">
+                                        <td class="py-3 pl-2 flex items-center gap-2">
+                                            <div class="size-6 rounded-full bg-gray-200 dark:bg-gray-700 bg-cover bg-center"
+                                                data-alt="Student Avatar"
+                                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJGvaLe0hSmaTv3hmjhMoIvcNEJFhlh7FNk3cdr3JTBAXIqeFB4QrunJX7AafbnmhuEoCj_mzr1QhdvZ6zKIlDM9QnRqLWktBg15JaAbdB7cU6iaoSt-7GU9E_dk5A8EBuspNcVWZ1cK-203IQ_ddEX3IpwCKKg9NRtDVTccpCuQY_Sqsppx6mrg_OZ9HGmHRACTD6Mul0ELSR8ikKx5PQ57YNxpDdjMDilnwqc3UcpbYOyFveirJgIlgJwhfJLA-_rdPS9lCKyjg');">
+                                            </div>
+                                            <span class="font-medium">Lisa R.</span>
+                                        </td>
+                                        <td class="py-3 text-text-sec-light dark:text-text-sec-dark">Jungle 101</td>
+                                        <td class="py-3"><span
+                                                class="text-red-600 font-bold bg-red-100 dark:bg-red-900/30 px-2 py-0.5 rounded-md">45%</span>
+                                        </td>
+                                        <td class="py-3 pr-2 text-right text-text-sec-light dark:text-text-sec-dark">Oct
+                                            23</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bottom Action -->
+                <div class="flex justify-end pb-10">
+                    <button
+                        class="bg-text-main-light dark:bg-white text-white dark:text-background-dark px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl shadow-gray-200 dark:shadow-none flex items-center gap-3">
+                        <span class="material-symbols-outlined">rocket_launch</span>
+                        Publish Exam
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

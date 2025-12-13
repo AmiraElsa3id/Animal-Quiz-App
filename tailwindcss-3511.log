@@ -1,0 +1,39 @@
+2025-12-13T13:58:52.916771Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2025-12-13T13:58:52.916895Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/amera/Desktop/JS PROJECT ITI/New folder", pattern: "**/*", negated: false }
+2025-12-13T13:58:52.917044Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2025-12-13T13:58:52.917063Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/amera/Desktop/JS PROJECT ITI/New folder" }
+2025-12-13T13:58:52.919200Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-13T13:58:52.919248Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-13T13:58:52.919768Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/index.html"
+2025-12-13T13:58:52.919840Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/css"
+2025-12-13T13:58:52.919910Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/css/input.css"
+2025-12-13T13:58:52.919970Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/js"
+2025-12-13T13:58:52.920031Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/js/signup.js"
+2025-12-13T13:58:52.920058Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/js/classes.js"
+2025-12-13T13:58:52.920086Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/js/validation.js"
+2025-12-13T13:58:52.920171Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/json_data_structure_updated.json"
+2025-12-13T13:58:52.920217Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/package.json"
+2025-12-13T13:58:52.920266Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/.vscode"
+2025-12-13T13:58:52.920321Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/.vscode/settings.json"
+2025-12-13T13:58:52.920370Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/assets"
+2025-12-13T13:58:52.920439Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/assets/image"
+2025-12-13T13:58:52.920542Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/pages"
+2025-12-13T13:58:52.920621Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/pages/New folder"
+2025-12-13T13:58:52.920697Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/pages/student-dashboard.html"
+2025-12-13T13:58:52.920727Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/pages/quiz.html"
+2025-12-13T13:58:52.920755Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/pages/result.html"
+2025-12-13T13:58:52.920786Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/pages/teatcher-dashboard.html"
+2025-12-13T13:58:52.920813Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/pages/signup.html"
+2025-12-13T13:58:52.920863Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-13T13:58:52.921193Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-13T13:58:52.921286Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-13T13:58:52.921349Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-13T13:58:52.921774Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/css"
+2025-12-13T13:58:52.921873Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/js"
+2025-12-13T13:58:52.922065Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/.vscode"
+2025-12-13T13:58:52.922147Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/assets"
+2025-12-13T13:58:52.922214Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/assets/image"
+2025-12-13T13:58:52.922289Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/pages"
+2025-12-13T13:58:52.922361Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "/Users/amera/Desktop/JS PROJECT ITI/New folder/pages/New folder"
+2025-12-13T13:58:52.922504Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-13T13:58:52.923566Z  INFO get_globs: tailwindcss_oxide::scanner: exit
