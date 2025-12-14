@@ -100,6 +100,8 @@ let userNameInput = document.querySelector("#username");
 let userPasswordInput = document.querySelector("#password");
 let usernameError= document.getElementById("usernameError");
 let  userPasswordError = document.getElementById("passwordError");
+let  passHide = document.querySelector("#hidePass");
+
 let selectedRole = null;
 
 function checkSelectedRole() {
@@ -159,7 +161,16 @@ function checkPassward(_user,inputPassword)
     }
 }
 
-
+passHide.addEventListener("click", function() {
+    console.log("Password hide button clicked");
+    if (userPasswordInput.type === "password") {
+        userPasswordInput.type = "text";
+        passHide.textContent = "visibility_off";
+    } else {
+        userPasswordInput.type = "password";
+        passHide.textContent = "visibility";
+    }
+});
 
 // const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // function logout() {

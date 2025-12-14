@@ -17,6 +17,19 @@ const userNameError = document.querySelector("#userNameError");
 const passwordError = document.querySelector("#passwordError");
 const stdPhoneError = document.querySelector("#stdPhoneError");
 const liveImage=document.querySelector("#liveImage");
+let  passHide = document.querySelector("#hidePass");
+
+passHide.addEventListener("click", function() {
+    console.log("Password hide button clicked in signup");
+    if (password.type === "password") {
+        password.type = "text";
+        passHide.textContent = "visibility_off";
+    } else {
+        password.type = "password";
+        passHide.textContent = "visibility";
+    }
+});
+
 let users;
 if(localStorage.getItem("students")){
     users=JSON.parse(localStorage.getItem("students"));
