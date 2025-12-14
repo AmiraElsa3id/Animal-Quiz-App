@@ -16,7 +16,7 @@ const signupBtn = document.querySelector("button[type='submit']");
 const userNameError = document.querySelector("#userNameError");
 const passwordError = document.querySelector("#passwordError");
 const stdPhoneError = document.querySelector("#stdPhoneError");
-
+const liveImage=document.querySelector("#liveImage");
 let users;
 if(localStorage.getItem("users")){
     users=JSON.parse(localStorage.getItem("users"));
@@ -72,3 +72,19 @@ stdPhone.addEventListener("input",()=>{
         stdPhoneError.innerHTML=validateSignupMobile(stdPhone.value)?.error
     }
 });
+
+stdImage.addEventListener('change',function (){
+    console.log(stdImage.files[0]);
+    
+    let reader=new FileReader()
+    let file=stdImage.files[0]
+    console.log(file);
+    
+    // reader.readAsDataURL(file)
+    // reader.onload=(e)=>{
+    //     liveImage.src=e.target.result
+    // }
+    liveImage.src="../assets/image/"+file.name
+    console.log(liveImage.src);
+}
+)
