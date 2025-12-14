@@ -18,25 +18,38 @@ const passwordError = document.querySelector("#passwordError");
 const stdPhoneError = document.querySelector("#stdPhoneError");
 const liveImage=document.querySelector("#liveImage");
 let users;
-if(localStorage.getItem("users")){
-    users=JSON.parse(localStorage.getItem("users"));
+if(localStorage.getItem("students")){
+    users=JSON.parse(localStorage.getItem("students"));
 }else{
     users=[];
 }
 const signup=()=>{
     let userData={
-        "username": userName.value,
-        "password": password.value,
-        "role": "student",
-        "grade": grade.value,
-        "mobile": stdPhone.value,
-        "profilePicture": stdImage.value,
+ username: userName.value,
+    password: password.value,
+    grade: grade.value,
+    mobile: stdPhone.value,
+    profilePicture: stdImage.files[0]?.name,
+        
+
+        // "username": userName.value,
+        // "password": password.value,
+        // "role": "student",
+        // "grade": grade.value,
+        // "mobile": stdPhone.value,
+        // "profilePicture": stdImage.value,
     }
 
     if(validateSignupForm(userData,users)?.isValid){
-        let user=new Student({...userData})
+        let user=new Student(
+            userData.username,
+            userData.password,
+            userData.grade,
+            userData.mobile,
+            userData.profilePicture
+        );
         users.push(user)
-        localStorage.setItem("users",JSON.stringify(users))
+        localStorage.setItem("students",JSON.stringify(users))
         alert("User Added Successfully")
         window.location.href="../index.html"
     }

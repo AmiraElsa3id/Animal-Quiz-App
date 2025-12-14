@@ -1,85 +1,3 @@
-<!DOCTYPE html>
-
-<html class="light" lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Login - Animal Expert Quiz</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;900&amp;display=swap"
-        rel="stylesheet" />
-    <!-- Material Symbols -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-        <!-- tailwind -->
-        <link rel="stylesheet" href="./css/output.css">
-        <!-- custom -->
-         <link rel="stylesheet" href="./css/custom.css">
-    <!-- Tailwind CSS -->
-    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
-    <!-- Tailwind Configuration -->
-     <!-- <script src="tailwind.config.js"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#2bee6c",
-                        "background-light": "#f8fcf9",
-                        "background-dark": "#102216",
-                        "text-main": "#0d1b12",
-                        "text-sub": "#4c9a66",
-                    },
-                    fontFamily: {
-                        "display": ["Lexend", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "1rem",
-                        "lg": "2rem",
-                        "xl": "3rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script> -->
-    <!-- <style>
-        /* Custom scrollbar to match theme */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24
-        }
-    </style> -->
-</head>
-
 <body
     class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 font-display min-h-screen flex flex-col transition-colors duration-300">
     <!-- Top Navigation -->
@@ -106,7 +24,10 @@
                     Expert Quiz</h2>
             </div>
             <div class="flex gap-3">
-               
+                <button
+                    class="h-10 px-5 rounded-full bg-slate-100 dark:bg-slate-800 text-text-main dark:text-white text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    Home
+                </button>
                 <a
                  href="./pages/signup.html"
                     class="flex items-center h-10 px-5 rounded-full bg-primary text-[#0d1b12] text-sm font-bold hover:bg-green-400 transition-colors shadow-lg shadow-green-500/20 ">
@@ -126,28 +47,28 @@
                     <p class="text-text-sub dark:text-gray-400 text-lg">Log in to track your quiz progress.</p>
                 </div>
                 <!-- Role Switcher -->
-                    <div class="bg-slate-100 dark:bg-slate-800/50 p-1.5 rounded-full flex relative w-full">
-                        <label class="flex-1 text-center cursor-pointer relative z-10">
-                            <input checked="" class="peer sr-only" name="role" type="radio" value="student" />
-                            <div
-                                class="py-2 px-4 rounded-full text-sm font-semibold text-text-sub dark:text-gray-400 transition-all peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:text-text-main dark:peer-checked:text-white peer-checked:shadow-sm">
-                                Student
-                            </div>
-                        </label>
-                        <label class="flex-1 text-center cursor-pointer relative z-10">
-                            <input class="peer sr-only" name="role" type="radio" value="teacher" />
-                            <div
-                                class="py-2 px-4 rounded-full text-sm font-semibold text-text-sub dark:text-gray-400 transition-all peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:text-text-main dark:peer-checked:text-white peer-checked:shadow-sm">
-                                Teacher
-                            </div>
-                        </label>
-                    </div>
+                <div class="bg-slate-100 dark:bg-slate-800/50 p-1.5 rounded-full flex relative w-full">
+                    <label class="flex-1 text-center cursor-pointer relative z-10">
+                        <input checked="" class="peer sr-only" name="role" type="radio" value="student" />
+                        <div
+                            class="py-2 px-4 rounded-full text-sm font-semibold text-text-sub dark:text-gray-400 transition-all peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:text-text-main dark:peer-checked:text-white peer-checked:shadow-sm">
+                            Student
+                        </div>
+                    </label>
+                    <label class="flex-1 text-center cursor-pointer relative z-10">
+                        <input class="peer sr-only" name="role" type="radio" value="teacher" />
+                        <div
+                            class="py-2 px-4 rounded-full text-sm font-semibold text-text-sub dark:text-gray-400 transition-all peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:text-text-main dark:peer-checked:text-white peer-checked:shadow-sm">
+                            Teacher
+                        </div>
+                    </label>
+                </div>
                 <!-- Form Inputs -->
                 <form class="flex flex-col gap-4" onsubmit="event.preventDefault()">
                     <!-- Username Input -->
                     <div class="space-y-2">
                         <label class="text-sm font-medium ml-1 text-text-main dark:text-gray-300"
-                            for="username">Username</label>
+                            for="username">Username or Email</label>
                         <div class="relative">
                             <input
                                 class="w-full h-14 pl-5 pr-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-text-main dark:text-white placeholder:text-text-sub/50 dark:placeholder:text-gray-500"
@@ -155,60 +76,37 @@
                             <span
                                 class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-sub dark:text-gray-500 select-none pointer-events-none">person</span>
                         </div>
-                        <!-- Warning message -->
-                        <span
-                            id="usernameError"
-                            class="hidden text-sm text-red-600 dark:text-red-400 ml-1">
-                            Wrong username
-                        </span>
                     </div>
                     <!-- Password Input -->
                     <div class="space-y-2">
                         <div class="flex justify-between items-center ml-1">
-                            <label
-                                class="text-sm font-medium text-text-main dark:text-gray-300"
-                                for="password">
-                                Password
-                            </label>
+                            <label class="text-sm font-medium text-text-main dark:text-gray-300"
+                                for="password">Password</label>
+                            <a class="text-sm font-medium text-text-sub hover:text-primary transition-colors"
+                                href="#">Forgot Password?</a>
                         </div>
-
                         <div class="relative group">
                             <input
-                                class="w-full h-14 pl-5 pr-12 rounded-2xl
-                                    bg-white dark:bg-slate-800/50
-                                    border border-slate-200 dark:border-slate-700
-                                    focus:border-primary focus:ring-4 focus:ring-primary/10
-                                    transition-all outline-none
-                                    text-text-main dark:text-white
-                                    placeholder:text-text-sub/50 dark:placeholder:text-gray-500"
-                                id="password"
-                                placeholder="Enter your password"
-                                type="password"
-                            />
-
-                        <button
-                            type="button"
-                            class="absolute right-4 top-1/2 -translate-y-1/2
-                                text-text-sub dark:text-gray-500
-                                hover:text-text-main dark:hover:text-white
-                                transition-colors">
-                            <span class="material-symbols-outlined">visibility</span>
-                        </button>
+                                class="w-full h-14 pl-5 pr-12 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-text-main dark:text-white placeholder:text-text-sub/50 dark:placeholder:text-gray-500"
+                                id="password" placeholder="Enter your password" type="password" />
+                            <button
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-text-sub dark:text-gray-500 hover:text-text-main dark:hover:text-white transition-colors"
+                                type="button">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                        </div>
                     </div>
-
-                    <!-- ✅ Error stays inside -->
-                    <span
-                        id="passwordError"
-                        class="hidden text-sm text-red-600 dark:text-red-400 ml-1">
-                        Wrong password
-                    </span>
-                </div>
-
+                    <!-- Error Message (Hidden by default, can be toggled via JS logic normally) -->
+                    <!-- 
+                    <div class="p-3 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 flex items-center gap-2 text-red-600 dark:text-red-400 text-sm">
+                        <span class="material-symbols-outlined text-[20px]">error</span>
+                        <span>Incorrect username or password.</span>
+                    </div>
+                    -->
                     <!-- Submit Button -->
-                    <button
+                    <button id="loginSubmit"
                         class="mt-2 h-14 w-full rounded-full bg-primary hover:bg-green-400 text-[#0d1b12] text-base font-bold tracking-wide shadow-lg shadow-green-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
-                        type="submit"
-                        id="loginSubmit">
+                        type="submit">
                         <span>Login</span>
                         <span
                             class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
@@ -244,8 +142,6 @@
             </div>
         </div>
     </main>
-     <script src="./js/intialize-teacher-data.js" type="module"></script>
+    <script src="./js/intialize-teacher-data.js" type="module"></script>
     <script src="./js/login.js" type="module"></script>
 </body>
-
-</html>

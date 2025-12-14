@@ -1,29 +1,31 @@
 // Base User class
 class User {
-  constructor(id, username, password, role) {
+  constructor(id, username, password, role ,profilePicture) {
     this.id = id;
     this.username = username;
     this.password = password;
     this.role = role;
+    this.profilePicture = profilePicture;
   }
 }
 
 // Student class
 class Student extends User {
   constructor(
-    id=Date.now(),
+   
     username,
     password,
     grade,
     mobile,
     profilePicture = './assets/images/avatar.webp',
     completedExams = [],
-    assignedExams = []
+    assignedExams = [],
+    id = Date.now()
   ) {
-    super(id, username, password, 'student');
+
+    super(id, username, password, 'student', profilePicture);
     this.grade = grade;
     this.mobile = mobile;
-    this.profilePicture = profilePicture;
     this.completedExams = completedExams;
     this.assignedExams = assignedExams;
   }
@@ -45,44 +47,44 @@ class Student extends User {
     return total / this.completedExams.length;
   }
 
-  toJSON() {
-    return {
-      id: this.id,
-      username: this.username,
-      password: this.password,
-      role: this.role,
-      grade: this.grade,
-      mobile: this.mobile,
-      profilePicture: this.profilePicture,
-      theme: this.theme,
-      completedExams: this.completedExams,
-      assignedExams: this.assignedExams
-    };
-  }
+  // toJSON() {
+  //   return {
+  //     id: this.id,
+  //     username: this.username,
+  //     password: this.password,
+  //     role: this.role,
+  //     grade: this.grade,
+  //     mobile: this.mobile,
+  //     profilePicture: this.profilePicture,
+  //     theme: this.theme,
+  //     completedExams: this.completedExams,
+  //     assignedExams: this.assignedExams
+  //   };
+  // }
 }
 
 // Teacher class
 class Teacher extends User {
-  constructor(id, username, password, course, darkMode = false) {
-    super(id, username, password, 'teacher');
+  constructor(id, username, password, course, darkMode = false, profilePicture = './assets/images/avatar.webp') {
+    super(id, username, password, 'teacher', profilePicture);
     this.course = course;
     this.darkMode = darkMode;
   }
 
-  toggleDarkMode() {
-    this.darkMode = !this.darkMode;
-  }
+  // toggleDarkMode() {
+  //   this.darkMode = !this.darkMode;
+  // }
 
-  toJSON() {
-    return {
-      id: this.id,
-      username: this.username,
-      password: this.password,
-      role: this.role,
-      course: this.course,
-      darkMode: this.darkMode
-    };
-  }
+  // toJSON() {
+  //   return {
+  //     id: this.id,
+  //     username: this.username,
+  //     password: this.password,
+  //     role: this.role,
+  //     course: this.course,
+  //     darkMode: this.darkMode
+  //   };
+  // }
 }
 
 // CompletedExam class
@@ -93,13 +95,13 @@ class CompletedExam {
     this.date = date;
   }
 
-  toJSON() {
-    return {
-      examId: this.examId,
-      score: this.score,
-      date: this.date.toISOString()
-    };
-  }
+  // toJSON() {
+  //   return {
+  //     examId: this.examId,
+  //     score: this.score,
+  //     date: this.date.toISOString()
+  //   };
+  // }
 }
 
 // Question class
@@ -118,17 +120,17 @@ class Question {
     return selectedAnswer === this.correctAnswer;
   }
 
-  toJSON() {
-    return {
-      id: this.id,
-      text: this.text,
-      image: this.image,
-      choices: this.choices,
-      correctAnswer: this.correctAnswer,
-      difficulty: this.difficulty,
-      score: this.score
-    };
-  }
+  // toJSON() {
+  //   return {
+  //     id: this.id,
+  //     text: this.text,
+  //     image: this.image,
+  //     choices: this.choices,
+  //     correctAnswer: this.correctAnswer,
+  //     difficulty: this.difficulty,
+  //     score: this.score
+  //   };
+  // }
 }
 
 // Exam class
@@ -179,18 +181,18 @@ class Exam {
     return this.questions.length;
   }
 
-  toJSON() {
-    return {
-      id: this.id,
-      name: this.name,
-      duration: this.duration,
-      teacherId: this.teacherId,
-      course: this.course,
-      createdAt: this.createdAt.toISOString(),
-      assignedStudents: this.assignedStudents,
-      questions: this.questions.map(q => q.toJSON())
-    };
-  }
+  // toJSON() {
+  //   return {
+  //     id: this.id,
+  //     name: this.name,
+  //     duration: this.duration,
+  //     teacherId: this.teacherId,
+  //     course: this.course,
+  //     createdAt: this.createdAt.toISOString(),
+  //     assignedStudents: this.assignedStudents,
+  //     questions: this.questions.map(q => q.toJSON())
+  //   };
+  // }
 }
 
 // Answer class
@@ -202,14 +204,14 @@ class Answer {
     this.timeSpent = timeSpent;
   }
 
-  toJSON() {
-    return {
-      questionId: this.questionId,
-      selectedAnswer: this.selectedAnswer,
-      isCorrect: this.isCorrect,
-      timeSpent: this.timeSpent
-    };
-  }
+  // toJSON() {
+  //   return {
+  //     questionId: this.questionId,
+  //     selectedAnswer: this.selectedAnswer,
+  //     isCorrect: this.isCorrect,
+  //     timeSpent: this.timeSpent
+  //   };
+  // }
 }
 
 // Result class
@@ -245,16 +247,16 @@ class Result {
     return (this.score / totalPossibleScore) * 100;
   }
 
-  toJSON() {
-    return {
-      id: this.id,
-      studentId: this.studentId,
-      examId: this.examId,
-      score: this.score,
-      date: this.date.toISOString(),
-      answers: this.answers.map(a => a.toJSON())
-    };
-  }
+  // toJSON() {
+  //   return {
+  //     id: this.id,
+  //     studentId: this.studentId,
+  //     examId: this.examId,
+  //     score: this.score,
+  //     date: this.date.toISOString(),
+  //     answers: this.answers.map(a => a.toJSON())
+  //   };
+  // }
 }
 
 export {Student,Teacher}

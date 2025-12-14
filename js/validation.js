@@ -1,18 +1,18 @@
-const validateUsername =(value , message=null ,regex=/^[a-zA-Z][a-zA-Z0-9_]{2,15}$/) => {
-    // Regex: Start with a letter, followed by 2-15 chars (letters, numbers, or underscores)
-    // Total length will be 3 to 16 characters
-    let errors={};
+// const validateUsername =(value , message=null ,regex=/^[a-zA-Z][a-zA-Z0-9_]{2,15}$/) => {
+//     // Regex: Start with a letter, followed by 2-15 chars (letters, numbers, or underscores)
+//     // Total length will be 3 to 16 characters
+//     let errors={};
     
-    if (usernameRegex.test(username)) {
-        // Valid username
-        usernameError.textContent = '';
-        return true;
-    } else {
-        // Invalid username
-        usernameError.textContent = 'Invalid: 3-16 chars, must start with a letter, only letters, numbers, or underscores allowed.';
-        return false;
-    }
-}
+//     if (usernameRegex.test(username)) {
+//         // Valid username
+//         usernameError.textContent = '';
+//         return true;
+//     } else {
+//         // Invalid username
+//         usernameError.textContent = 'Invalid: 3-16 chars, must start with a letter, only letters, numbers, or underscores allowed.';
+//         return false;
+//     }
+// }
 
 // ============================================
 // SIGNUP VALIDATIONS
@@ -40,10 +40,35 @@ function validateSignupUsername(username,users) {
   return { isValid: true };
 }
 
-function isExist(user,users){
-let exist=users.find((u)=>u.username===user.username);
-return exist;
+function isExist(user, users) {
+  console.log(user);
+  console.log(users);
+  
+  let exist = users.find((u) => {
+    console.log("Checking user:", u.username);
+    return u.username === user;
+  });
+  
+  console.log("Checking if user exists:", user, "Found:", exist);
+  
+  return !!exist; // or: return exist !== undefined
 }
+
+// function isExist(user,users){
+// let exist=users.find((u)=>{
+//   console.log("Checking user:", u.username);
+  
+//   return u.username===user});
+// console.log("Checking if user exists:", user, "Found:", );
+// console.log(exist);
+
+
+
+// if(exist){
+//     return true;
+// }
+// return false;
+// }
 function validateSignupPassword(password) {
   if (!password || password.trim() === '') {
     return { isValid: false, error: 'Password is required' };
@@ -161,142 +186,138 @@ function validateSignupForm(formData,users) {
 }
 
 // ============================================
+// Validate loggedin user (check if already logged in)
+// ============================================
+
+function validateLoggedInUser() {
+    const currentUser = localStorage.getItem("currentUser");
+    if (currentUser) {
+        return { isValid: true, user: JSON.parse(currentUser) };
+    }
+    return { isValid: false, error: "No user is currently logged in" };
+}
+
+
+
+
+// ============================================
 // LOGIN VALIDATIONS
 // ============================================
 
-function validateLoginUsername(username) {
-  if (!username || username.trim() === '') {
-    return { isValid: false, error: 'Username or Email is required' };
-  }
-  if (typeof username !== 'string') {
-    return { isValid: false, error: 'Username or Email must be a string' };
-  }
-  if (username.length < 3) {
-    return { isValid: false, error: 'Username or Email must be at least 3 characters long' };
-  }
-  return { isValid: true };
-}
+// function validateLoginUsername(username) {
+//   if (!username || username.trim() === '') {
+//     return { isValid: false, error: 'Username or Email is required' };
+//   }
+//   if (typeof username !== 'string') {
+//     return { isValid: false, error: 'Username or Email must be a string' };
+//   }
+//   if (username.length < 3) {
+//     return { isValid: false, error: 'Username or Email must be at least 3 characters long' };
+//   }
+//   return { isValid: true };
+// }
 
-function validateLoginPassword(password) {
-  if (!password || password.trim() === '') {
-    return { isValid: false, error: 'Password is required' };
-  }
-  if (typeof password !== 'string') {
-    return { isValid: false, error: 'Password must be a string' };
-  }
-  if (password.length < 6) {
-    return { isValid: false, error: 'Password must be at least 6 characters long' };
-  }
-  return { isValid: true };
-}
+// function validateLoginPassword(password) {
+//   if (!password || password.trim() === '') {
+//     return { isValid: false, error: 'Password is required' };
+//   }
+//   if (typeof password !== 'string') {
+//     return { isValid: false, error: 'Password must be a string' };
+//   }
+//   if (password.length < 6) {
+//     return { isValid: false, error: 'Password must be at least 6 characters long' };
+//   }
+//   return { isValid: true };
+// }
 
-function validateLoginRole(role) {
-  const validRoles = ['student', 'teacher'];
-  if (!role) {
-    return { isValid: false, error: 'Please select Student or Teacher' };
-  }
-  if (!validRoles.includes(role.toLowerCase())) {
-    return { isValid: false, error: 'Role must be either Student or Teacher' };
-  }
-  return { isValid: true };
-}
+// function validateLoginRole(role) {
+//   const validRoles = ['student', 'teacher'];
+//   if (!role) {
+//     return { isValid: false, error: 'Please select Student or Teacher' };
+//   }
+//   if (!validRoles.includes(role.toLowerCase())) {
+//     return { isValid: false, error: 'Role must be either Student or Teacher' };
+//   }
+//   return { isValid: true };
+// }
 
 // Complete login validation
-function validateLoginForm(formData) {
-  const errors = {};
+// function validateLoginForm(formData) {
+//   const errors = {};
   
-  const usernameValidation = validateLoginUsername(formData.username);
-  if (!usernameValidation.isValid) {
-    errors.username = usernameValidation.error;
-  }
+//   const usernameValidation = validateLoginUsername(formData.username);
+//   if (!usernameValidation.isValid) {
+//     errors.username = usernameValidation.error;
+//   }
   
-  const passwordValidation = validateLoginPassword(formData.password);
-  if (!passwordValidation.isValid) {
-    errors.password = passwordValidation.error;
-  }
+//   const passwordValidation = validateLoginPassword(formData.password);
+//   if (!passwordValidation.isValid) {
+//     errors.password = passwordValidation.error;
+//   }
   
-  const roleValidation = validateLoginRole(formData.role);
-  if (!roleValidation.isValid) {
-    errors.role = roleValidation.error;
-  }
+//   const roleValidation = validateLoginRole(formData.role);
+//   if (!roleValidation.isValid) {
+//     errors.role = roleValidation.error;
+//   }
   
-  if (Object.keys(errors).length > 0) {
-    return { isValid: false, errors };
-  }
+//   if (Object.keys(errors).length > 0) {
+//     return { isValid: false, errors };
+//   }
   
-  return { isValid: true };
-}
+//   return { isValid: true };
+// }
 
 // ============================================
 // HELPER FUNCTIONS
 // ============================================
 
 // Real-time validation for input fields
-function validateFieldOnChange(fieldName, value, formType = 'signup') {
-  if (formType === 'signup') {
-    switch(fieldName) {
-      case 'username':
-        return validateSignupUsername(value);
-      case 'password':
-        return validateSignupPassword(value);
-      case 'mobile':
-        return validateSignupMobile(value);
-      case 'grade':
-        return validateSignupGrade(value);
-      case 'profilePicture':
-        return validateSignupProfilePicture(value);
-      default:
-        return { isValid: true };
-    }
-  } else if (formType === 'login') {
-    switch(fieldName) {
-      case 'username':
-        return validateLoginUsername(value);
-      case 'password':
-        return validateLoginPassword(value);
-      case 'role':
-        return validateLoginRole(value);
-      default:
-        return { isValid: true };
-    }
-  }
-}
+// function validateFieldOnChange(fieldName, value, formType = 'signup') {
+//   if (formType === 'signup') {
+//     switch(fieldName) {
+//       case 'username':
+//         return validateSignupUsername(value);
+//       case 'password':
+//         return validateSignupPassword(value);
+//       case 'mobile':
+//         return validateSignupMobile(value);
+//       case 'grade':
+//         return validateSignupGrade(value);
+//       case 'profilePicture':
+//         return validateSignupProfilePicture(value);
+//       default:
+//         return { isValid: true };
+//     }
+//   } else if (formType === 'login') {
+//     switch(fieldName) {
+//       case 'username':
+//         return validateLoginUsername(value);
+//       case 'password':
+//         return validateLoginPassword(value);
+//       case 'role':
+//         return validateLoginRole(value);
+//       default:
+//         return { isValid: true };
+//     }
+//   }
+// }
 
 // Sanitize input to prevent XSS
-function sanitizeInput(input) {
-  if (typeof input !== 'string') return input;
+// function sanitizeInput(input) {
+//   if (typeof input !== 'string') return input;
   
-  return input
-    .trim()
-    .replace(/[<>]/g, '') // Remove < and > to prevent script injection
-    .slice(0, 1000); // Limit length
-}
+//   return input
+//     .trim()
+//     .replace(/[<>]/g, '') // Remove < and > to prevent script injection
+//     .slice(0, 1000); // Limit length
+// }
 
 // ============================================
 // EXPORT FOR USE
 // ============================================
 
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    // Signup validations
-    validateSignupUsername,
-    validateSignupPassword,
-    validateSignupMobile,
-    validateSignupGrade,
-    validateSignupProfilePicture,
-    validateSignupForm,
-    
-    // Login validations
-    validateLoginUsername,
-    validateLoginPassword,
-    validateLoginRole,
-    validateLoginForm,
-    
-    // Helper functions
-    validateFieldOnChange,
-    sanitizeInput
-  };
-}
+
+
 
 // ============================================
 // USAGE EXAMPLES
@@ -352,10 +373,6 @@ export {
   validateSignupGrade,
   validateSignupProfilePicture,
   validateSignupForm,
-  validateLoginUsername,
-  validateLoginPassword,
-  validateLoginRole,
-  validateLoginForm,
-  validateFieldOnChange,
-  sanitizeInput
+  validateLoggedInUser
+  
 };

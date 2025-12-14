@@ -1,75 +1,3 @@
-<!DOCTYPE html>
-
-<html class="light" lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Student Profile - Animal Expert Quiz</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <!-- Tailwind -->
-    <link rel="stylesheet" href="../css/output.css">
-    <!-- Custom -->
-    <link rel="stylesheet" href="../css/custom.css">
-    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
-    <!-- <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#2bee6c",
-                        "primary-hover": "#25d660",
-                        "background-light": "#f8fcf9",
-                        "background-dark": "#102216",
-                        "surface-light": "#ffffff",
-                        "surface-dark": "#1a2e22",
-                        "text-main-light": "#0d1b12",
-                        "text-main-dark": "#f0fdf4",
-                        "text-sub-light": "#4c9a66",
-                        "text-sub-dark": "#8ecfa3",
-                        "border-light": "#e7f3eb",
-                        "border-dark": "#2a4535",
-                    },
-                    fontFamily: {
-                        "display": ["Lexend", "sans-serif"],
-                        "body": ["Noto Sans", "sans-serif"],
-                    },
-                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "3rem", "full": "9999px"},
-                },
-            },
-        }
-    </script> -->
-    <!-- <style>
-        /* Custom scrollbar for cleaner look */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cfe7d7;
-            border-radius: 4px;
-        }
-        .dark ::-webkit-scrollbar-thumb {
-            background: #2a4535;
-        }
-    </style> -->
-</head>
-
 <body
   class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-display min-h-screen flex flex-col transition-colors duration-200 selection:bg-primary selection:text-text-main-light">
   <!-- Top Navigation -->
@@ -96,7 +24,7 @@
           <button class="size-10 rounded-full overflow-hidden border-2 border-white dark:border-[#2a4535] shadow-sm">
             <div class="w- h-full bg-cover bg-center" data-alt="User profile avatar of a smiling young man"
               style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCGdIFTLmDfJFfenVt9e39SNVE3lxu3pc2ed-w5dY2LvzjI24XgyXo4K9f9Op7BkXihxRZfpBPR_xOajASg4GmPYSSXo1tb9Az2yA3A5uYBGC8FPU4C4h4AhQx5AwawxI67RWO7JpleeMxdSs86AqqGwuHdCsGU41wEeUVmAucOJ9T5MY63PHN4lqLsvcK-ixcRxKnncvu8QHKZcOxZf3JzRP_-0ueACPXa7ib59YHILylbZ4iSQB9S9FgkfofV5Xgv_l98gk37I8 ");'>
-              <img src="../assets/image/avatar.webp" class="w-30 h-30 object-cover" alt=""></div>
+              <img src="" class="w-30 h-30 object-cover" alt=""></div>
           </button>
         </div>
       </div>
@@ -116,7 +44,7 @@
             <div class="size-28 rounded-full border-4 border-white dark:border-surface-dark shadow-md overflow-hidden">
               <div class="w-full h-full bg-cover bg-center" data-alt="Close up portrait of a student"
                 style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0oFx8vUBc2omP4kutomw9tGBbiaM9-tYCTDw_4eC6jCgpA9C1K5d3B7_lSKwKEnPW9RyEe4oeMOoJQw1lkAFsiCeVDj4E19Xg3IefZE2j4dOQv9Jly0tnmugV25amxbc7BrOk8Rw15IhOFFUXbvkpB3ADXI8U5mDIAfZ2ZRqU_ztBpXpKk-T699AxJyofY34-xYYY4p3KhCdQyn2sVxH7NG-INvXwoa74HBz54R8vNMiO8ZHNIVxFTZii_lGXVBlJgeeP5EyJcSA");'
-                id="profileCardImage"><img src="../assets/image/avatar.webp" class="w-30 h-30 object-cover" alt=""></div>
+                id="profileCardImage"><img src="" class="w-30 h-30 object-cover" alt=""></div>
             </div>
             <div
               class="absolute bottom-0 right-0 bg-primary text-[#0d1b12] rounded-full p-1.5 border-2 border-white dark:border-surface-dark"
@@ -337,8 +265,5 @@
       <span class="text-[10px] font-bold">Settings</span>
     </a>
   </nav>
- <script src="../js/themeToggle.js"></script>
+
 </body>
-
-
-</html>
