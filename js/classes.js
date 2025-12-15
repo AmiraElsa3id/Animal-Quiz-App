@@ -43,10 +43,11 @@ class Student extends User {
 
   getAverageScore() {
     if (this.completedExams.length === 0) return 0;
-    const total = this.completedExams.reduce((sum, exam) => sum + exam.score, 0);
+    const total = this.completedExams.reduce((sum, exam) => sum + Number(exam.score), 0);
     return total / this.completedExams.length;
   }
-
+  
+  
   // toJSON() {
   //   return {
   //     id: this.id,
