@@ -1,4 +1,5 @@
-import { validateLoggedInUser } from './validation.js';
+import { validateLoggedInUser,validateQuestion } from './validation.js';
+import { Question } from './classes.js';
 let teacher ;
 const validation = validateLoggedInUser();
 if (!validation.isValid) {
@@ -31,18 +32,21 @@ let examDuration = document.getElementById('examDuration');
 let questionsNum = document.getElementById('questionsNum');
 let questionText = document.getElementById('questionText');
 let difficulty = document.getElementById('difficulty');
+let imageUpload = document.getElementById('imageUpload');
 let answer1 = document.getElementById('answer1');
 let answer2 = document.getElementById('answer2');
 let answer3 = document.getElementById('answer3');
 let answer4 = document.getElementById('answer4');
-let correctAnswer = document.getElementById('correct_answer');
+let correctAnswer = Array.from(document.getElementsByName('correct_answer'));
 let submitButton = document.getElementById('submitExam');
+let addQuestion = document.getElementById('addQuestion');
 let toLeft = document.getElementById('toLeft');
 let toRight = document.getElementById('toRight');
+let submitQuestion = document.getElementById('saveQuestion');
+let questionTextError = document.getElementById('questionTextError');
+let correctAnswerError = document.getElementById('correctAnswerError');
 
-submitButton.addEventListener('click', () => {
-    
-})
+
 
 function createExam(){
     
@@ -53,13 +57,32 @@ function getQuestion(){
 }
 
 function createQuestion(){
+    console.log(correctAnswer);
     
+    let question= new Question(
+        Date.now(),
+        questionText.value,
+        imageUpload.value,
+        [answer1.value,answer2.value,answer3.value,answer4.value],
+        correctAnswer?.find((option)=>option.checked)?.value,
+        difficulty.value,
+        5
+    )
+    
+   return question;
 }
+
 
 function displayStudents(){
     
 }
 
+function saveQuestion(question){
+     let questions = JSON.parse(localStorage.getItem("questions")) || [];
+    questions.push(question);
+    localStorage.setItem("questions",JSON.stringify(questions));
+    console.log(question);
+}
 function getStudentDetails(){
     
 }
@@ -82,3 +105,20 @@ function validateExam(){
 
 
 
+addQuestion?.addEventListener('click',()=>{
+ let question = createQuestion();
+ let errors =validateQuestion(question);
+ if(errors.isValid){
+    questionTextError.textContent = "";
+    correctAnswerError.textContent = "";
+    saveQuestion(question);
+ }
+ else{
+    if(errors.errors.questionText){
+        questionTextError.textContent = errors.errors.questionText;
+    }
+    if(errors.errors.correctAnswer){
+        correctAnswerError.textContent = errors.errors.correctAnswer;
+    }
+ }
+})

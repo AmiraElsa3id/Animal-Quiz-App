@@ -197,7 +197,23 @@ function validateLoggedInUser() {
     return { isValid: false, error: "No user is currently logged in" };
 }
 
+// ============================================
+// Question VALIDATIONS
+// ============================================
 
+function validateQuestion(question){
+    const errors = {};
+    const isValid = false;
+    if (!question.text || question.text.trim() === '') {
+        errors.question = 'Question is required';
+
+    }
+    if(!question.correctAnswer){
+        errors.correctAnswer = 'Correct answer is required';
+    }
+    
+    return { isValid,"",errors };
+}
 
 
 // ============================================
@@ -373,6 +389,7 @@ export {
   validateSignupGrade,
   validateSignupProfilePicture,
   validateSignupForm,
-  validateLoggedInUser
+  validateLoggedInUser,
+  validateQuestion,
   
 };

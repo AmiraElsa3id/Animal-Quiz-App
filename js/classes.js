@@ -259,7 +259,7 @@ class Result {
   // }
 }
 
-export {Student,Teacher}
+export {Student,Teacher,Question,Exam,Answer,Result}
 
 // Example usage:
 // const student = new Student(
