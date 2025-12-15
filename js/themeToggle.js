@@ -21,8 +21,8 @@
             document.documentElement.classList.add('dark');
         });
    
-        if(document.getElementById('mode')){
-            console.log(document.getElementById('mode'));
+        document.getElementById('mode')?.addEventListener('click', () => {
+            console.log(document.getElementById('mode').checked);
             
             if(document.getElementById('mode').checked){
                  document.documentElement.classList.add('dark');
@@ -31,5 +31,5 @@
                 document.documentElement.classList.remove('dark');
             }
             
-        }
+        });
            
