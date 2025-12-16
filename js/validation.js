@@ -203,16 +203,18 @@ function validateLoggedInUser() {
 
 function validateQuestion(question){
     const errors = {};
-    const isValid = false;
+    const isValid = true;
     if (!question.text || question.text.trim() === '') {
         errors.question = 'Question is required';
+        isValid = false;
 
     }
     if(!question.correctAnswer){
         errors.correctAnswer = 'Correct answer is required';
+        isValid = false;
     }
     
-    return { isValid,"",errors };
+    return { isValid,errors };
 }
 
 
