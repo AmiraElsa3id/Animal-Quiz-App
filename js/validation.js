@@ -203,8 +203,8 @@ function validateLoggedInUser() {
 
 function validateQuestion(question){
     const errors = {};
-    const isValid = true;
-    if (!question.text || question.text.trim() === '') {
+    let isValid = true;
+    if (question.text.length == 0 || question.text.trim() === '') {
         errors.question = 'Question is required';
         isValid = false;
 
