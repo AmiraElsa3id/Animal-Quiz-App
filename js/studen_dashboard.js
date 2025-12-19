@@ -1,7 +1,25 @@
-import { Student } from "./classes.js";
+import { Student,Exam } from "./classes.js";
+
+//------------------test data ---------------
+ let completedExamsTest={
+    examId: "e1701234567890",
+    name: "Dog Breeds Expert Quiz",
+    score: 85,
+    date: "2025-12-10T14:30:00.000Z"
+  }
+ let Examtest = {"id": "e1",
+        "name":"exam1",
+        "duration":45,
+        "teacherId":"t1",
+        "course":"Animal Expert",
+        "createdAt": "2025-12-10T14:30:00.000Z",
+        "assignedStudents":["std1ID","std2ID"],
+        "questions":["Q1Id","Q2Id"]
+        };
+
 
 //------------ Html Elment ---------------------------
-let TakeQuizBtn = document.querySelector(".StartQuiz")
+let TakeQuizBtn = document.querySelector(".TakeQuiz")
 //-------------profile card  elements ----------------
 let WelcomeBarDate = document.querySelector(".CurrentDate");
 let profileCardImage = document.querySelector("#profileCardImage img");
@@ -14,7 +32,7 @@ let profileCardExamsScore = document.querySelector("#profileCardExamsScore");
 //----------------Exam card  element -----------------
 let ExamCardsSection =document.querySelector("#ExamsCards");
 let ExamCards =ExamCardsSection.querySelectorAll(".ExamCard");
-
+let noExamYet =ExamCardsSection.querySelector(".noExamYet");
 //------------Compelete Exams -----------
 
 let CompeleteExamTable = document.querySelector(".CompeleteExamTable");
@@ -22,63 +40,89 @@ let TrCompeleteExam = document.querySelectorAll(".TrCompeleteExam");
 //------------------student data -------------------------
 
 let students = JSON.parse(localStorage.getItem("students"))||[];
-
 let  student = JSON.parse(localStorage.getItem("currentUser"));
-let cuurentStuden = new Student(...student)
-// let curentStudent = Student.fromJSON(student);
-console.log(curentStudent)
+let Exams = JSON.parse(localStorage.getItem("Exams"))||[];
+let curentStudentObj = Student.fromJSON(student);
+//------------------for test ------------
+Exams.push(Examtest) 
+student.assignedExams.push("e1")
+curentStudentObj.completeExam(completedExamsTest.examId,completedExamsTest.name,completedExamsTest.score  )
 
 //-----------------current date -------------------
 
 const options = { day: "numeric", month: "long", year: "numeric" };
 let CurrentDate = new Date().toLocaleDateString("en-US", options); 
 WelcomeBarDate.innerHTML=CurrentDate
-let score = ///
-
-StudentName.forEach(item=>item.innerText+=student.username)// change static data with data of student from json
-
+let score = curentStudentObj.getAverageScore()
+StudentName.forEach(item=>item.innerText+=student.username)
 profileCardId.innerText+=student.id;
 profileCardImage.style.src=student.profilePicture;
 profileCardExamCount.innerText=student.completedExams.length;
-// profileCardScore.innerText=score.studentScore;
-// profileCardExamsScore.innerHTML=score.examsScore
+profileCardScore.innerText=score;
+profileCardExamsScore.innerHTML=student.completedExams.length*100;
 //--------- Exam Cards
-
-
 for (let i =0 ;i<student.assignedExams.length;i++)
 {
     let CloneCardExam = ExamCards[0].cloneNode(true);
     ExamCardsSection.appendChild(CloneCardExam);
 }
 
-// ExamCards.forEach((card,index)=>{
-//     card.dataset.examId = Exam[index].id;
-//     card.querySelector(".ExamCardName").innerText=Exam[index].name;
-//     card.querySelector(".ExamCardDate").innerText=Exam[index].date;
-//     card.querySelector(".ExamCardName").style.src=Exam[index].img
-// })
-
+if(student.assignedExams.length==0)
+{
+  ExamCards.forEach(card=>{card.classList.add("hidden")})
+  noExamYet.classList.remove("hidden")
+}
+else
+{ 
+    noExamYet.classList.add("hidden")
+    ExamCards.forEach((card,index)=>{
+        let examId=student["assignedExams"][index]
+        console.log(examId)
+        const exam = Exams.find(e => e.id === examId);
+        console.log(exam)
+        if (!exam) {
+                    alert("that is exam id is not valid ")
+        } else {
+                    console.log(exam)
+                    card.classList.remove("hidden")
+                    card.dataset.examId =exam.id;
+                    card.querySelector("#ExamCardName").innerText=exam.id;
+                    // card.querySelector("#ExamCardDate").innerText=student["assignedExams"].date;// ask if we need it or not 
+                    // card.querySelector(".ExamCardImage  ").style.src=exam.image
+        }
+        
+    })
+}
 
 // ---------------- Compelete Exams Table--------------
-// for (let i=0 ; i<CompeleteExams ; i ++)
-// {
-//     let ColneTrCompeleteExam = TrCompeleteExam[0].cloneNode(true);
-//     CompeleteExamTable.appendChild(ColneTrCompeleteExam);
-// }
 
-// TrCompeleteExam.forEach((exam,index)=>{
-//     exam.querySelector(".CompleteExamName").innerText=CompeleteExams[index].name;
-//     exam.querySelector(".CompleteExamDate").innerText=CompeleteExams[index].date;
-//     exam.querySelector(".CompleteEamScore").innerText=CompeleteExams[index].score;
+for (let i=0 ; i<student.completedExams ; i ++)
+{
+    let ColneTrCompeleteExam = TrCompeleteExam[0].cloneNode(true);
+    CompeleteExamTable.appendChild(ColneTrCompeleteExam);
+}
 
-// })
+TrCompeleteExam.forEach((exam,index)=>{
+    exam.classList.remove("hidden")
+    exam.querySelector(".CompleteExamName").innerText=student.completedExams[index].name||"";
+    exam.querySelector(".CompleteExamDate").innerText=student.completedExams[index].date||"";
+    exam.querySelector(".CompleteEamScore").innerText=student.completedExams[index].score||"";
+
+})
+
 
 ExamCards.forEach(card => {
   const btn = card.querySelector('.StartQuiz');
   btn.addEventListener('click', () => {
     const examId = card.dataset.examId;
-    window.selectedExamId = card.dataset.examId;
-    Router.navigate(`/exam`);
+    localStorage.setItem("selectedExamId",examId)
+    window.location.href = "./quiz.html";
   });
 });
 
+TakeQuizBtn.addEventListener("click",function(){
+  console.log("ok");
+  const examId=student.assignedExams.pop();
+  localStorage.setItem("selectedExamId",examId);
+  window.location.href="./quiz.html";
+})

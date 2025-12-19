@@ -11,6 +11,7 @@
         "questions":["Q1Id","Q2Id"]
 
         },
+
         {"id": "e1",
         "name":"exam1",
         "duration":45,
@@ -21,7 +22,6 @@
         "questions":["Q1Id","Q2Id"]
 
         }
-
     ]
 }
 
@@ -50,9 +50,8 @@
         {
            "questionId":"q1",
            "selectedAnswer":"choice1",
-           "isCorrect":true,
+           "isCorrect":true
            "timeSpent":10
-
         }
     ]
 }

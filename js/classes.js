@@ -19,7 +19,7 @@ class Student extends User {
     mobile,
     profilePicture = './assets/images/avatar.webp',
     completedExams = [],
-    assignedExams = [],
+    assignedExams = [],  
     id = Date.now()
   ) {
 
@@ -30,8 +30,8 @@ class Student extends User {
     this.assignedExams = assignedExams;
   }
 
-  completeExam(examId, score, date = new Date()) {
-    this.completedExams.push(new CompletedExam(examId, score, date));
+  completeExam(examId, name ,score,timeOfFinshed ,date = new Date()) {
+    this.completedExams.push(new CompletedExam(examId, name,score,timeOfFinshed, date));
     this.assignedExams = this.assignedExams.filter(id => id !== examId);
   }
 
@@ -41,27 +41,38 @@ class Student extends User {
     }
   }
 
-  getAverageScore() {
-    if (this.completedExams.length === 0) return 0;
-    const total = this.completedExams.reduce((sum, exam) => sum + Number(exam.score), 0);
-    return total / this.completedExams.length;
+    getAverageScore() {
+      if (this.completedExams.length === 0) return 0;
+      const total = this.completedExams.reduce((sum, exam) => sum + Number(exam.score), 0);
+      return total / this.completedExams.length;
+    }
+  
+    static fromJSON(obj) {
+      return new Student(
+        obj.username,
+        obj.password,
+        obj.grade,
+        obj.mobile,
+        obj.profilePicture,
+        obj.completedExams || [],
+        obj.assignedExams||[],
+        obj.id
+      );
+    }
+  toJSON() {
+    return {
+      id: this.id,
+      username: this.username,
+      password: this.password,
+      role: this.role,
+      grade: this.grade,
+      mobile: this.mobile,
+      profilePicture: this.profilePicture,
+      theme: this.theme,
+      completedExams: this.completedExams,
+      assignedExams: this.assignedExams
+    };
   }
-  
-  
-  // toJSON() {
-  //   return {
-  //     id: this.id,
-  //     username: this.username,
-  //     password: this.password,
-  //     role: this.role,
-  //     grade: this.grade,
-  //     mobile: this.mobile,
-  //     profilePicture: this.profilePicture,
-  //     theme: this.theme,
-  //     completedExams: this.completedExams,
-  //     assignedExams: this.assignedExams
-  //   };
-  // }
 }
 
 // Teacher class
@@ -90,9 +101,11 @@ class Teacher extends User {
 
 // CompletedExam class
 class CompletedExam {
-  constructor(examId, score, date) {
+  constructor(examId,name, score,timeOfFinshed, date) {
     this.examId = examId;
+    this.name = name
     this.score = score;
+    this.timeOfFinshed=timeOfFinshed;
     this.date = date;
   }
 
@@ -205,14 +218,14 @@ class Answer {
     this.timeSpent = timeSpent;
   }
 
-  // toJSON() {
-  //   return {
-  //     questionId: this.questionId,
-  //     selectedAnswer: this.selectedAnswer,
-  //     isCorrect: this.isCorrect,
-  //     timeSpent: this.timeSpent
-  //   };
-  // }
+  toJSON() {
+    return {
+      questionId: this.questionId,
+      selectedAnswer: this.selectedAnswer,
+      isCorrect: this.isCorrect,
+      timeSpent: this.timeSpent
+    };
+  }
 }
 
 // Result class
@@ -260,7 +273,7 @@ class Result {
   // }
 }
 
-export {Student,Teacher,Question,Exam,Answer,Result}
+export {Student,Teacher, Exam,Answer}
 
 // Example usage:
 // const student = new Student(
