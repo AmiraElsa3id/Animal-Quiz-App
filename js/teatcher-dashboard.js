@@ -46,7 +46,7 @@ let submitQuestion = document.getElementById('saveQuestion');
 let questionTextError = document.getElementById('questionTextError');
 let correctAnswerError = document.getElementById('correctAnswerError');
 
-
+let questions=[]
 
 function createExam(){
     
@@ -55,6 +55,8 @@ function createExam(){
 function getQuestion(){
     
 }
+ 
+
 
 function createQuestion(){
     console.log(correctAnswer);
@@ -114,8 +116,8 @@ addQuestion?.addEventListener('click',()=>{
     saveQuestion(question);
  }
  else{
-    if(errors.errors.questionText){
-        questionTextError.textContent = errors.errors.questionText;
+    if(errors.errors.question){
+        questionTextError.textContent = errors.errors.question;
     }
     if(errors.errors.correctAnswer){
         correctAnswerError.textContent = errors.errors.correctAnswer;
