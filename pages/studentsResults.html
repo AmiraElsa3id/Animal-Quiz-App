@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Student Management - Animal Expert Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../css/output.css" />
+
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Top Navigation -->
+        <header
+            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-10 py-4 sticky top-0 z-50">
+            <div class="flex items-center gap-4">
+                <div class="size-8 text-primary">
+                    <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_6_535)">
+                            <path clip-rule="evenodd"
+                                d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                        </g>
+                        <defs>
+                            <clippath id="clip0_6_535">
+                                <rect fill="white" height="48" width="48"></rect>
+                            </clippath>
+                        </defs>
+                    </svg>
+                </div>
+                <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Animal Expert Quiz</h2>
+            </div>
+            <div class="flex flex-1 justify-end gap-8 items-center">
+                <nav class="hidden md:flex items-center gap-9">
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="teatcher-dashboard.html">Dashboard</a>
+                    <a class="text-sm font-medium text-primary" href="studentsResults.html">Students</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Quizzes</a>
+                    
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button id="logOutBtn"
+                        class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary/20 dark:bg-primary/10 text-primary text-sm font-bold hover:bg-primary/30 dark:hover:bg-primary/20 transition-colors">
+                        <span class="truncate">Log Out</span>
+                    </button>
+                    <img id="teacherImage" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-border-light dark:border-border-dark"
+                        data-alt="Teacher profile picture showing a smiling person"
+                        >
+                 
+                </div>
+            </div>
+        </header>
+        <!-- Main Content Area -->
+        <main
+            class="layout-container flex h-full grow flex-col px-4 md:px-10 lg:px-40 py-8 w-full max-w-[1440px] mx-auto">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap gap-2 mb-6 text-sm">
+                <a class="text-text-sec-light dark:text-text-sec-dark font-medium hover:underline" href="#">Home</a>
+                <span class="text-text-sec-light dark:text-text-sec-dark font-medium">/</span>
+                <a class="text-text-sec-light dark:text-text-sec-dark font-medium hover:underline"
+                    href="#">Dashboard</a>
+                <span class="text-text-sec-light dark:text-text-sec-dark font-medium">/</span>
+                <span class="text-text-main-light dark:text-text-main-dark font-medium">Students</span>
+            </div>
+            <!-- Page Heading & Actions -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
+                <div class="flex flex-col gap-2">
+                    <h1 class="text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Student Management
+                    </h1>
+                    <p class="text-text-sec-light dark:text-text-sec-dark text-base">Manage student profiles, view
+                        progress, and assign exams.</p>
+                </div>
+
+            </div>
+
+            <!-- Filters & Search Section -->
+            <div
+                class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 md:p-6 mb-6 border border-border-light dark:border-border-dark shadow-sm">
+                <div class="flex flex-col  gap-4 justify-between items-center">
+                    <!-- Search -->
+                    <div class="relative w-full md:max-w-md">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span
+                                class="material-symbols-outlined text-text-sec-light dark:text-text-sec-dark">search</span>
+                        </div>
+                        <input
+                            class="block w-full pl-10 pr-3 py-3 border-none ring-1 ring-border-light dark:ring-border-dark rounded-full leading-5 bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark placeholder-text-sec-light dark:placeholder-text-sec-dark focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm transition-all"
+                            placeholder="Search by name, email, or ID" type="text" />
+                    </div>
+
+                    <!-- Student Table -->
+                    <div
+                        class="w-full overflow-hidden rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm whitespace-nowrap">
+                                <thead
+                                    class="bg-background-light dark:bg-background-dark border-b border-border-light dark:border-border-dark">
+                                    <tr>
+                                        <th class="px-6 py-4 font-semibold text-text-sec-light dark:text-text-sec-dark"
+                                            scope="col">Student Name</th>
+                                        <th class="px-6 py-4 font-semibold text-text-sec-light dark:text-text-sec-dark"
+                                            scope="col">ID</th>
+                                        <th class="px-6 py-4 font-semibold text-text-sec-light dark:text-text-sec-dark"
+                                            scope="col">Average Score</th>
+                                        <th class="px-6 py-4 font-semibold text-text-sec-light dark:text-text-sec-dark"
+                                            scope="col">Last Quiz</th>
+
+                                        <th class="px-6 py-4 font-semibold text-text-sec-light dark:text-text-sec-dark text-right"
+                                            scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody" class="divide-y divide-border-light dark:divide-border-dark">
+                                    <!-- Row 1 -->
+                                    <!-- <tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors group">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="size-10 rounded-full bg-cover bg-center border border-border-light dark:border-border-dark"
+                                                    data-alt="Portrait of student Alice Johnson"
+                                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAJQjyN6JL5oP4wZTK6QuEN2uhI6JBRfBiJkeIS6IRPAF46hJjTA1D32-RpcXCNEzGPHYmDq69P-CBMbe_Gw7JvYeOM30uH9vLn4EqDPsPBPczLu-J7ahkVmdxkiiKxsGHHI49OsQIC92npsfZ3ZzYWaEvwyHDnGAT8Os6JmRyZVgLJpMB3jKY2gw8vGvl6Z1IE3lduX2pOT0TMgDjnzvFG5-hWJzK_CJYk5hJ398peB2Uu5JCuSo5jyrf7ZpdMN3DIzapZfCWHNds");'>
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <span
+                                                        class="font-bold text-text-main-light dark:text-text-main-dark">Alice
+                                                        Johnson</span>
+                                                    <span
+                                                        class="text-xs text-text-sec-light dark:text-text-sec-dark">alice.j@example.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-text-sec-light dark:text-text-sec-dark font-medium">
+                                            #4022</td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-2">
+                                                <div
+                                                    class="w-16 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                                                    <div class="bg-primary h-1.5 rounded-full" style="width: 92%"></div>
+                                                </div>
+                                                <span class="font-bold">92%</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-text-main-light dark:text-text-main-dark">Mammals Quiz
+                                            1</td>
+
+                                        <td class="px-6 py-4 text-right">
+                                            <div class="flex items-center justify-end gap-2">
+
+                                                <button
+                                                    class="bg-primary hover:bg-[#1fe060] text-[#0d1b12] text-xs font-bold px-4 py-2 rounded-full transition-colors shadow-sm">
+                                                    Assign Exam
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                    </tr> -->
+                                    <!-- Row 2 -->
+                                    <!-- <tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors group">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="size-10 rounded-full bg-cover bg-center border border-border-light dark:border-border-dark"
+                                                    data-alt="Portrait of student Michael Chen"
+                                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDStPyfkvM5aHy9m9pxiTNtqMZea-wWjo4iVSkc0MLC3S8tMrtshzcRxnLNyBSyXMJleItKLy7ePNXPbwdzA-aTQKAKXIr_YfyB6Mlfgt5AR_gsd7kPVtrg2VrBM6zQuJl3io88K8YkMk9J3PvMTNKEINVAMxLROOyVJm_eX1A0inOK_jEAiIaP8-tW8lz7TRl_qWu2o5_tMV0sZTSm6R8HgKAeLv7zN3ZTCSpxBKRFhsWXM_QkB1dg_LYESYyjd4R98woAlj338KQ");'>
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <span
+                                                        class="font-bold text-text-main-light dark:text-text-main-dark">Michael
+                                                        Chen</span>
+                                                    <span
+                                                        class="text-xs text-text-sec-light dark:text-text-sec-dark">m.chen@example.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-text-sec-light dark:text-text-sec-dark font-medium">
+                                            #4023</td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-2">
+                                                <div
+                                                    class="w-16 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                                                    <div class="bg-yellow-400 h-1.5 rounded-full" style="width: 78%">
+                                                    </div>
+                                                </div>
+                                                <span class="font-bold">78%</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-text-main-light dark:text-text-main-dark">Reptiles
+                                            &amp; Amphibians</td>
+
+                                        <td class="px-6 py-4 text-right">
+                                            <div class="flex items-center justify-end gap-2">
+
+                                                <button
+                                                    class="bg-primary hover:bg-[#1fe060] text-[#0d1b12] text-xs font-bold px-4 py-2 rounded-full transition-colors shadow-sm">
+                                                    Assign Exam
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                    </tr> -->
+                                    <!-- Row 3 -->
+                                    <!-- <tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors group">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="size-10 rounded-full bg-cover bg-center border border-border-light dark:border-border-dark"
+                                                    data-alt="Portrait of student Sarah Connor"
+                                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAMP_5H2ZFXDrdb5L5QjwdZge9Rvz7dabRLR0UvRTDnShpeARqJBMZHKqA5tj1yNKeOa3fpXYb1KAeFXJe2QlZJN3UrPA4DGqU9Iblh97xJvhgwY3MeiCg_KLjhZYNIddgZ91571344ytoBufaHjfOAt8T-T0ELdhHcYzkZeALiyxPaSOYyssC2wKmIXDxQm5gyaiRxp8D9avU7sh0AicVAShF4U_DY6_VnuiWb_nVZSx7olyrNm0BvK7k7ZMlizO5RvLcIxNnRZ5I");'>
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <span
+                                                        class="font-bold text-text-main-light dark:text-text-main-dark">Sarah
+                                                        Connor</span>
+                                                    <span
+                                                        class="text-xs text-text-sec-light dark:text-text-sec-dark">s.connor@example.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-text-sec-light dark:text-text-sec-dark font-medium">
+                                            #4024</td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-2">
+                                                <div
+                                                    class="w-16 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                                                    <div class="bg-red-400 h-1.5 rounded-full" style="width: 45%"></div>
+                                                </div>
+                                                <span class="font-bold">45%</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-text-main-light dark:text-text-main-dark">Birds of
+                                            Prey</td>
+
+                                        <td class="px-6 py-4 text-right">
+                                            <div class="flex items-center justify-end gap-2">
+
+                                                <button
+                                                    class="bg-primary hover:bg-[#1fe060] text-[#0d1b12] text-xs font-bold px-4 py-2 rounded-full transition-colors shadow-sm">
+                                                    Assign Exam
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                    </tr> -->
+                                    <!-- Row 4 -->
+                                    <!-- <tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors group">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="size-10 rounded-full bg-cover bg-center border border-border-light dark:border-border-dark"
+                                                    data-alt="Portrait of student James Rodriguez"
+                                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDMN9uiQ2iZKCdMufHbm_hMSWFT-nO7cGG0MuBUfRVQ73jvsWpk5yD4GcGUBpSnapxrJTsp-iptjIanoWWtse7UgEPz4hDctxcAhNbfLBtj_H4zmhd4nxhsafpPFYcJ-tVnkYJYiecYvcoKccUCpIdWX1uA79WUr0Cd0Dp8ZcbTJqBYmA1VKNva9KuyOZIWkgS8PYLC-ySk3hJEno-tgFa5c2JBsX_i7kdXjz8O7CtxYNmQiCozn7-7PRcg1WcpVwvXtxphzxpoRXc");'>
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <span
+                                                        class="font-bold text-text-main-light dark:text-text-main-dark">James
+                                                        Rodriguez</span>
+                                                    <span
+                                                        class="text-xs text-text-sec-light dark:text-text-sec-dark">j.rodriguez@example.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-text-sec-light dark:text-text-sec-dark font-medium">
+                                            #4025</td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-2">
+                                                <div
+                                                    class="w-16 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                                                    <div class="bg-primary h-1.5 rounded-full" style="width: 88%"></div>
+                                                </div>
+                                                <span class="font-bold">88%</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-text-main-light dark:text-text-main-dark">Marine Life
+                                            101</td>
+
+                                        <td class="px-6 py-4 text-right">
+                                            <div class="flex items-center justify-end gap-2">
+
+                                                <button
+                                                    class="bg-primary hover:bg-[#1fe060] text-[#0d1b12] text-xs font-bold px-4 py-2 rounded-full transition-colors shadow-sm">
+                                                    Assign Exam
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+        </main>
+    </div>
+    <script src="../js/themeToggle.js"></script>
+    <script src="../js/students-results.js" type="module"></script>
+</body>
+
+</html>

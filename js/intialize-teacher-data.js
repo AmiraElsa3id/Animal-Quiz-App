@@ -45,5 +45,72 @@ function initializeTeachersData() {
   }
 }
 
+function initializeStudentsData() {
+  if (!localStorage.getItem("students")) {
+    const studentsData = [
+      {
+        id: "std1ID",
+        username: "alice",
+        password: "alice123",
+        role: "student",
+        grade: "2",
+        mobile: "01011112222",
+        profilePicture: "https://randomuser.me/api/portraits/women/12.jpg",
+        completedExams: [
+          {
+            examId: "e1",
+            name: "exam1",
+            score: 8,
+            timeOfFinshed: "12 : 30",
+            date: "2025-12-01T10:00:00.000Z",
+          },
+        ],
+        assignedExams: [],
+      },
+      {
+        id: "std2ID",
+        username: "mohamed",
+        password: "mohamed123",
+        role: "student",
+        grade: "3",
+        mobile: "01033334444",
+        profilePicture: "https://randomuser.me/api/portraits/men/15.jpg",
+        completedExams: [
+          {
+            examId: "e1",
+            name: "exam1",
+            score: 5,
+            timeOfFinshed: "20 : 10",
+            date: "2025-12-03T12:30:00.000Z",
+          },
+          {
+            examId: "e2",
+            name: "exam2",
+            score: 9,
+            timeOfFinshed: "09 : 45",
+            date: "2025-12-05T09:15:00.000Z",
+          },
+        ],
+        assignedExams: ["e1"],
+      },
+      {
+        id: "std3ID",
+        username: "sara",
+        password: "sara123",
+        role: "student",
+        grade: "1",
+        mobile: "01155556666",
+        profilePicture: "https://randomuser.me/api/portraits/women/22.jpg",
+        completedExams: [],
+        assignedExams: ["e1"],
+      },
+    ];
+
+    localStorage.setItem("students", JSON.stringify(studentsData));
+    console.log("Students data initialized!");
+  }
+}
+
 // Run on page load
 initializeTeachersData();
+initializeStudentsData();

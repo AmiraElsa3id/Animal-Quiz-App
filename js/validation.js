@@ -228,25 +228,42 @@ function validateQuestion(question){
 // exam VALIDATIONS
 // ============================================
 
-function validateExam(exam){
+function validateExam(exam, questions) {
     const errors = {};
     let isValid = true;
-    if (exam.name.length == 0 || exam.name.trim() === '') {
+
+    // Validate name
+    if (!exam.name || exam.name.trim() === '') {
         errors.name = 'Name is required';
         isValid = false;
+    }
 
-    }
-    if(exam.questionsNum < 15){
-        errors.questions = 'Exam must have at least 15 questions';
-        isValid = false;
-    }
-    if(!exam.duration){
+    // Validate duration exists
+    if (!exam.duration) {
         errors.duration = 'Duration is required';
         isValid = false;
+    } else {
+        // Validate duration range (only if duration exists)
+        if (exam.duration < 15) {
+            errors.duration = 'Duration must be at least 15 minutes';
+            isValid = false;
+        } else if (exam.duration > 60) {
+            errors.duration = 'Duration must be at most 60 minutes';
+            isValid = false;
+        }
     }
-    return { isValid,errors };
-}
 
+    // Validate question count
+    if (exam.questionsNum < 15) {
+        errors.questions = 'Exam must have at least 15 questions';
+        isValid = false;
+    } else if (questions.length !== exam.questionsNum) {
+        errors.questions = 'Number of questions must match the number of questions in the exam';
+        isValid = false;
+    }
+
+    return { isValid, errors };
+}
 // ============================================
 // LOGIN VALIDATIONS
 // ============================================

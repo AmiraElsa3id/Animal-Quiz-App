@@ -131,13 +131,13 @@ class Question {
   }
   calcScore() {
     switch(this.difficulty){
-      case "eazy":
+      case "Eazy":
           this.score=1;
         break;
-      case "medium":
+      case "Medium":
           this.score=2;
       break;
-      case "hard":
+      case "Hard":
           this.score=3;
         break;
     }

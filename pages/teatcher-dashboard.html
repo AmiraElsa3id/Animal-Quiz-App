@@ -90,15 +90,15 @@
                 <span class="hidden lg:block font-medium">Question Bank</span>
             </a>
             <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
-                href="#">
+                href="./studentsResults.html">
                 <span class="material-symbols-outlined group-hover:text-primary transition-colors">group</span>
                 <span class="hidden lg:block font-medium">Students</span>
             </a>
-            <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
-                href="#">
-                <span class="material-symbols-outlined group-hover:text-primary transition-colors">bar_chart</span>
-                <span class="hidden lg:block font-medium">Results</span>
-            </a>
+            <button id="logoutBtn" class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+               >
+                <span class="material-symbols-outlined text-red-500 group-hover:text-red-600 hover:text-red-600 transition-colors">logout</span>
+                <span class="hidden lg:block text-red-500 font-medium">Logout</span>
+            </button>
         </nav>
         <!-- User Profile (Bottom Sidebar) -->
         <div class="p-4 border-t border-border-light dark:border-border-dark">
@@ -277,7 +277,7 @@
                         <!-- Right Column: Settings & Answers -->
                         <div class="lg:col-span-4 flex flex-col gap-6">
                             <!-- Settings -->
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid gap-4">
                                 <label for="difficulty" class="flex flex-col gap-2">
                                     <span
                                         class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Difficulty</span>
@@ -294,14 +294,14 @@
                                     <span id="difficultyError" class="text-red-500"></span>
                                 </label>
                                 
-                                <label class="flex flex-col gap-2">
+                                <!-- <label class="flex flex-col gap-2">
                                     <span
                                         class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Score</span>
                                     <input
                                         class="w-full h-12 px-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none dark:text-white"
                                         type="number" value="10" />
                                         <span id="scoreError" class="text-red-500"></span>
-                                </label>
+                                </label> -->
                                
                             </div>
                             <!-- Answers -->

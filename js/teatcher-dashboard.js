@@ -1,182 +1,6 @@
-// import { validateLoggedInUser,validateQuestion } from './validation.js';
-// import { Question } from './classes.js';
-// let teacher ;
-// const validation = validateLoggedInUser();
-// if (!validation.isValid) {
-//     console.log(validation.error);
-//     // User is not logged in, redirect to login page
-//     window.location.href = "/";
-// } else {
-//     console.log("User is logged in:", validation.user);
-    
-//     // Store teacher data for later use
-//      teacher = validation.user;
-//     console.log("Teacher data:", teacher);
-    
-//     // Proceed with dashboard logic
-// }
-
-// // Update UI with teacher information
-// if (teacher) {
-//     document.getElementById('teacherName').textContent = teacher.username || 'Unknown Teacher';
-//     document.getElementById('teacherCourse').textContent = teacher.course || 'No Course Assigned';
-//     const teacherImage = document.getElementById('teacherImage');
-//     if (teacherImage) {
-//         teacherImage.src = teacher.profilePicture || '../assets/image/avatar.webp';
-//     }
-// }
-
-
-// let examName = document.getElementById('examName');
-// let examDuration = document.getElementById('examDuration');
-// let questionsNum = document.getElementById('questionsNum');
-// let questionText = document.getElementById('questionText');
-// let difficulty = document.getElementById('difficulty');
-// let imageUpload = document.getElementById('imageUpload');
-// let answer1 = document.getElementById('answer1');
-// let answer2 = document.getElementById('answer2');
-// let answer3 = document.getElementById('answer3');
-// let answer4 = document.getElementById('answer4');
-// let correctAnswer = Array.from(document.getElementsByName('correct_answer'));
-// let submitButton = document.getElementById('submitExam');
-// let addQuestion = document.getElementById('addQuestion');
-// let toLeft = document.getElementById('toLeft');
-// let toRight = document.getElementById('toRight');
-// let submitQuestion = document.getElementById('saveQuestion');
-// let questionTextError = document.getElementById('questionTextError');
-// let correctAnswerError = document.getElementById('correctAnswerError');
-
-// let questionNumber = document.getElementById('questionNumber');
-// let totalQuestionsNum = document.getElementById('totalQuestionsNum');
-
-
-
-// let questions=[];
-// let currentQuestionIndex=0;
-
-// function createExam(){
-    
-// }
-
-// function getQuestion(){
-    
-// }
- 
-
-// // create quistion obj
-// function createQuestion(){
-//     console.log(correctAnswer);
-    
-//     let question= new Question(
-//         Date.now(),
-//         questionText.value,
-//         imageUpload.value,
-//         [answer1.value,answer2.value,answer3.value,answer4.value],
-//         correctAnswer?.find((option)=>option.checked)?.value,
-//         difficulty.value,
-//         5
-//     )
-    
-//    return question;
-// }
-
-
-// function displayQuestion(index){
-//     questionNumber.textContent = index + 1;
-//     totalQuestionsNum.textContent = questions.length;
-    
-//    if(index<0){
-//     currentQuestionIndex=0;
-//     toLeft.disabled=true;
-//    }
-//    else if(index>questions.length){
-//     currentQuestionIndex=questions.length-1;
-//     toRight.disabled=true;
-//    }
-//    else{
-//     questionText.value=questions[index].questionText;
-//         imageUpload.value=questions[index].image;
-//         answer1.value=questions[index].choices[0];
-//         answer2.value=questions[index].choices[1];
-//         answer3.value=questions[index].choices[2];
-//         answer4.value=questions[index].choices[3];
-//         correctAnswer.find((option)=>option.value==questions[index].correctAnswer).checked=true;
-//         difficulty.value=questions[index].difficulty;
-//    }
-// }
-
-// function saveQuestion(question){
-//      let questions = JSON.parse(localStorage.getItem("questions")) || [];
-//     questions.push(question);
-//     localStorage.setItem("questions",JSON.stringify(questions));
-//     console.log(question);
-// }
-// function getStudentDetails(){
-    
-// }
-
-// function displayResults(){
-    
-// }
-
-// function getResults(){
-    
-// }
-
-// function getExamDetails(){
-    
-// }
-
-// function validateExam(){
-    
-// }
-
-
-
-// addQuestion?.addEventListener('click',()=>{
-//  let question = createQuestion();
-//  let errors =validateQuestion(question);
-//  if(errors.isValid){
-//     questionTextError.textContent = "";
-//     correctAnswerError.textContent = "";
-//     saveQuestion(question);
-//     currentQuestionIndex++;
-//     displayQuestion(currentQuestionIndex);
-//  }
-//  else{
-//     if(errors.errors.question){
-//         questionTextError.textContent = errors.errors.question;
-//     }
-//     if(errors.errors.correctAnswer){
-//         correctAnswerError.textContent = errors.errors.correctAnswer;
-//     }
-//  }
-// })
-
-// toLeft?.addEventListener('click',()=>{
-//     currentQuestionIndex--;
-//     displayQuestion(currentQuestionIndex);
-// })
-// toRight?.addEventListener('click',()=>{
-//     currentQuestionIndex++;
-//     displayQuestion(currentQuestionIndex);
-// })  
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import { validateLoggedInUser, validateQuestion,validateExam } from './validation.js';
-import { Question } from './classes.js';
+import { Question ,Exam } from './classes.js';
 
 // ==================== INITIALIZATION ====================
 let teacher;
@@ -209,6 +33,7 @@ const toLeft = document.getElementById('toLeft');
 const toRight = document.getElementById('toRight');
 const addAnother = document.getElementById('addAnother');
 const publishExamBtn = document.getElementById('publishExamBtn');
+const logoutBtn = document.getElementById('logoutBtn');
 
 
 // DOM Elements - Display
@@ -275,6 +100,21 @@ function updateQuestionInStorage(index, question) {
 function loadQuestionsFromStorage() {
     questions = JSON.parse(localStorage.getItem("questions")) || [];
 }
+// ==================== EXAM MANAGEMENT ====================
+function createExam() {
+    return new Exam(
+        Date.now(),
+        examName.value,
+        examDuration.value,
+        teacher?.id,
+        teacher?.course,
+        new Date().toISOString(),
+        [],
+        questions.length,
+        questions.map(question => question.id)
+    );
+}
+
 
 // ==================== FORM MANAGEMENT ====================
 function clearQuestionForm() {
@@ -293,7 +133,6 @@ function clearErrors() {
     questionTextError.textContent = '';
     correctAnswerError.textContent = '';
     difficultyError.textContent = '';
-    scoreError.textContent = '';
     choicesError.textContent = '';
 }
 
@@ -477,19 +316,27 @@ function handlePublishExam(){
     const exam={
         name:examName.value,
         duration:examDuration.value,
-        questionsNum:questions,
+        questionsNum:questions.length,
     }
-    let examValidation=validateExam(exam);
+    let examValidation=validateExam(exam,questions);
     if(!examValidation.isValid){
         displayExamErrors(examValidation);
         return;
     }
-    clearExamErrors()
+    createExam();
+    clearExamErrors();
     exams.push(exam);
-    localStorage.setItem("exams", JSON.stringify(exams));
-    localStorage.removeItem("questions");
+    localStorage.setItem("Exams", JSON.stringify(exams));
+    // localStorage.removeItem("questions");
+    // questions.forEach(q=>q.score=q.score*100/questions.length);
+    // localStorage.setItem("questions", JSON.stringify(questions));
     
 
+}
+
+function handleLogout(){
+    localStorage.removeItem("currentUser");
+    window.location.href = "/";
 }
 // ==================== EVENT LISTENERS ====================
 addQuestion?.addEventListener('click', handleAddQuestion);
@@ -499,6 +346,7 @@ toRight?.addEventListener('click', handleNavigateRight);
 submitButton?.addEventListener('click', handleSubmitExam);
 addAnother?.addEventListener('click', handleAddAnother);
 publishExamBtn?.addEventListener('click', handlePublishExam);
+logoutBtn?.addEventListener('click', handleLogout);
 // ==================== INITIALIZATION ====================
 teacher = initializeUser();
 updateTeacherUI(teacher);
