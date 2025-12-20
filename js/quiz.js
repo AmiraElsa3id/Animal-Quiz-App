@@ -1,6 +1,5 @@
-// import examData from '../data/examSample.json' assert { type: 'json' };
-// console.log(examData);
-// const examData = await fetch('../data/examSample.json').then(r => r.json());
+//check the answer checked after time finshed 
+
 import { Student, Answer } from "./classes.js";
 let exams =
   [
@@ -46,26 +45,28 @@ localStorage.setItem("questions", JSON.stringify(questions));
 
 
 //------------------html Element 
-let durationTimer = document.querySelector(".durationTimer .timer");
-let questioncounter = document.querySelector(".questioncounter");
-let examName = document.querySelector(".examName");//-----
-let animatedBrogressBar = document.querySelector(".animatedBrogressBar");
-let questionTimer = document.querySelector(".questionTimer");
+const durationTimer = document.querySelector(".durationTimer .timer");
+const questioncounter = document.querySelector(".questioncounter");
+const examName = document.querySelector(".examName");//-----
+const animatedBrogressBar = document.querySelector(".animatedBrogressBar");
+const questionTimer = document.querySelector(".questionTimer");
 
 //----------question item  
-let questionTitle = document.querySelector(".questionTitle");
-let imageCard = document.querySelector(".imageCard");
-let answerArea = document.querySelector(".answerArea")
-let answerOptionTemplate = document.querySelector(".answerOption");
+const questionTitle = document.querySelector(".questionTitle");
+const imageCard = document.querySelector(".imageCard");
+const answerArea = document.querySelector(".answerArea")
+const answerOptionTemplate = document.querySelector(".answerOption");
 //----------------feedback
-let feedbackMessageCorrect = document.querySelector(".feedbackMessageCorrect");
-let feedbackMessageWrong = document.querySelector(".feedbackMessageWrong")
-let feedbackH4 = document.querySelector(".feedbackH4");
-let feedbackP = document.querySelector(".feedbackP");
+const feedbackMessageCorrect = document.querySelector(".feedbackMessageCorrect");
+const feedbackMessageWrong = document.querySelector(".feedbackMessageWrong")
+const feedbackH4 = document.querySelector(".feedbackH4");
+const feedbackP = document.querySelector(".feedbackP");
 const wfeedbackP = document.querySelector(".wfeedbackP")
 //-----------------Btns 
-let nextQuestionBtn = document.querySelector(".nextQuestionBtn");
-let logoutBtn = document.querySelector(".logoutBtn");
+const nextQuestionBtn = document.querySelector(".nextQuestionBtn");
+const logoutBtn = document.querySelector(".logoutBtn");
+
+//-------get the data from localstorage 
 let students = JSON.parse(localStorage.getItem("students")) || [];
 let Exams = JSON.parse(localStorage.getItem("Exams")) || [];
 let questionsData = JSON.parse(localStorage.getItem("questions")) || [];
@@ -121,6 +122,10 @@ nextQuestionBtn.addEventListener("click", function () {
   }
 
 });
+
+logoutBtn.addEventListener("click",function(){
+  examFinsed();
+})
 
 
 function printQuestioin() {
@@ -208,8 +213,10 @@ function examFinsed() {
   curentStudentObj.completeExam(currentExamId, currentExamData.name, score, timeOfFinshed)
   students = students.filter(e => e.id != student.id);
   students.push(curentStudentObj.toJSON());
+  localStorage.setItem("currentUser", JSON.stringify(curentStudentObj.toJSON()));
   localStorage.setItem("students", JSON.stringify(students));
   localStorage.setItem("studentAnswers", JSON.stringify(answers));
+  window.location.href="./result.html";
 }
 
 function setIntervalFun(questionDuration, questionCount) {
