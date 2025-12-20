@@ -129,6 +129,19 @@ class Question {
     this.difficulty = difficulty;
     this.score = score;
   }
+  calcScore() {
+    switch(this.difficulty){
+      case "eazy":
+          this.score=1;
+        break;
+      case "medium":
+          this.score=2;
+      break;
+      case "hard":
+          this.score=3;
+        break;
+    }
+  }
 
   isCorrect(selectedAnswer) {
     return selectedAnswer === this.correctAnswer;
@@ -157,6 +170,7 @@ class Exam {
     course,
     createdAt,
     assignedStudents = [],
+    questionsNum,
     questions = []
   ) {
     this.id = id;
@@ -166,6 +180,7 @@ class Exam {
     this.course = course;
     this.createdAt = createdAt;
     this.assignedStudents = assignedStudents;
+    this.questionsNum=questionsNum;
     this.questions = questions;
   }
 

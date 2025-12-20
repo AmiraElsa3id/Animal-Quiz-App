@@ -48,9 +48,11 @@
 {
     "studentAnswers":[
         {
+           "studentId":"std1ID",
            "questionId":"q1",
+           "examId":"e1",
            "selectedAnswer":"choice1",
-           "isCorrect":true
+           "isCorrect":true,
            "timeSpent":10
         }
     ]

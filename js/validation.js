@@ -213,10 +213,39 @@ function validateQuestion(question){
         errors.correctAnswer = 'Correct answer is required';
         isValid = false;
     }
-    
+    if(!question.difficulty){
+        errors.difficulty = 'Difficulty is required';
+        isValid = false;
+    }
+    if(!question.choices[0].length || !question.choices[1].length || !question.choices[2].length || !question.choices[3].length){
+        errors.choices = 'Choices are required';
+        isValid = false;
+    }
     return { isValid,errors };
 }
 
+// ============================================
+// exam VALIDATIONS
+// ============================================
+
+function validateExam(exam){
+    const errors = {};
+    let isValid = true;
+    if (exam.name.length == 0 || exam.name.trim() === '') {
+        errors.name = 'Name is required';
+        isValid = false;
+
+    }
+    if(exam.questionsNum < 15){
+        errors.questions = 'Exam must have at least 15 questions';
+        isValid = false;
+    }
+    if(!exam.duration){
+        errors.duration = 'Duration is required';
+        isValid = false;
+    }
+    return { isValid,errors };
+}
 
 // ============================================
 // LOGIN VALIDATIONS
@@ -393,5 +422,6 @@ export {
   validateSignupForm,
   validateLoggedInUser,
   validateQuestion,
+  validateExam,
   
 };

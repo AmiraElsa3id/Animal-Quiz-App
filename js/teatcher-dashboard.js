@@ -175,13 +175,18 @@
 
 
 
-import { validateLoggedInUser, validateQuestion } from './validation.js';
+import { validateLoggedInUser, validateQuestion,validateExam } from './validation.js';
 import { Question } from './classes.js';
 
 // ==================== INITIALIZATION ====================
 let teacher;
 let questions = [];
+let exams=[];
 let currentQuestionIndex = 0;
+
+if(localStorage.getItem("exams")){
+    exams=JSON.parse(localStorage.getItem("exams"));
+}
 
 // DOM Elements - Form Fields
 const examName = document.getElementById('examName');
@@ -202,12 +207,21 @@ const addQuestion = document.getElementById('addQuestion');
 const saveQuestion = document.getElementById('saveQuestion');
 const toLeft = document.getElementById('toLeft');
 const toRight = document.getElementById('toRight');
+const addAnother = document.getElementById('addAnother');
+const publishExamBtn = document.getElementById('publishExamBtn');
+
 
 // DOM Elements - Display
 const questionTextError = document.getElementById('questionTextError');
 const correctAnswerError = document.getElementById('correctAnswerError');
+const difficultyError = document.getElementById('difficultyError');
+const scoreError = document.getElementById('scoreError');
+const choicesError = document.getElementById('choicesError');
 const questionNumber = document.getElementById('questionNumber');
 const totalQuestionsNum = document.getElementById('totalQuestionsNum');
+const examNameError = document.getElementById('examNameError');
+const examDurationError = document.getElementById('examDurationError');
+const questionsNumError = document.getElementById('questionsNumError');
 
 // ==================== AUTHENTICATION ====================
 function initializeUser() {
@@ -278,9 +292,17 @@ function clearQuestionForm() {
 function clearErrors() {
     questionTextError.textContent = '';
     correctAnswerError.textContent = '';
+    difficultyError.textContent = '';
+    scoreError.textContent = '';
+    choicesError.textContent = '';
 }
 
-function displayErrors(errors) {
+function clearExamErrors() {
+    examNameError.textContent = '';
+    examDurationError.textContent = '';
+    questionsNumError.textContent = '';
+}
+function displayQuestionErrors(errors) {
     clearErrors();
     if (errors.errors.question) {
         questionTextError.textContent = errors.errors.question;
@@ -288,16 +310,39 @@ function displayErrors(errors) {
     if (errors.errors.correctAnswer) {
         correctAnswerError.textContent = errors.errors.correctAnswer;
     }
+    if (errors.errors.difficulty) {
+        difficultyError.textContent = errors.errors.difficulty;
+    }
+    if (errors.errors.score) {
+        scoreError.textContent = errors.errors.score;
+    }
+    if (errors.errors.choices) {
+        choicesError.textContent = errors.errors.choices;
+    }
+}
+function displayExamErrors(errors){
+    clearExamErrors();
+     if (errors.errors.name) {
+        examNameError.textContent = errors.errors.name;
+    }
+    if (errors.errors.questions) {
+        questionsNumError.textContent = errors.errors.questions;
+    }
+    if (errors.errors.duration) {
+        examDurationError.textContent = errors.errors.duration;
+    }
+   
+
 }
 
 function populateFormWithQuestion(question) {
-    questionText.value = question.questionText || '';
+    questionText.value = question.text || '';
     imageUpload.value = question.image || '';
     answer1.value = question.choices[0] || '';
     answer2.value = question.choices[1] || '';
     answer3.value = question.choices[2] || '';
     answer4.value = question.choices[3] || '';
-    difficulty.value = question.difficulty || '';
+    difficulty.selectedIndex = Array.from(difficulty.options).findIndex(option => option.value == question.difficulty) || '';
     
     const correctOption = correctAnswer.find(option => option.value == question.correctAnswer);
     if (correctOption) {
@@ -328,26 +373,32 @@ function updateNavigationButtons() {
 
 function updateQuestionCounter() {
     questionNumber.textContent = questions.length + 1;
-    totalQuestionsNum.textContent = questions.length;
+    totalQuestionsNum.textContent = questions.length+1;
 }
 
 // ==================== EVENT HANDLERS ====================
 function handleAddQuestion() {
     const question = createQuestion();
     const errors = validateQuestion(question);
+    console.log(currentQuestionIndex);
     
     if (!errors.isValid) {
-        displayErrors(errors);
+        displayQuestionErrors(errors);
         return;
     }
-    
+    if(currentQuestionIndex === questions.length){
+        saveQuestionToStorage(question);
+        // currentQuestionIndex = questions.length;
+        // clearQuestionForm();
+        alert('Question added successfully!');
+    }
+    else{
+        updateQuestionInStorage(currentQuestionIndex, question);
+        alert('Question updated successfully!');
+    }
     clearErrors();
-    saveQuestionToStorage(question);
-    currentQuestionIndex = questions.length - 1;
-    clearQuestionForm();
-    updateQuestionCounter();
-    updateNavigationButtons();
-    alert('Question added successfully!');
+    // updateQuestionCounter();
+    // updateNavigationButtons();
 }
 
 function handleSaveQuestion() {
@@ -360,7 +411,7 @@ function handleSaveQuestion() {
     const errors = validateQuestion(question);
     
     if (!errors.isValid) {
-        displayErrors(errors);
+        displayQuestionErrors(errors);
         return;
     }
     
@@ -377,7 +428,7 @@ function handleNavigateLeft() {
 }
 
 function handleNavigateRight() {
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < questions.length ) {
         currentQuestionIndex++;
         displayQuestion(currentQuestionIndex);
     }
@@ -414,13 +465,40 @@ function handleSubmitExam() {
     // window.location.href = "/teacher-dashboard.html";
 }
 
+function handleAddAnother() {
+    currentQuestionIndex = questions.length;
+    clearQuestionForm();
+    updateQuestionCounter();
+    updateNavigationButtons();
+    
+}
+
+function handlePublishExam(){
+    const exam={
+        name:examName.value,
+        duration:examDuration.value,
+        questionsNum:questions,
+    }
+    let examValidation=validateExam(exam);
+    if(!examValidation.isValid){
+        displayExamErrors(examValidation);
+        return;
+    }
+    clearExamErrors()
+    exams.push(exam);
+    localStorage.setItem("exams", JSON.stringify(exams));
+    localStorage.removeItem("questions");
+    
+
+}
 // ==================== EVENT LISTENERS ====================
 addQuestion?.addEventListener('click', handleAddQuestion);
 saveQuestion?.addEventListener('click', handleSaveQuestion);
 toLeft?.addEventListener('click', handleNavigateLeft);
 toRight?.addEventListener('click', handleNavigateRight);
 submitButton?.addEventListener('click', handleSubmitExam);
-
+addAnother?.addEventListener('click', handleAddAnother);
+publishExamBtn?.addEventListener('click', handlePublishExam);
 // ==================== INITIALIZATION ====================
 teacher = initializeUser();
 updateTeacherUI(teacher);
