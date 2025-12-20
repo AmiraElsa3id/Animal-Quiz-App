@@ -56,3 +56,40 @@
     ]
 }
 
+/*
+{id: 1765820853768, username: 'abdelfath_shkal', password: 'student123', role: 'student', grade: '1', …}
+assignedExams
+: 
+[]
+completedExams
+: 
+[{…}]
+grade
+: 
+"1"
+id
+: 
+1765820853768
+mobile
+: 
+"12345678901"
+password
+: 
+"student123"
+profilePicture
+: 
+"./assets/images/avatar.webp"
+role
+: 
+"student"
+username
+: 
+"abdelfath_shkal"
+[[Prototype]]
+: 
+Object
+
+
+{examId: 'e1', name: 'exam1', score: 5, timeOfFinshed: '00 : 10', date: '2025-12-20T18:17:55.676Z'}
+
+*/
