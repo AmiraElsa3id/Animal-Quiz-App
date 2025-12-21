@@ -44,8 +44,7 @@ let  student = JSON.parse(localStorage.getItem("currentUser"));
 let Exams = JSON.parse(localStorage.getItem("Exams"))||[];
 let curentStudentObj = Student.fromJSON(student);
 //------------------for test ------------
-Exams.push(Examtest) 
-student.assignedExams.push("e1")
+
 curentStudentObj.completeExam(completedExamsTest.examId,completedExamsTest.name,completedExamsTest.score  )
 
 //-----------------current date -------------------

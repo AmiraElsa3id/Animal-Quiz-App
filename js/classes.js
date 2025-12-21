@@ -17,7 +17,7 @@ class Student extends User {
     password,
     grade,
     mobile,
-    profilePicture = './assets/images/avatar.webp',
+    profilePicture = './assets/image/avatar.webp',
     completedExams = [],
     assignedExams = [],  
     id = Date.now()
@@ -223,6 +223,28 @@ class Exam {
   getQuestionCount() {
     return this.questions.length;
   }
+
+
+  calculateQuestionScores(totalExamScore = 100) {
+  const difficultyWeight = {
+    Easy: 1,
+    Medium: 2,
+    Hard: 3
+  };
+
+  // Calculate total weight
+  const totalWeight = this.questions.reduce(
+    (sum, q) => sum + difficultyWeight[q.difficulty],
+    0
+  );
+
+  // Assign score to each question
+  this.questions.forEach(q => {
+    q.score =
+      (difficultyWeight[q.difficulty] / totalWeight) * totalExamScore;
+  });
+}
+
 
   // toJSON() {
   //   return {

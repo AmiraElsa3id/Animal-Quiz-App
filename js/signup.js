@@ -1,9 +1,8 @@
 import {validateSignupUsername,
   validateSignupPassword,
   validateSignupMobile,
-  validateSignupGrade,
-  validateSignupProfilePicture,
   validateSignupForm,} from "./validation.js";
+
 import {Student} from "./classes.js";
 
 const userName = document.querySelector(`input[placeholder="Pick a Username"]`);
@@ -31,11 +30,13 @@ passHide.addEventListener("click", function() {
 });
 
 let users;
+
 if(localStorage.getItem("students")){
     users=JSON.parse(localStorage.getItem("students"));
 }else{
     users=[];
 }
+
 const signup=()=>{
     let userData={
  username: userName.value,
@@ -43,17 +44,10 @@ const signup=()=>{
     grade: grade.value,
     mobile: stdPhone.value,
     profilePicture: stdImage.files[0]?.name,
-        
-
-        // "username": userName.value,
-        // "password": password.value,
-        // "role": "student",
-        // "grade": grade.value,
-        // "mobile": stdPhone.value,
-        // "profilePicture": stdImage.value,
     }
-
-    if(validateSignupForm(userData,users)?.isValid){
+    console.log(validateSignupForm(userData,users));
+    
+    if(validateSignupForm(userData,users).isValid){
         let user=new Student(
             userData.username,
             userData.password,
@@ -66,14 +60,18 @@ const signup=()=>{
         alert("User Added Successfully")
         window.location.href="../index.html"
     }
-   
-
 }
 
-form.addEventListener("submit",function(e){
-    e.preventDefault()
-    signup()
-});
+// form.addEventListener("submit",function(e){
+//     e.preventDefault();
+//     signup()
+// });
+
+signupBtn.addEventListener("click",function(e){
+    e.preventDefault();
+    signup();
+})
+
 userName.addEventListener("input",()=>{
     validateSignupUsername(userName.value,users)
     if(validateSignupUsername(userName.value,users)?.isValid){
@@ -82,6 +80,7 @@ userName.addEventListener("input",()=>{
         userNameError.innerHTML=validateSignupUsername(userName.value,users)?.error
     }
 });
+
 password.addEventListener("input",()=>{
     validateSignupPassword(password.value)
     if(validateSignupPassword(password.value)?.isValid){
@@ -90,6 +89,7 @@ password.addEventListener("input",()=>{
         passwordError.innerHTML=validateSignupPassword(password.value)?.error
     }
 });
+
 stdPhone.addEventListener("input",()=>{
     validateSignupMobile(stdPhone.value)
     if(validateSignupMobile(stdPhone.value)?.isValid){
