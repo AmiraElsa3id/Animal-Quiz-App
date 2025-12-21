@@ -44,16 +44,15 @@ let  student = JSON.parse(localStorage.getItem("currentUser"));
 let Exams = JSON.parse(localStorage.getItem("Exams"))||[];
 let curentStudentObj = Student.fromJSON(student);
 //------------------for test ------------
-Exams.push(Examtest) 
-student.assignedExams.push("e1")
 curentStudentObj.completeExam(completedExamsTest.examId,completedExamsTest.name,completedExamsTest.score  )
 
 //-----------------current date -------------------
 
 const options = { day: "numeric", month: "long", year: "numeric" };
 let CurrentDate = new Date().toLocaleDateString("en-US", options); 
-WelcomeBarDate.innerHTML=CurrentDate
 let score = curentStudentObj.getAverageScore()
+ExamCards.forEach(card=>card.classList.add("hidden"));
+WelcomeBarDate.innerHTML=CurrentDate
 StudentName.forEach(item=>item.innerText+=student.username)
 profileCardId.innerText+=student.id;
 profileCardImage.style.src=student.profilePicture;
@@ -66,11 +65,12 @@ for (let i =0 ;i<student.assignedExams.length;i++)
     let CloneCardExam = ExamCards[0].cloneNode(true);
     ExamCardsSection.appendChild(CloneCardExam);
 }
-
+console.log(student.assignedExams.length==0)
+console.log(student.assignedExams)
 if(student.assignedExams.length==0)
 {
-  ExamCards.forEach(card=>{card.classList.add("hidden")})
-  noExamYet.classList.remove("hidden")
+  ExamCards.forEach(card=>{card.classList.add("hidden")});
+  noExamYet.classList.remove("hidden");
 }
 else
 { 
@@ -126,3 +126,5 @@ TakeQuizBtn.addEventListener("click",function(){
   localStorage.setItem("selectedExamId",examId);
   window.location.href="./quiz.html";
 })
+
+
