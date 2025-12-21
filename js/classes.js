@@ -226,7 +226,7 @@ class Exam {
 
 // Answer class
 class Answer {
-  constructor(questionId, selectedAnswer, isCorrect, timeSpent) {
+  constructor(questionId,studentId, selectedAnswer, isCorrect, timeSpent) {
     this.questionId = questionId;
     this.selectedAnswer = selectedAnswer;
     this.isCorrect = isCorrect;

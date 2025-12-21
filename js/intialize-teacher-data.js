@@ -63,7 +63,7 @@ function initializeStudentsData() {
             score: 8,
             timeOfFinshed: "12 : 30",
             date: "2025-12-01T10:00:00.000Z",
-          },
+          }
         ],
         assignedExams: [],
       },
@@ -111,6 +111,56 @@ function initializeStudentsData() {
   }
 }
 
+function initializeExamsData(){
+    if (!localStorage.getItem('exams')) {
+    const examsData =  [
+        {"id": "e1",
+        "name":"exam1",
+        "duration":45,
+        "teacherId":"t1",
+        "course":"Animal Expert",
+        "createdAt": "2025-12-10T14:30:00.000Z",
+        "assignedStudents":["std1ID","std2ID"],
+        "questions":["Q1Id","Q2Id"]
+
+        },
+
+        {"id": "e1",
+        "name":"exam1",
+        "duration":45,
+        "teacherId":"t1",
+        "course":"Animal Expert",
+        "createdAt": "2025-12-10T14:30:00.000Z",
+        "assignedStudents":["std1ID","std2ID"],
+        "questions":["Q1Id","Q2Id"]
+
+        }
+    ]
+    
+    localStorage.setItem('exams', JSON.stringify(examsData));
+    console.log('exams data initialized!');
+  }
+}
+
+function initializeQuestionsData(){
+    if (!localStorage.getItem('questions')) {
+    const questionsData = [
+        {
+            "id":"q1",
+            "text":"question text ",
+            "image":"",
+            "choices":["choice1","choice2","choice3","choice4"],
+            "correctAnswer":"choice1",
+            "difficulty":"easy",
+            "score":5
+        }
+
+    ]
+    
+    localStorage.setItem('questions', JSON.stringify(questionsData));
+    console.log('questions data initialized!');
+  }
+}
 // Run on page load
 initializeTeachersData();
 initializeStudentsData();

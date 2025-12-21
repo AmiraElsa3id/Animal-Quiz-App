@@ -1,15 +1,22 @@
-
-import { validateLoggedInUser, validateQuestion,validateExam } from './validation.js';
-import { Question ,Exam } from './classes.js';
+import { validateLoggedInUser, validateQuestion, validateExam } from './validation.js';
+import { Question, Exam } from './classes.js';
 
 // ==================== INITIALIZATION ====================
 let teacher;
-let questions = [];
-let exams=[];
+let currentExamQuestions = []; // Questions for the current exam being created
+let allQuestions = []; // All questions from all exams
 let currentQuestionIndex = 0;
+let exams = [];
 
-if(localStorage.getItem("exams")){
-    exams=JSON.parse(localStorage.getItem("exams"));
+// Load data from storage
+if (localStorage.getItem("currentExamQuestions")) {
+    currentExamQuestions = JSON.parse(localStorage.getItem("currentExamQuestions"));
+}
+if (localStorage.getItem("questions")) {
+    allQuestions = JSON.parse(localStorage.getItem("questions"));
+}
+if (localStorage.getItem("exams")) {
+    exams = JSON.parse(localStorage.getItem("exams"));
 }
 
 // DOM Elements - Form Fields
@@ -34,7 +41,6 @@ const toRight = document.getElementById('toRight');
 const addAnother = document.getElementById('addAnother');
 const publishExamBtn = document.getElementById('publishExamBtn');
 const logoutBtn = document.getElementById('logoutBtn');
-
 
 // DOM Elements - Display
 const questionTextError = document.getElementById('questionTextError');
@@ -87,19 +93,40 @@ function createQuestion() {
     );
 }
 
-function saveQuestionToStorage(question) {
-    questions.push(question);
-    localStorage.setItem("questions", JSON.stringify(questions));
+// Save to CURRENT exam questions only
+function saveQuestionToCurrentExam(question) {
+    currentExamQuestions.push(question);
+    localStorage.setItem("currentExamQuestions", JSON.stringify(currentExamQuestions));
 }
 
-function updateQuestionInStorage(index, question) {
-    questions[index] = question;
-    localStorage.setItem("questions", JSON.stringify(questions));
+// Update question in CURRENT exam
+function updateQuestionInCurrentExam(index, question) {
+    currentExamQuestions[index] = question;
+    localStorage.setItem("currentExamQuestions", JSON.stringify(currentExamQuestions));
 }
 
-function loadQuestionsFromStorage() {
-    questions = JSON.parse(localStorage.getItem("questions")) || [];
+// Save to ALL questions (called when exam is published)
+function saveQuestionsToAllQuestions() {
+    allQuestions = allQuestions.concat(currentExamQuestions);
+    localStorage.setItem("questions", JSON.stringify(allQuestions));
 }
+
+// Load questions for current exam
+function loadCurrentExamQuestions() {
+    currentExamQuestions = JSON.parse(localStorage.getItem("currentExamQuestions")) || [];
+}
+
+// Load all questions from all exams
+function loadAllQuestions() {
+    allQuestions = JSON.parse(localStorage.getItem("questions")) || [];
+}
+
+// Clear current exam questions after publishing
+function clearCurrentExamQuestions() {
+    currentExamQuestions = [];
+    localStorage.removeItem("currentExamQuestions");
+}
+
 // ==================== EXAM MANAGEMENT ====================
 function createExam() {
     return new Exam(
@@ -109,12 +136,11 @@ function createExam() {
         teacher?.id,
         teacher?.course,
         new Date().toISOString(),
-        [],
-        questions.length,
-        questions.map(question => question.id)
+        currentExamQuestions, // Use current exam questions
+        currentExamQuestions.length,
+        currentExamQuestions.map(question => question.id)
     );
 }
-
 
 // ==================== FORM MANAGEMENT ====================
 function clearQuestionForm() {
@@ -141,6 +167,7 @@ function clearExamErrors() {
     examDurationError.textContent = '';
     questionsNumError.textContent = '';
 }
+
 function displayQuestionErrors(errors) {
     clearErrors();
     if (errors.errors.question) {
@@ -159,9 +186,10 @@ function displayQuestionErrors(errors) {
         choicesError.textContent = errors.errors.choices;
     }
 }
-function displayExamErrors(errors){
+
+function displayExamErrors(errors) {
     clearExamErrors();
-     if (errors.errors.name) {
+    if (errors.errors.name) {
         examNameError.textContent = errors.errors.name;
     }
     if (errors.errors.questions) {
@@ -170,8 +198,6 @@ function displayExamErrors(errors){
     if (errors.errors.duration) {
         examDurationError.textContent = errors.errors.duration;
     }
-   
-
 }
 
 function populateFormWithQuestion(question) {
@@ -191,57 +217,53 @@ function populateFormWithQuestion(question) {
 
 // ==================== DISPLAY & NAVIGATION ====================
 function displayQuestion(index) {
-    if (index < 0 || index >= questions.length) return;
+    if (index < 0 || index >= currentExamQuestions.length) return;
     
     currentQuestionIndex = index;
     questionNumber.textContent = index + 1;
-    totalQuestionsNum.textContent = questions.length;
+    totalQuestionsNum.textContent = currentExamQuestions.length;
     
-    populateFormWithQuestion(questions[index]);
+    populateFormWithQuestion(currentExamQuestions[index]);
     updateNavigationButtons();
 }
 
 function updateNavigationButtons() {
     if (toLeft) {
-        toLeft.disabled = currentQuestionIndex === 0 || questions.length === 0;
+        toLeft.disabled = currentQuestionIndex === 0 || currentExamQuestions.length === 0;
     }
     if (toRight) {
-        toRight.disabled = currentQuestionIndex >= questions.length - 1 || questions.length === 0;
+        toRight.disabled = currentQuestionIndex >= currentExamQuestions.length - 1 || currentExamQuestions.length === 0;
     }
 }
 
 function updateQuestionCounter() {
-    questionNumber.textContent = questions.length + 1;
-    totalQuestionsNum.textContent = questions.length+1;
+    questionNumber.textContent = currentExamQuestions.length + 1;
+    totalQuestionsNum.textContent = currentExamQuestions.length + 1;
 }
 
 // ==================== EVENT HANDLERS ====================
 function handleAddQuestion() {
     const question = createQuestion();
     const errors = validateQuestion(question);
-    console.log(currentQuestionIndex);
     
     if (!errors.isValid) {
         displayQuestionErrors(errors);
         return;
     }
-    if(currentQuestionIndex === questions.length){
-        saveQuestionToStorage(question);
-        // currentQuestionIndex = questions.length;
-        // clearQuestionForm();
+    
+    if (currentQuestionIndex === currentExamQuestions.length) {
+        saveQuestionToCurrentExam(question);
         alert('Question added successfully!');
-    }
-    else{
-        updateQuestionInStorage(currentQuestionIndex, question);
+    } else {
+        updateQuestionInCurrentExam(currentQuestionIndex, question);
         alert('Question updated successfully!');
     }
+    
     clearErrors();
-    // updateQuestionCounter();
-    // updateNavigationButtons();
 }
 
 function handleSaveQuestion() {
-    if (questions.length === 0) {
+    if (currentExamQuestions.length === 0) {
         alert('No question to update. Please add a question first.');
         return;
     }
@@ -255,7 +277,7 @@ function handleSaveQuestion() {
     }
     
     clearErrors();
-    updateQuestionInStorage(currentQuestionIndex, question);
+    updateQuestionInCurrentExam(currentQuestionIndex, question);
     alert('Question updated successfully!');
 }
 
@@ -267,14 +289,14 @@ function handleNavigateLeft() {
 }
 
 function handleNavigateRight() {
-    if (currentQuestionIndex < questions.length ) {
+    if (currentQuestionIndex < currentExamQuestions.length) {
         currentQuestionIndex++;
         displayQuestion(currentQuestionIndex);
     }
 }
 
 function handleSubmitExam() {
-    if (questions.length === 0) {
+    if (currentExamQuestions.length === 0) {
         alert('Please add at least one question before submitting the exam.');
         return;
     }
@@ -291,53 +313,65 @@ function handleSubmitExam() {
         teacherId: teacher?.id,
         teacherName: teacher?.username,
         course: teacher?.course,
-        questions: questions,
+        questions: currentExamQuestions, // Use current exam questions
         createdAt: new Date().toISOString()
     };
     
     const exams = JSON.parse(localStorage.getItem("exams")) || [];
     exams.push(exam);
     localStorage.setItem("exams", JSON.stringify(exams));
-    localStorage.removeItem("questions");
+    
+    // Move current exam questions to all questions
+    saveQuestionsToAllQuestions();
+    
+    // Clear current exam data
+    clearCurrentExamQuestions();
     
     alert('Exam created successfully!');
-    // window.location.href = "/teacher-dashboard.html";
+    window.location.href = "/teacher-dashboard.html";
 }
 
 function handleAddAnother() {
-    currentQuestionIndex = questions.length;
+    currentQuestionIndex = currentExamQuestions.length;
     clearQuestionForm();
     updateQuestionCounter();
     updateNavigationButtons();
-    
 }
 
-function handlePublishExam(){
-    const exam={
-        name:examName.value,
-        duration:examDuration.value,
-        questionsNum:questions.length,
-    }
-    let examValidation=validateExam(exam,questions);
-    if(!examValidation.isValid){
+function handlePublishExam() {
+    const exam = {
+        name: examName.value,
+        duration: examDuration.value,
+        questionsNum: currentExamQuestions.length,
+    };
+    
+    let examValidation = validateExam(exam, currentExamQuestions);
+    if (!examValidation.isValid) {
         displayExamErrors(examValidation);
         return;
     }
-    createExam();
-    clearExamErrors();
-    exams.push(exam);
-    localStorage.setItem("Exams", JSON.stringify(exams));
-    // localStorage.removeItem("questions");
-    // questions.forEach(q=>q.score=q.score*100/questions.length);
-    // localStorage.setItem("questions", JSON.stringify(questions));
     
-
+    const newExam = createExam();
+    clearExamErrors();
+    
+    exams.push(newExam);
+    localStorage.setItem("exams", JSON.stringify(exams));
+    
+    // Move current exam questions to all questions
+    saveQuestionsToAllQuestions();
+    
+    // Clear current exam data
+    clearCurrentExamQuestions();
+    
+    alert('Exam published successfully!');
+    window.location.href = "./teacher-dashboard.html";
 }
 
-function handleLogout(){
+function handleLogout() {
     localStorage.removeItem("currentUser");
     window.location.href = "/";
 }
+
 // ==================== EVENT LISTENERS ====================
 addQuestion?.addEventListener('click', handleAddQuestion);
 saveQuestion?.addEventListener('click', handleSaveQuestion);
@@ -347,12 +381,14 @@ submitButton?.addEventListener('click', handleSubmitExam);
 addAnother?.addEventListener('click', handleAddAnother);
 publishExamBtn?.addEventListener('click', handlePublishExam);
 logoutBtn?.addEventListener('click', handleLogout);
+
 // ==================== INITIALIZATION ====================
 teacher = initializeUser();
 updateTeacherUI(teacher);
-loadQuestionsFromStorage();
+loadCurrentExamQuestions();
+loadAllQuestions();
 
-if (questions.length > 0) {
+if (currentExamQuestions.length > 0) {
     displayQuestion(currentQuestionIndex);
 } else {
     updateNavigationButtons();

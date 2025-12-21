@@ -19,50 +19,67 @@
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark transition-colors duration-200">
-    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <!-- Top Navigation -->
-        <header
-            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-10 py-4 sticky top-0 z-50">
-            <div class="flex items-center gap-4">
-                <div class="size-8 text-primary">
-                    <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_6_535)">
-                            <path clip-rule="evenodd"
-                                d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
-                                fill="currentColor" fill-rule="evenodd"></path>
-                        </g>
-                        <defs>
-                            <clippath id="clip0_6_535">
-                                <rect fill="white" height="48" width="48"></rect>
-                            </clippath>
-                        </defs>
-                    </svg>
-                </div>
-                <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Animal Expert Quiz</h2>
+    class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark overflow-hidden h-screen flex transition-colors duration-300">
+          <!-- Sidebar -->
+    <aside
+        class="w-20 lg:w-72 flex-shrink-0 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark flex flex-col h-full transition-all duration-300 z-20">
+        <!-- Logo Area -->
+        <div
+            class="h-20 flex items-center justify-center lg:justify-start lg:px-8 border-b border-border-light dark:border-border-dark">
+            <div class="size-10 bg-primary rounded-xl flex items-center justify-center text-background-dark shrink-0">
+                <span class="material-symbols-outlined">pets</span>
             </div>
-            <div class="flex flex-1 justify-end gap-8 items-center">
-                <nav class="hidden md:flex items-center gap-9">
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="teatcher-dashboard.html">Dashboard</a>
-                    <a class="text-sm font-medium text-primary" href="studentsResults.html">Students</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Quizzes</a>
-                    
-                </nav>
-                <div class="flex items-center gap-4">
-                    <button id="logOutBtn"
-                        class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary/20 dark:bg-primary/10 text-primary text-sm font-bold hover:bg-primary/30 dark:hover:bg-primary/20 transition-colors">
-                        <span class="truncate">Log Out</span>
-                    </button>
-                    <img id="teacherImage" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-border-light dark:border-border-dark"
-                        data-alt="Teacher profile picture showing a smiling person"
-                        >
-                 
-                </div>
+            <div class="hidden lg:flex flex-col ml-3">
+                <h1 class="text-lg font-bold leading-none">ZooQuiz</h1>
+                <p class="text-xs text-text-sec-light dark:text-text-sec-dark mt-1">Teacher Portal</p>
             </div>
-        </header>
+        </div>
+        <!-- Navigation -->
+        <nav class="flex-1 flex flex-col gap-2 p-4 overflow-y-auto">
+            <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+                href="./teatcher-dashboard.html">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+                <span class="hidden lg:block font-medium">Dashboard</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+                href="./teacher-dashboard.html">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors">add_circle</span>
+                <span class="hidden lg:block font-medium">Create Exam</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+                href="./question-bank.html">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors">folder_open</span>
+                <span class="hidden lg:block font-medium">Question Bank</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-full bg-primary/20 text-text-main-light dark:text-white dark:bg-primary/20 transition-colors"
+                href="./studentsResults.html">
+                <span class="material-symbols-outlined text-primary-dark dark:text-primary fill-1">group</span>
+                <span class="hidden lg:block font-medium">Students</span>
+            </a>
+            <button id="logOutBtn" class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+               >
+
+                <span class="material-symbols-outlined text-red-500 group-hover:text-red-600 hover:text-red-600 transition-colors">logout</span>
+                <span  class="hidden lg:block text-red-500 font-medium">Logout</span>
+            </button>
+            
+        </nav>
+        <!-- User Profile (Bottom Sidebar) -->
+      <div class="p-4 border-t border-border-light dark:border-border-dark">
+            <div
+                class="flex items-center gap-3 p-2 rounded-full hover:bg-background-light dark:hover:bg-background-dark cursor-pointer transition-colors">
+                <img id="teacherImage" src="../assets/image/avatar.webp" alt="Teacher Profile" class="size-10 rounded-full object-cover shrink-0">
+                <div class="hidden lg:flex flex-col overflow-hidden">
+                    <p id="teacherName" class="text-sm font-bold truncate">Sarah Johnson</p>
+                    <p id="teacherCourse" class="text-xs text-text-sec-light dark:text-text-sec-dark truncate">Biology Dept.</p>
+                </div>
+               
+            </div>
+        </div>
+    </aside>
         <!-- Main Content Area -->
         <main
-            class="layout-container flex h-full grow flex-col px-4 md:px-10 lg:px-40 py-8 w-full max-w-[1440px] mx-auto">
+            class="layout-container flex h-full grow flex-col px-4  py-8 w-full max-w-[1440px] mx-auto">
             <!-- Breadcrumbs -->
             <div class="flex flex-wrap gap-2 mb-6 text-sm">
                 <a class="text-text-sec-light dark:text-text-sec-dark font-medium hover:underline" href="#">Home</a>
@@ -93,9 +110,9 @@
                             <span
                                 class="material-symbols-outlined text-text-sec-light dark:text-text-sec-dark">search</span>
                         </div>
-                        <input
+                        <input id="searchInput"
                             class="block w-full pl-10 pr-3 py-3 border-none ring-1 ring-border-light dark:ring-border-dark rounded-full leading-5 bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark placeholder-text-sec-light dark:placeholder-text-sec-dark focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm transition-all"
-                            placeholder="Search by name, email, or ID" type="text" />
+                            placeholder="Search by name, or ID" type="text" />
                     </div>
 
                     <!-- Student Table -->
@@ -114,6 +131,8 @@
                                             scope="col">Average Score</th>
                                         <th class="px-6 py-4 font-semibold text-text-sec-light dark:text-text-sec-dark"
                                             scope="col">Last Quiz</th>
+                                        <th class="px-6 py-4 font-semibold text-text-sec-light dark:text-text-sec-dark"
+                                            scope="col">Date</th>
 
                                         <th class="px-6 py-4 font-semibold text-text-sec-light dark:text-text-sec-dark text-right"
                                             scope="col">Actions</th>
@@ -296,7 +315,48 @@
                     </div>
         </main>
     </div>
+    <!-- Student Exams + Answers Modal -->
+<div id="studentAnswersModal" class="fixed inset-0 z-50 hidden">
+  <div id="studentAnswersOverlay" class="absolute inset-0 bg-black/50"></div>
+
+  <div class="relative z-10 min-h-full flex items-center justify-center p-4">
+    <div class="w-full max-w-5xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-2xl shadow-xl overflow-hidden">
+      <div class="p-5 border-b border-border-light dark:border-border-dark flex items-center justify-between">
+        <div class="flex flex-col">
+          <h3 id="studentAnswersTitle" class="text-lg font-bold text-text-main-light dark:text-white">Student Exams</h3>
+          <p id="studentAnswersSubTitle" class="text-sm text-text-sec-light dark:text-text-sec-dark"></p>
+        </div>
+
+        <button id="closeStudentAnswersBtn" class="p-2 rounded-lg hover:bg-background-light dark:hover:bg-background-dark transition-colors" type="button">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3">
+        <!-- Exams list -->
+        <div class="md:col-span-1 border-r border-border-light dark:border-border-dark p-4 max-h-[70vh] overflow-auto">
+          <div id="studentExamsList" class="flex flex-col gap-2"></div>
+        </div>
+
+        <!-- Exam answers -->
+        <div class="md:col-span-2 p-4 max-h-[70vh] overflow-auto">
+          <div id="examAnswersContainer"></div>
+        </div>
+      </div>
+
+      <div class="p-4 border-t border-border-light dark:border-border-dark flex justify-end">
+        <button id="closeStudentAnswersFooterBtn"
+          class="px-6 py-2.5 rounded-full border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-bold transition-colors"
+          type="button">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
     <script src="../js/themeToggle.js"></script>
+    <script src="../js/teacherData.js" type="module"></script>
+    <script src="../js/logout.js" type="module"></script>
     <script src="../js/students-results.js" type="module"></script>
 </body>
 

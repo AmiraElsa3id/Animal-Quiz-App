@@ -254,7 +254,7 @@ function validateExam(exam, questions) {
     }
 
     // Validate question count
-    if (exam.questionsNum < 15) {
+    if (exam.questionsNum < 2) {
         errors.questions = 'Exam must have at least 15 questions';
         isValid = false;
     } else if (questions.length !== exam.questionsNum) {

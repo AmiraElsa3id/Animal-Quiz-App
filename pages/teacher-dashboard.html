@@ -21,39 +21,7 @@
     <link rel="stylesheet" href="../css/output.css" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css" />
-    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
-    <!-- Theme Configuration -->
-    <!-- <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#2bee6c",
-                        "background-light": "#f6f8f6",
-                        "background-dark": "#102216",
-                        "surface-light": "#ffffff",
-                        "surface-dark": "#1a3524",
-                        "text-main-light": "#0d1b12",
-                        "text-main-dark": "#e7f3eb",
-                        "text-sec-light": "#4c9a66",
-                        "text-sec-dark": "#8bc9a0",
-                        "border-light": "#e7f3eb",
-                        "border-dark": "#2a4c35"
-                    },
-                    fontFamily: {
-                        "display": ["Lexend", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "1rem",
-                        "lg": "2rem",
-                        "xl": "3rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script> -->
+
 </head>
 
 <body
@@ -85,7 +53,7 @@
                 <span class="hidden lg:block font-medium">Create Exam</span>
             </a>
             <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
-                href="#">
+                href="./question-bank.html">
                 <span class="material-symbols-outlined group-hover:text-primary transition-colors">folder_open</span>
                 <span class="hidden lg:block font-medium">Question Bank</span>
             </a>
@@ -109,8 +77,7 @@
                     <p id="teacherName" class="text-sm font-bold truncate">Sarah Johnson</p>
                     <p id="teacherCourse" class="text-xs text-text-sec-light dark:text-text-sec-dark truncate">Biology Dept.</p>
                 </div>
-                <span
-                    class="material-symbols-outlined hidden lg:block ml-auto text-text-sec-light dark:text-text-sec-dark">expand_more</span>
+               
             </div>
         </div>
     </aside>
@@ -533,18 +500,13 @@
                         </div>
                     </div>
                 </div>
-                <!-- Bottom Action -->
-                <!-- <div class="flex justify-end pb-10">
-                    <button id="submitExam"
-                        class="bg-text-main-light dark:bg-white text-white dark:text-background-dark px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl shadow-gray-200 dark:shadow-none flex items-center gap-3">
-                        <span class="material-symbols-outlined">rocket_launch</span>
-                        Publish Exam
-                    </button>
-                </div> -->
+               
             </div>
         </div>
     </main>
     <script src="../js/themeToggle.js"></script>
+    <script src="../js/logout.js" type="module"></script>
+    <script src="../js/teacherData.js" type="module"></script>
     <script src="../js/teatcher-dashboard.js" type="module"></script>
 </body>
 

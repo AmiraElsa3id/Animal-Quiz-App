@@ -180,7 +180,7 @@ function isCorrectFun(question, checkedradio) {
   feedbackMessageCorrect.classList.remove("hidden");
   feedbackH4.innerHTML = "CORRECT ANSWER !!";
   feedbackP.innerHTML = `${question.correctAnswer}`;
-  answers.push(new Answer(question.id, question.correctAnswer, true, timeOfFinsheOfQuestion).toJSON())
+  answers.push(new Answer(question.id,student.id, question.correctAnswer, true, timeOfFinsheOfQuestion).toJSON())
   setTimeout(() => {
     currentQuestionIndex++;
     feedbackMessageCorrect.classList.add("hidden");
