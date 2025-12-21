@@ -1,48 +1,5 @@
-//check the answer checked after time finshed 
 
 import { Student, Answer } from "./classes.js";
-let exams =
-  [
-    {
-      "id": "e1",
-      "name": "exam1",
-      "duration": 45,
-      "teacherId": "t1",
-      "course": "Animal Expert",
-      "createdAt": "2025-12-10T14:30:00.000Z",
-      "assignedStudents": ["std1ID", "std2ID"],
-      "questions": ["q1", "q2"]
-
-    }
-  ]
-
-
-let questions =
-  [
-    {
-      "id": "q1",
-      "text": "question text ",
-      "image": "",
-      "choices": ["1choice1", "1choice2", "1choice3", "1choice4"],
-      "correctAnswer": "1choice1",
-      "difficulty": "easy",
-      "score": 5
-    },
-    {
-      "id": "q2",
-      "text": "question text ",
-      "image": "",
-      "choices": ["2choice1", "2choice2", "2choice3", "2choice4"],
-      "correctAnswer": "2choice1",
-      "difficulty": "easy",
-      "score": 5
-    }
-
-  ]
-
-localStorage.setItem("Exams", JSON.stringify(exams));
-localStorage.setItem("questions", JSON.stringify(questions));
-
 
 //------------------html Element 
 const durationTimer = document.querySelector(".durationTimer .timer");
@@ -70,7 +27,7 @@ const logoutBtn = document.querySelector(".logoutBtn");
 let students = JSON.parse(localStorage.getItem("students")) || [];
 let Exams = JSON.parse(localStorage.getItem("Exams")) || [];
 let questionsData = JSON.parse(localStorage.getItem("questions")) || [];
-let currentExamId = "e1";//JSON.parse(localStorage.getItem("selectedExamId"));
+let currentExamId = JSON.parse(localStorage.getItem("selectedExamId"));
 let currentExamData = Exams.find(e => e.id == currentExamId);
 let student = JSON.parse(localStorage.getItem("currentUser"));
 let curentStudentObj = Student.fromJSON(student);
@@ -132,7 +89,8 @@ logoutBtn.addEventListener("click",function(){
 
 function printQuestioin() {
   questioncounter.innerHTML = currentQuestionIndex + 1;
-  animatedBrogressBar.style.width = `${((currentQuestionIndex + 1) / questionsCount) * 100}%`; setIntervalFun(4, currentQuestionIndex)
+  animatedBrogressBar.style.width = `${((currentQuestionIndex + 1) / questionsCount) * 100}%`;
+  setIntervalFun(questionDuration, currentQuestionIndex)
   if (currentQuestionIndex == currentExamData["questions"].length) {
     examFinsed()
     return 0;
@@ -185,7 +143,6 @@ function isCorrectFun(question, checkedradio) {
   answers.push(new Answer(question.id,student.id, question.correctAnswer, true, timeOfFinsheOfQuestion).toJSON())
   CorrectAnswerSound.play();
   setTimeout(() => {
-    // correc
     currentQuestionIndex++;
     feedbackMessageCorrect.classList.add("hidden");
     answerArea.innerHTML = "";
@@ -232,8 +189,8 @@ function setIntervalFun(questionDuration, questionCount) {
 
   const totalDuration = duration;
   if (questionCount < questionsCount) {
-    console.log("ok")
-    questionDurationId = setInterval(() => {
+ 
+      questionDurationId = setInterval(() => {
       questionMinute = parseInt(duration / 60);
       questionSecond = parseInt(duration % 60);
       questionMinute = questionMinute < 10 ? `0${questionMinute}` : questionMinute;
