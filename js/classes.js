@@ -129,7 +129,9 @@ class Question {
     this.difficulty = difficulty;
     this.score = score;
   }
+
   calcScore() {
+    
     switch(this.difficulty){
       case "Eazy":
           this.score=1;
@@ -146,6 +148,18 @@ class Question {
   isCorrect(selectedAnswer) {
     return selectedAnswer === this.correctAnswer;
   }
+
+static fromJSON(obj) {
+      return new Question(
+        obj.id,
+        obj.text,
+        obj.image,
+        obj.choices,
+        obj.correctAnswer ,
+        obj.difficulty,
+        obj.score
+      );
+    }
 
   // toJSON() {
   //   return {

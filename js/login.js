@@ -1,82 +1,5 @@
-// import { Student } from "./classes.js";
-// const student_2 = new Student(
-//   's1701234567890',
-//   'abdelftah_shakl',
-//   '12345678',
-//   2,
-//   '01234567890',
-//   './assets/images/avatar.webp',
-//   'ocean',
-//   [],
-//   []
-// );
-// const studentData = student.toJSON();
 
-// const { use } = require("react");
-
-// console.log(studentData);
 console.log("-------------------------------------")
-// const teacher = new Teacher(
-//   't1',
-//   'teacher_animals',
-//   'hashed_password',
-//   'Animals',
-//   false
-// );
-// const teacherData = teacher.toJSON();
-// console.log("-------------------------------------")
-
-// // console.log(teacherData);
-
-//   const students = [];
-//   const teachers = [];
-
-
-// database.students.push(student.toJSON());
-// database.students.push(student_2.toJSON());
-// database.teachers.push(teacher.toJSON());
-
-// localStorage.setItem("database", JSON.stringify(database));
-// const db = JSON.parse(localStorage.getItem("database"));
-// console.log("-------------------------------------")
-
-// console.log(db.students);
-// console.log(db.teachers);
-// function createUser(formData) {
-//   const id = Date.now().toString();
-//   const { username, password, role } = formData;
-
-//   if (role === "student") {
-//     return new Student(
-//       id,
-//       username,
-//       password,
-//       formData.grade,
-//       formData.mobile
-//     ).toJSON();
-//   }
-
-//   if (role === "teacher") {
-//     return new Teacher(
-//       id,
-//       username,
-//       password,
-//       formData.course
-//     ).toJSON();
-//   }
-// }
-// const userData = createUser({
-//   username: "ali",
-//   password: "1234",
-//   role: "student",
-//   grade: 3,
-//   mobile: "01000000000"
-// });
-
-// database.students.push(userData);
-
-
-//-------------------------------
 
 let students;
 let teachers;
@@ -112,7 +35,6 @@ function checkSelectedRole() {
     });
 }
 // checkSelectedRole();
-
 
 loginSubmitBtn.addEventListener("click",function()
 {
@@ -152,7 +74,7 @@ function checkPassward(_user,inputPassword)
         }
         else if (selectedRole=="teacher")
         {
-            window.location.href = "./pages/teatcher-dashboard.html";
+            window.location.href = "./pages/teacher-dashboard.html";
         }
     }
     else
@@ -171,10 +93,4 @@ passHide.addEventListener("click", function() {
         passHide.textContent = "visibility";
     }
 });
-
-// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-// function logout() {
-//     localStorage.removeItem("currentUser");
-//     window.location.href = "../index.html";
-// }
 

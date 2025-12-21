@@ -22,52 +22,6 @@
     <link rel="stylesheet" href="../css/output.css">
     <!-- Custom -->
     <link rel="stylesheet" href="../css/custom.css">
-    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
-    <!-- <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#2bee6c",
-                        "primary-hover": "#25d660",
-                        "background-light": "#f8fcf9",
-                        "background-dark": "#102216",
-                        "surface-light": "#ffffff",
-                        "surface-dark": "#1a2e22",
-                        "text-main-light": "#0d1b12",
-                        "text-main-dark": "#f0fdf4",
-                        "text-sub-light": "#4c9a66",
-                        "text-sub-dark": "#8ecfa3",
-                        "border-light": "#e7f3eb",
-                        "border-dark": "#2a4535",
-                    },
-                    fontFamily: {
-                        "display": ["Lexend", "sans-serif"],
-                        "body": ["Noto Sans", "sans-serif"],
-                    },
-                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "3rem", "full": "9999px"},
-                },
-            },
-        }
-    </script> -->
-    <!-- <style>
-        /* Custom scrollbar for cleaner look */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cfe7d7;
-            border-radius: 4px;
-        }
-        .dark ::-webkit-scrollbar-thumb {
-            background: #2a4535;
-        }
-    </style> -->
 </head>
 
 <body
@@ -84,12 +38,15 @@
       </div>
       <div class="flex items-center gap-6">
         <nav class="hidden md:flex items-center gap-6">
-          <!-- <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Library</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Leaderboard</a> -->
+
         </nav>
         <div class="flex items-center gap-3 pl-6 border-l border-border-light dark:border-border-dark">
-          <button
+        
+          <button  id="logOutBtn"
+            class=" hidden sm:flex h-10 px-5 items-center justify-center rounded-full bg-red-500 hover:bg-red-500-hover text-white text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-red-500/20">
+            Logout
+          </button>
+            <button
             class="TakeQuiz hidden sm:flex h-10 px-5 items-center justify-center rounded-full bg-primary hover:bg-primary-hover text-[#0d1b12] text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
             Take a Quiz
           </button>
@@ -177,18 +134,6 @@
             </div>
           </div>
         </div>
-        <!-- Mini Leaderboard Widget -->
-        <!-- <div class="bg-primary/10 rounded-xl p-5 border border-primary/20">
-<div class="flex items-center justify-between mb-4">
-<h3 class="font-bold text-sm uppercase tracking-wide text-primary-darker">Weekly Rank</h3>
-<span class="material-symbols-outlined text-primary">trophy</span>
-</div>
-<div class="flex items-end gap-2 mb-2">
-<span class="text-4xl font-black text-[#0d1b12] dark:text-white">#5</span>
-<span class="text-sm mb-1.5 text-text-sub-light dark:text-text-sub-dark">Top 10%</span>
-</div>
-<p class="text-xs text-text-sub-light dark:text-text-sub-dark">You need 150 more points to reach #4!</p>
-</div> -->
       </aside>
       <!-- Right Content Area -->
       <div class="lg:col-span-8 xl:col-span-9 flex flex-col gap-8">
@@ -281,26 +226,7 @@
             Practice regularly to stay ready.
           </p>
 
-        
         </div>
-
-
-
-            <!-- Empty State / Optional Card -->
-            <!-- <div
-              class="bg-background-light dark:bg-background-dark rounded-xl border-2 border-dashed border-border-light dark:border-border-dark flex flex-col items-center justify-center p-6 text-center h-full min-h-[300px]">
-              <div
-                class="size-12 rounded-full bg-surface-light dark:bg-surface-dark flex items-center justify-center mb-3">
-                <span class="material-symbols-outlined text-text-sub-light dark:text-text-sub-dark">add</span>
-              </div>
-              <h4 class="font-bold text-base mb-1">Browse Library</h4>
-              <p class="text-sm text-text-sub-light dark:text-text-sub-dark mb-4">Find more quizzes to challenge
-                yourself.</p>
-              <button
-                class="px-5 py-2 rounded-full border border-border-light dark:border-border-dark text-sm font-bold hover:bg-surface-light dark:hover:bg-surface-dark transition-colors">
-                Explore
-              </button>
-            </div> -->
           </div>
         </section>
         <!-- History Section -->
@@ -358,27 +284,9 @@
       </div>
     </div>
   </main>
-  <!-- Mobile Navigation Bar (Bottom) -->
-  <!-- <nav
-    class="md:hidden fixed bottom-0 w-full bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark flex justify-around p-3 z-50 pb-safe">
-    <a class="flex flex-col items-center gap-1 text-primary" href="#">
-      <span class="material-symbols-outlined">person</span>
-      <span class="text-[10px] font-bold">Profile</span>
-    </a>
-    <a class="flex flex-col items-center gap-1 text-text-sub-light dark:text-text-sub-dark" href="#">
-      <span class="material-symbols-outlined">dashboard</span>
-      <span class="text-[10px] font-bold">Dash</span>
-    </a>
-    <a class="flex flex-col items-center gap-1 text-text-sub-light dark:text-text-sub-dark" href="#">
-      <span class="material-symbols-outlined">menu_book</span>
-      <span class="text-[10px] font-bold">Library</span>
-    </a>
-    <a class="flex flex-col items-center gap-1 text-text-sub-light dark:text-text-sub-dark" href="#">
-      <span class="material-symbols-outlined">settings</span>
-      <span class="text-[10px] font-bold">Settings</span>
-    </a>
-  </nav> -->
+ 
   <script src="../js/themeToggle.js"></script>
+  <script src="../js/logout.js" type="module"></script>
   <script src="../js/studen_dashboard.js"   type="module"defer></script>
 </body>
 

@@ -106,10 +106,7 @@ stdImage.addEventListener('change',function (){
     let file=stdImage.files[0]
     console.log(file);
     
-    // reader.readAsDataURL(file)
-    // reader.onload=(e)=>{
-    //     liveImage.src=e.target.result
-    // }
+
     liveImage.src="../assets/image/"+file.name
     console.log(liveImage.src);
 }
