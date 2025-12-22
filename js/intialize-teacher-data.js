@@ -45,6 +45,5 @@ function initializeTeachersData() {
   }
 }
 
-
 // Run on page load
 initializeTeachersData();

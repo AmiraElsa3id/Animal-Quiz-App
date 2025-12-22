@@ -342,7 +342,7 @@ function handlePublishExam() {
     const exam = {
         name: examName.value,
         duration: examDuration.value,
-        questionsNum: currentExamQuestions.length,
+        questionsNum: questionNumber.value,
     };
     
     let examValidation = validateExam(exam, currentExamQuestions);

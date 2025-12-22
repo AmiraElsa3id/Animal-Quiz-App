@@ -48,6 +48,7 @@ if (nextExamId!=0)
 
 //----------------------
 nextExamBtn.addEventListener("click",function(){
+  
     localStorage.setItem("selectedExamId",nextExamId)
     window.location.href="./quiz.html";
 })
@@ -66,3 +67,5 @@ function setProgress(percent) {
   progressCircle.style.strokeDasharray = `${circumference}`;
   progressCircle.style.strokeDashoffset = offset;
 }
+
+  

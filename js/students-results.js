@@ -14,14 +14,17 @@ if(localStorage.getItem("students")){
 
 
 let searchInput=document.getElementById("searchInput");
+let examFilter=document.getElementById("examFilter");
+let examFilterInput=document.getElementById("examFilterInput");
 // ==================== INITIALIZATION ====================
-
-
+if (examFilter) {
+    examFilter.innerHTML = exams.map(exam => `<option value="${exam.id}">${exam.name}</option>`).join("");
+}
 
 function displayStudents(students){
     const tableBody=document.querySelector("#tableBody");
     if(students.length==0){
-        tableBody.innerHTML="<tr><td colspan='5' class='text-center py-4'>No students found</td></tr>";
+        tableBody.innerHTML="<tr><td colspan='6' class='text-center py-4'>No students found</td></tr>";
         return;
     }
     let box='';
@@ -33,7 +36,7 @@ function displayStudents(students){
                                                 <div class="flex items-center gap-3">
                                                     <img class="size-10 rounded-full bg-cover bg-center border border-border-light dark:border-border-dark"
                                                         data-alt="Portrait of student Alice Johnson"
-                                                    src="${student.profilePicture}">
+                                                    src="${student.profilePicture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}">
                                                 
                                                     <div>
                                                         <span
@@ -75,6 +78,116 @@ function displayStudents(students){
 
 
 displayStudents(students);
+
+// ---------------------- Answers modal wiring
+const studentAnswersModal = document.getElementById("studentAnswersModal");
+const studentAnswersOverlay = document.getElementById("studentAnswersOverlay");
+const closeStudentAnswersBtn = document.getElementById("closeStudentAnswersBtn");
+const closeStudentAnswersFooterBtn = document.getElementById("closeStudentAnswersFooterBtn");
+const studentAnswersTitle = document.getElementById("studentAnswersTitle");
+const studentAnswersSubTitle = document.getElementById("studentAnswersSubTitle");
+const studentExamsList = document.getElementById("studentExamsList");
+const examAnswersContainer = document.getElementById("examAnswersContainer");
+
+function openStudentAnswersModal() {
+  studentAnswersModal?.classList.remove("hidden");
+}
+
+function closeStudentAnswersModal() {
+  studentAnswersModal?.classList.add("hidden");
+  if (studentExamsList) studentExamsList.innerHTML = "";
+  if (examAnswersContainer) examAnswersContainer.innerHTML = "";
+}
+
+closeStudentAnswersBtn?.addEventListener("click", closeStudentAnswersModal);
+closeStudentAnswersFooterBtn?.addEventListener("click", closeStudentAnswersModal);
+studentAnswersOverlay?.addEventListener("click", closeStudentAnswersModal);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && studentAnswersModal && !studentAnswersModal.classList.contains("hidden")) {
+    closeStudentAnswersModal();
+  }
+});
+
+function getExamsStore() {
+  return JSON.parse(localStorage.getItem("Exams"))
+    || JSON.parse(localStorage.getItem("exams"))
+    || [];
+}
+
+function getQuestionsStore() {
+  return JSON.parse(localStorage.getItem("questions")) || [];
+}
+
+function getAnswersHistory() {
+  // [{studentId, examId, answers, submittedAt}]
+  return JSON.parse(localStorage.getItem("answers")) || [];
+}
+
+function renderExamAnswers(studentId, examId, examsStore, questionsStore, answersHistory) {
+  if (!examAnswersContainer) return;
+
+  const exam = examsStore.find(e => String(e.id) === String(examId));
+  const attempt = [...answersHistory]
+    .filter(r => String(r.studentId) === String(studentId) && String(r.examId) === String(examId))
+    .sort((a, b) => String(b.submittedAt || "").localeCompare(String(a.submittedAt || "")))[0];
+
+  let questionIds = [];
+  if (exam?.questions && Array.isArray(exam.questions)) {
+    if (typeof exam.questions[0] === "object") {
+      questionIds = exam.questions.map(q => q.id);
+    } else {
+      questionIds = exam.questions;
+    }
+  }
+
+  const examQuestions = questionsStore.filter(q => questionIds.includes(q.id));
+  const answers = attempt?.answers || [];
+
+  if (!exam || examQuestions.length === 0) {
+    examAnswersContainer.innerHTML = `
+      <div class="p-4 rounded-xl border border-border-light dark:border-border-dark">
+        <div class="text-sm text-text-sec-light dark:text-text-sec-dark">No questions found for this exam.</div>
+      </div>
+    `;
+    return;
+  }
+
+  if (!attempt) {
+    examAnswersContainer.innerHTML = `
+      <div class="p-4 rounded-xl border border-border-light dark:border-border-dark">
+        <div class="font-bold mb-1">${exam?.name || "Exam"}</div>
+        <div class="text-sm text-text-sec-light dark:text-text-sec-dark">No saved answers for this exam.</div>
+      </div>
+    `;
+    return;
+  }
+
+  examAnswersContainer.innerHTML = examQuestions.map((q, idx) => {
+    const ans = answers.find(a => String(a.questionId) === String(q.id));
+    const selected = ans?.selectedAnswer ?? "-";
+    const correct = q.correctAnswer ?? "-";
+    const isCorrect = ans?.isCorrect === true;
+
+    return `
+      <div class="p-4 mb-3 rounded-xl border border-border-light dark:border-border-dark">
+        <div class="font-bold mb-2">${idx + 1}) ${q.text}</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+          <div class="p-3 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark">
+            <div class="text-xs text-text-sec-light dark:text-text-sec-dark mb-1">Student Answer</div>
+            <div class="font-bold ${isCorrect ? "text-green-600" : "text-red-500"}">${selected}</div>
+          </div>
+
+          <div class="p-3 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark">
+            <div class="text-xs text-text-sec-light dark:text-text-sec-dark mb-1">Correct Answer</div>
+            <div class="font-bold">${correct}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
 
 
 function viewAnswers(id) {
@@ -133,3 +246,8 @@ function searchStudents(){
 }
 
 searchInput.addEventListener("input",searchStudents);
+
+// optional: filter UI currently is for assigning, but keep it safe
+examFilterInput?.addEventListener("change", () => {
+  // no-op for now
+});
