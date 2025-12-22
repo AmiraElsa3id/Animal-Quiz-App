@@ -30,10 +30,26 @@ class Student extends User {
     this.assignedExams = assignedExams;
   }
 
-  completeExam(examId, name ,score,timeOfFinshed ,date = new Date()) {
-    this.completedExams.push(new CompletedExam(examId, name,score,timeOfFinshed, date));
-    this.assignedExams = this.assignedExams.filter(id => id !== examId);
-  }
+  // completeExam(examId, name ,score,timeOfFinshed ,date = new Date()) {
+  //   this.completedExams.push(new CompletedExam(examId, name,score,timeOfFinshed, date));
+  //   this.assignedExams = this.assignedExams.filter(id => id !== examId);
+  // }
+      completeExam(examId, name, score, timeOfFinshed) {
+      const readableDate = new Date().toLocaleString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      this.completedExams.push(
+        new CompletedExam(examId, name, score, timeOfFinshed, readableDate)
+      );
+
+      this.assignedExams = this.assignedExams.filter(id => id !== examId);
+    }
+
 
   assignExam(examId) {
     if (!this.assignedExams.includes(examId)) {

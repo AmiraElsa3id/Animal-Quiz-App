@@ -223,6 +223,7 @@ function validateExam(exam, questions) {
             isValid = false;
         }
     }
+    
 
     // Validate question count
     if (exam.questionsNum < 2) {

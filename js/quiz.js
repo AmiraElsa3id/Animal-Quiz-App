@@ -104,6 +104,8 @@ const WRONG_CLASSES = [
   "dark:bg-red-900/20"
 ];
 
+const CorrectAnswerSound = new Audio("../assets/sounds/Correct.mp3");
+const WrongAnswerSound = new Audio("../assets/sounds/wrong.mp3");
 
 //------
 examName.innerHTML = currentExamData.name;
@@ -181,7 +183,9 @@ function isCorrectFun(question, checkedradio) {
   feedbackH4.innerHTML = "CORRECT ANSWER !!";
   feedbackP.innerHTML = `${question.correctAnswer}`;
   answers.push(new Answer(question.id,student.id, question.correctAnswer, true, timeOfFinsheOfQuestion).toJSON())
+  CorrectAnswerSound.play();
   setTimeout(() => {
+    // correc
     currentQuestionIndex++;
     feedbackMessageCorrect.classList.add("hidden");
     answerArea.innerHTML = "";
@@ -198,6 +202,7 @@ function isWrongFun(question, checkedradio) {
   wfeedbackP.innerHTML = ` the correct answer is ${question.correctAnswer}`
   let option = selectedLabel.querySelector(".answerSpan").textContent;
   answers.push(new Answer(question.id, option, false, timeOfFinsheOfQuestion).toJSON())
+  WrongAnswerSound.play();
   setTimeout(() => {
     currentQuestionIndex++;
     feedbackMessageWrong.classList.add("hidden");
