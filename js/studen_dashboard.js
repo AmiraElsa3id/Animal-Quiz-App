@@ -26,6 +26,9 @@ let students = JSON.parse(localStorage.getItem("students"))||[];
 let  student = JSON.parse(localStorage.getItem("currentUser"));
 let Exams = JSON.parse(localStorage.getItem("Exams"))||[];
 let curentStudentObj = Student.fromJSON(student);
+//------------------for test ------------
+
+curentStudentObj.completeExam(completedExamsTest.examId,completedExamsTest.name,completedExamsTest.score  )
 let score = curentStudentObj.getAverageScore().toFixed(2);
 
 

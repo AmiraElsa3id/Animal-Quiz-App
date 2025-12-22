@@ -91,6 +91,33 @@ function validateSignupGrade(grade) {
   }
   return { isValid: true, value: gradeNum };
 }
+
+function validateSignupProfilePicture(profilePicture) {
+  // Profile picture is optional during signup
+  if (!profilePicture || profilePicture === '') {
+    return { isValid: true, value: '' };
+  }
+  
+  if (typeof profilePicture !== 'string') {
+    return { isValid: false, error: 'Profile picture must be a string' };
+  }
+  
+  // Check if it's a valid base64 image
+  if (!profilePicture.startsWith('data:image/')) {
+    return { isValid: false, error: 'Profile picture must be a valid image file' };
+  }
+  
+  // Check file size (limit to 2MB in base64)
+  const sizeInBytes = (profilePicture.length * 3) / 4;
+  const sizeInMB = sizeInBytes / (1024 * 1024);
+  
+  if (sizeInMB > 2) {
+    return { isValid: false, error: 'Profile picture must be less than 2MB' };
+  }
+  
+  return { isValid: true };
+}
+
 // Complete signup validation
 function validateSignupForm(formData,users) {
   const errors = {};
@@ -115,9 +142,16 @@ function validateSignupForm(formData,users) {
     errors.grade = gradeValidation.error;
   }
   
-  // if (Object.keys(errors).length > 0) {
-  //   return { isValid: false, errors };
-  // }
+  if (formData.profilePicture) {
+    const profilePictureValidation = validateSignupProfilePicture(formData.profilePicture);
+    if (!profilePictureValidation.isValid) {
+      errors.profilePicture = profilePictureValidation.error;
+    }
+  }
+  
+  if (Object.keys(errors).length > 0) {
+    return { isValid: false, errors };
+  }
   
   return { isValid: true };
 }
@@ -189,12 +223,13 @@ function validateExam(exam, questions) {
             isValid = false;
         }
     }
+    
 
     // Validate question count
     if (exam.questionsNum < 2) {
-        errors.questions = 'Exam must have at least 15 questions';
+        errors.questions = 'Exam must have at least 2 questions';
         isValid = false;
-    } else if (questions.length !== exam.questionsNum) {
+    } else if (questions.length != exam.questionsNum) {
         errors.questions = 'Number of questions must match the number of questions in the exam';
         isValid = false;
     }
@@ -208,7 +243,10 @@ export {
   validateSignupPassword,
   validateSignupMobile,
   validateSignupGrade,
+  validateSignupProfilePicture,
   validateSignupForm,
+  validateLoggedInUser,
   validateQuestion,
   validateExam,
+  
 };
