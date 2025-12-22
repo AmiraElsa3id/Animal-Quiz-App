@@ -1,22 +1,5 @@
 import { Student,Exam } from "./classes.js";
 
-//------------------test data ---------------
- let completedExamsTest={
-    examId: "e1701234567890",
-    name: "Dog Breeds Expert Quiz",
-    score: 85,
-    date: "2025-12-10T14:30:00.000Z"
-  }
- let Examtest = {"id": "e1",
-        "name":"exam1",
-        "duration":45,
-        "teacherId":"t1",
-        "course":"Animal Expert",
-        "createdAt": "2025-12-10T14:30:00.000Z",
-        "assignedStudents":["std1ID","std2ID"],
-        "questions":["Q1Id","Q2Id"]
-        };
-
 
 //------------ Html Elment ---------------------------
 let TakeQuizBtn = document.querySelector(".TakeQuiz")
@@ -46,12 +29,13 @@ let curentStudentObj = Student.fromJSON(student);
 //------------------for test ------------
 
 curentStudentObj.completeExam(completedExamsTest.examId,completedExamsTest.name,completedExamsTest.score  )
+let score = curentStudentObj.getAverageScore().toFixed(2);
+
 
 //-----------------current date -------------------
 
 const options = { day: "numeric", month: "long", year: "numeric" };
 let CurrentDate = new Date().toLocaleDateString("en-US", options); 
-let score = curentStudentObj.getAverageScore()
 ExamCards.forEach(card=>card.classList.add("hidden"));
 WelcomeBarDate.innerHTML=CurrentDate
 StudentName.forEach(item=>item.innerText+=student.username)
@@ -89,7 +73,8 @@ else
                     card.dataset.examId =exam.id;
                     card.querySelector("#ExamCardName").innerText=exam.id;
                     // card.querySelector("#ExamCardDate").innerText=student["assignedExams"].date;// ask if we need it or not 
-                    // card.querySelector(".ExamCardImage  ").style.src=exam.image
+                    
+                    // card.querySelector(".ExamCardImage").style.src=exam.image
         }
         
     })
