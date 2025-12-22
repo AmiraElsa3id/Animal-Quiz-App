@@ -34,6 +34,8 @@ class Student extends User {
   //   this.completedExams.push(new CompletedExam(examId, name,score,timeOfFinshed, date));
   //   this.assignedExams = this.assignedExams.filter(id => id !== examId);
   // }
+  //curentStudentObj.completeExam(completedExamsTest.examId,completedExamsTest.name,completedExamsTest.score  )
+
       completeExam(examId, name, score, timeOfFinshed) {
       const readableDate = new Date().toLocaleString("en-US", {
         year: "numeric",

@@ -26,9 +26,6 @@ let students = JSON.parse(localStorage.getItem("students"))||[];
 let  student = JSON.parse(localStorage.getItem("currentUser"));
 let Exams = JSON.parse(localStorage.getItem("Exams"))||[];
 let curentStudentObj = Student.fromJSON(student);
-//------------------for test ------------
-
-curentStudentObj.completeExam(completedExamsTest.examId,completedExamsTest.name,completedExamsTest.score  )
 let score = curentStudentObj.getAverageScore().toFixed(2);
 
 
@@ -52,6 +49,7 @@ for (let i =0 ;i<student.assignedExams.length;i++)
 }
 console.log(student.assignedExams.length==0)
 console.log(student.assignedExams)
+
 if(student.assignedExams.length==0)
 {
   ExamCards.forEach(card=>{card.classList.add("hidden")});
@@ -73,7 +71,6 @@ else
                     card.dataset.examId =exam.id;
                     card.querySelector("#ExamCardName").innerText=exam.id;
                     // card.querySelector("#ExamCardDate").innerText=student["assignedExams"].date;// ask if we need it or not 
-                    
                     // card.querySelector(".ExamCardImage").style.src=exam.image
         }
         
@@ -82,11 +79,16 @@ else
 
 // ---------------- Compelete Exams Table--------------
 
+if(student.completedExams.length==0){
+    CompeleteExamTable.classList.add("hidden");
+}
+else{
 for (let i=0 ; i<student.completedExams ; i ++)
 {
     let ColneTrCompeleteExam = TrCompeleteExam[0].cloneNode(true);
     CompeleteExamTable.appendChild(ColneTrCompeleteExam);
 }
+
 
 TrCompeleteExam.forEach((exam,index)=>{
     exam.classList.remove("hidden")
@@ -95,7 +97,7 @@ TrCompeleteExam.forEach((exam,index)=>{
     exam.querySelector(".CompleteEamScore").innerText=student.completedExams[index].score||"";
 
 })
-
+}
 
 ExamCards.forEach(card => {
   const btn = card.querySelector('.StartQuiz');
