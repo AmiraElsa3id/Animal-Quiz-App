@@ -1,8 +1,7 @@
 import {validateSignupUsername,
   validateSignupPassword,
   validateSignupMobile,
-  validateSignupGrade,
-  validateSignupProfilePicture,
+ 
   validateSignupForm,} from "./validation.js";
 import {Student} from "./classes.js";
 

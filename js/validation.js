@@ -211,4 +211,5 @@ export {
   validateSignupForm,
   validateQuestion,
   validateExam,
+  validateLoggedInUser
 };
