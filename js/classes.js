@@ -306,62 +306,7 @@ class Result {
     return (this.score / totalPossibleScore) * 100;
   }
 
-  // toJSON() {
-  //   return {
-  //     id: this.id,
-  //     studentId: this.studentId,
-  //     examId: this.examId,
-  //     score: this.score,
-  //     date: this.date.toISOString(),
-  //     answers: this.answers.map(a => a.toJSON())
-  //   };
-  // }
+
 }
 
 export {Student,Teacher,Question, Exam,Answer}
-
-// Example usage:
-// const student = new Student(
-//   's1701234567890',
-//   'john_doe',
-//   'hashed_password',
-//   2,
-//   '01234567890',
-//   'data:image/jpeg;base64,/9j/4AAQ...',
-//   'ocean'
-// );
-
-// const teacher = new Teacher(
-//   't1',
-//   'teacher_animals',
-//   'hashed_password',
-//   'Animals',
-//   false
-// );
-
-// const question = new Question(
-//   'q1701234567890',
-//   "Which breed is known as the 'King of Terriers'?",
-//   'data:image/jpeg;base64,/9j/4AAQ...',
-//   ['Airedale Terrier', 'Yorkshire Terrier', 'Scottish Terrier', 'Fox Terrier'],
-//   0,
-//   'medium',
-//   5
-// );
-
-// const exam = new Exam(
-//   'e1701234567890',
-//   'Dog Breeds Expert Quiz',
-//   30,
-//   't1',
-//   'Animals',
-//   new Date('2025-12-01T10:00:00.000Z')
-// );
-
-// exam.addQuestion(question);
-// exam.assignToStudent(student.id);
-
-// console.log('Student:', student.toJSON());
-// console.log('Teacher:', teacher.toJSON());
-// console.log('Exam Total Score:', exam.getTotalScore());
-// console.log('Exam:', exam.toJSON());
