@@ -25,7 +25,7 @@ const logoutBtn = document.querySelector(".logoutBtn");
 
 //-------get the data from localstorage 
 let students = JSON.parse(localStorage.getItem("students")) || [];
-let Exams = JSON.parse(localStorage.getItem("Exams")) || [];
+let Exams = JSON.parse(localStorage.getItem("exams")) || [];
 let questionsData = JSON.parse(localStorage.getItem("questions")) || [];
 let currentExamId = JSON.parse(localStorage.getItem("selectedExamId"));
 let currentExamData = Exams.find(e => e.id == currentExamId);

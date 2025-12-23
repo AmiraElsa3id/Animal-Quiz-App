@@ -24,7 +24,7 @@ let TrCompeleteExam = document.querySelectorAll(".TrCompeleteExam");
 
 let students = JSON.parse(localStorage.getItem("students"))||[];
 let  student = JSON.parse(localStorage.getItem("currentUser"));
-let Exams = JSON.parse(localStorage.getItem("Exams"))||[];
+let Exams = JSON.parse(localStorage.getItem("exams"))||[];
 let curentStudentObj = Student.fromJSON(student);
 let score = curentStudentObj.getAverageScore().toFixed(2);
 
@@ -61,7 +61,15 @@ else
     ExamCards.forEach((card,index)=>{
         let examId=student["assignedExams"][index]
         console.log(examId)
-        const exam = Exams.find(e => e.id === examId);
+        console.log(Exams)
+        const exam = Exams.find(e =>{
+          console.log(e.id);
+          
+          return e.id == examId;
+        }
+          
+          
+        );
         console.log(exam)
         if (!exam) {
                     alert("that is exam id is not valid ")
@@ -69,7 +77,7 @@ else
                     console.log(exam)
                     card.classList.remove("hidden")
                     card.dataset.examId =exam.id;
-                    card.querySelector("#ExamCardName").innerText=exam.id;
+                    card.querySelector("#ExamCardName").innerText=exam.name;
                     // card.querySelector("#ExamCardDate").innerText=student["assignedExams"].date;// ask if we need it or not 
                     // card.querySelector(".ExamCardImage").style.src=exam.image
         }
@@ -114,5 +122,6 @@ TakeQuizBtn.addEventListener("click",function(){
   localStorage.setItem("selectedExamId",examId);
   window.location.href="./quiz.html";
 })
+
 
 
