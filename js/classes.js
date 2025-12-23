@@ -49,7 +49,7 @@ class Student extends User {
         new CompletedExam(examId, name, score, timeOfFinshed, readableDate)
       );
 
-      this.assignedExams = this.assignedExams.filter(id => id !== examId);
+      this.assignedExams = this.assignedExams.filter(id => id != examId);
     }
 
 
@@ -241,27 +241,60 @@ class Exam {
   getQuestionCount() {
     return this.questions.length;
   }
-
-
-  calculateQuestionScores(totalExamScore = 100) {
+calculateQuestionScores(totalExamScore = 100) {
   const difficultyWeight = {
     Easy: 1,
     Medium: 2,
     Hard: 3
   };
 
+  // Fetch all questions from localStorage
+  const storedQuestions = JSON.parse(localStorage.getItem('questions') || '[]');
+  
+  // Get only the questions that belong to this exam
+  const examQuestions = storedQuestions.filter(q => 
+    this.questions.includes(q.id)
+  );
+
   // Calculate total weight
-  const totalWeight = this.questions.reduce(
+  const totalWeight = examQuestions.reduce(
     (sum, q) => sum + difficultyWeight[q.difficulty],
     0
   );
 
-  // Assign score to each question
-  this.questions.forEach(q => {
-    q.score =
-      (difficultyWeight[q.difficulty] / totalWeight) * totalExamScore;
+  // Assign score to each question and update in localStorage
+  examQuestions.forEach(q => {
+    q.score = (difficultyWeight[q.difficulty] / totalWeight) * totalExamScore;
   });
+
+  // Update the questions array in localStorage with new scores
+  const updatedQuestions = storedQuestions.map(q => {
+    const updatedQuestion = examQuestions.find(eq => eq.id === q.id);
+    return updatedQuestion || q;
+  });
+  
+  localStorage.setItem('questions', JSON.stringify(updatedQuestions));
 }
+
+//   calculateQuestionScores(totalExamScore = 100) {
+//   const difficultyWeight = {
+//     Easy: 1,
+//     Medium: 2,
+//     Hard: 3
+//   };
+
+//   // Calculate total weight
+//   const totalWeight = this.questions.reduce(
+//     (sum, q) => sum + difficultyWeight[q.difficulty],
+//     0
+//   );
+
+//   // Assign score to each question
+//   this.questions.forEach(q => {
+//     q.score =
+//       (difficultyWeight[q.difficulty] / totalWeight) * totalExamScore;
+//   });
+// }
 
 
   // toJSON() {
@@ -280,8 +313,10 @@ class Exam {
 
 // Answer class
 class Answer {
-  constructor(questionId,studentId, selectedAnswer, isCorrect, timeSpent) {
+  constructor(questionId,studentId, examId, selectedAnswer, isCorrect, timeSpent) {
     this.questionId = questionId;
+    this.studentId = studentId;
+    this.examId = examId;
     this.selectedAnswer = selectedAnswer;
     this.isCorrect = isCorrect;
     this.timeSpent = timeSpent;
@@ -290,6 +325,8 @@ class Answer {
   toJSON() {
     return {
       questionId: this.questionId,
+      studentId: this.studentId,
+      examId: this.examId,
       selectedAnswer: this.selectedAnswer,
       isCorrect: this.isCorrect,
       timeSpent: this.timeSpent

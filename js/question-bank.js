@@ -110,6 +110,7 @@ function deleteQuestion(id){
     questions=questions.filter((question,index)=>{
         return question.id!=id
     })
+    
 if(exams.length>0){
     exams=exams.map((exam,index)=>{
         exam.questions=exam.questions.filter((question,index)=>{

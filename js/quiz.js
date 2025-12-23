@@ -28,12 +28,14 @@ let students = JSON.parse(localStorage.getItem("students")) || [];
 let Exams = JSON.parse(localStorage.getItem("exams")) || [];
 let questionsData = JSON.parse(localStorage.getItem("questions")) || [];
 let currentExamId = JSON.parse(localStorage.getItem("selectedExamId"));
+
 let currentExamData = Exams.find(e => e.id == currentExamId);
+
 let student = JSON.parse(localStorage.getItem("currentUser"));
 let curentStudentObj = Student.fromJSON(student);
 let answers = [];
 //---------------
-currentExamData["questions"].sort((a, b) => a.localeCompare(b))
+currentExamData["questions"].sort((a, b) => a.id - b.id)
 let currentQuestionIndex = 0;
 let questionsCount = currentExamData["questions"].length;
 let examDuration = currentExamData.duration;
@@ -140,7 +142,7 @@ function isCorrectFun(question, checkedradio) {
   feedbackMessageCorrect.classList.remove("hidden");
   feedbackH4.innerHTML = "CORRECT ANSWER !!";
   feedbackP.innerHTML = `${question.correctAnswer}`;
-  answers.push(new Answer(question.id,student.id, question.correctAnswer, true, timeOfFinsheOfQuestion).toJSON())
+  answers.push(new Answer(question.id,student.id, currentExamId, question.correctAnswer, true, timeOfFinsheOfQuestion).toJSON())
   CorrectAnswerSound.play();
   setTimeout(() => {
     currentQuestionIndex++;
@@ -158,7 +160,7 @@ function isWrongFun(question, checkedradio) {
   feedbackMessageWrong.classList.remove("hidden")
   wfeedbackP.innerHTML = ` the correct answer is ${question.correctAnswer}`
   let option = selectedLabel.querySelector(".answerSpan").textContent;
-  answers.push(new Answer(question.id, option, false, timeOfFinsheOfQuestion).toJSON())
+  answers.push(new Answer(question.id,student.id, currentExamId, option, false, timeOfFinsheOfQuestion).toJSON())
   WrongAnswerSound.play();
   setTimeout(() => {
     currentQuestionIndex++;
@@ -175,6 +177,7 @@ function examFinsed() {
   curentStudentObj.completeExam(currentExamId, currentExamData.name, score, timeOfFinshed)
   students = students.filter(e => e.id != student.id);
   students.push(curentStudentObj.toJSON());
+  localStorage.removeItem("selectedExamId")
   localStorage.setItem("currentUser", JSON.stringify(curentStudentObj.toJSON()));
   localStorage.setItem("students", JSON.stringify(students));
   localStorage.setItem("studentAnswers", JSON.stringify(answers));
@@ -232,4 +235,5 @@ function examDurationFun(examDuration) {
     }
   }, 1000);
 }
+
 

@@ -130,7 +130,7 @@ function clearCurrentExamQuestions() {
 
 // ==================== EXAM MANAGEMENT ====================
 function createExam() {
-    return new Exam(
+    let currentExam =  new Exam(
         Date.now(),
         examName.value,
         examDuration.value,
@@ -141,6 +141,10 @@ function createExam() {
         currentExamQuestions.length,
         currentExamQuestions.map(question => question.id)
     );
+    currentExam.calculateQuestionScores();
+    return currentExam;
+
+
 }
 
 // ==================== FORM MANAGEMENT ====================

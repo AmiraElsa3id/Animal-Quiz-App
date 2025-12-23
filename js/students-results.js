@@ -40,7 +40,7 @@ function displayStudents(students){
                                                 <div class="flex items-center gap-3">
                                                     <img class="size-10 rounded-full bg-cover bg-center border border-border-light dark:border-border-dark"
                                                         data-alt="Portrait of student Alice Johnson"
-                                                    src="${"../"+student?.profilePicture || '../assets/image/avatar.webp'}">
+                                                    src="${"../"+student.profilePicture || '../assets/image/avatar.webp'}">
                                                 
                                                     <div>
                                                         <span

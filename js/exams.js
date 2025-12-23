@@ -1,5 +1,5 @@
 let exams = [];
-
+let questions=[];
 const editModalError = document.getElementById("editModalError");
 
 function loadExams() {
@@ -7,7 +7,13 @@ function loadExams() {
     exams = JSON.parse(localStorage.getItem("exams"));
   }   
 }
+function loadQuestions(){
+  if(localStorage.getItem("questions")){
+    questions=JSON.parse(localStorage.getItem("questions"));
+  }
+}
 loadExams();
+loadQuestions();
 
 let examTableBody = document.getElementById("exam-table-body") || document.getElementById("question-table-body");
 let totalExams = document.getElementById("totalExams") || document.getElementById("totalQuestions");
@@ -76,10 +82,21 @@ function editExam(id) {
 }
 
 function deleteExam(id) {
-  exams = exams.filter((exam) => {
-    return exam.id != id;
-  });
+  // Find the exam to be deleted
+  const examToDelete = exams.find(exam => exam.id === id);
+  
+  if (examToDelete) {
+    // Remove questions that belong to this exam
+    questions = questions.filter(question => 
+      !examToDelete.questions.includes(question.id)
+    );
+  }
+  
+  // Remove the exam
+  exams = exams.filter(exam => exam.id !== id);
+
   localStorage.setItem("exams", JSON.stringify(exams));
+  localStorage.setItem("questions", JSON.stringify(questions));
   displayExams(exams);
 }
 
