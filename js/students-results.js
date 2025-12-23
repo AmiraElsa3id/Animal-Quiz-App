@@ -121,6 +121,8 @@ const studentAnswersSubTitle = document.getElementById("studentAnswersSubTitle")
 const studentExamsList = document.getElementById("studentExamsList");
 const examAnswersContainer = document.getElementById("examAnswersContainer");
 
+let answers =JSON.parse(localStorage.getItem("studentAnswers"));
+
 function openStudentAnswersModal() {
   studentAnswersModal?.classList.remove("hidden");
 }
@@ -142,8 +144,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 function getExamsStore() {
-  return JSON.parse(localStorage.getItem("Exams"))
-    || JSON.parse(localStorage.getItem("exams"))
+  return JSON.parse(localStorage.getItem("exams"))
     || [];
 }
 
@@ -153,10 +154,11 @@ function getQuestionsStore() {
 
 function getAnswersHistory() {
   // [{studentId, examId, answers, submittedAt}]
-  return JSON.parse(localStorage.getItem("answers")) || [];
+  return JSON.parse(localStorage.getItem("studentAnswers")) || [];
 }
 
 function renderExamAnswers(studentId, examId, examsStore, questionsStore, answersHistory) {
+  
   if (!examAnswersContainer) return;
 
   const exam = examsStore.find(e => String(e.id) === String(examId));
@@ -166,11 +168,7 @@ function renderExamAnswers(studentId, examId, examsStore, questionsStore, answer
 
   let questionIds = [];
   if (exam?.questions && Array.isArray(exam.questions)) {
-    if (typeof exam.questions[0] === "object") {
-      questionIds = exam.questions.map(q => q.id);
-    } else {
-      questionIds = exam.questions;
-    }
+    questionIds = exam.questions;
   }
 
   const examQuestions = questionsStore.filter(q => questionIds.includes(q.id));
@@ -196,7 +194,9 @@ function renderExamAnswers(studentId, examId, examsStore, questionsStore, answer
   }
 
   examAnswersContainer.innerHTML = examQuestions.map((q, idx) => {
-    const ans = answers.find(a => String(a.questionId) === String(q.id));
+    console.log(answers);
+    const ans = answers.find(a => String(a.questionId) == String(q.id));
+    console.log(ans);
     const selected = ans?.selectedAnswer ?? "-";
     const correct = q.correctAnswer ?? "-";
     const isCorrect = ans?.isCorrect === true;
@@ -227,6 +227,7 @@ function viewAnswers(id) {
   if (!student) return;
 
   const examsStore = getExamsStore();
+  console.log(examsStore);
   const questionsStore = getQuestionsStore();
   const answersHistory = getAnswersHistory();
 
