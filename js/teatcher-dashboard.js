@@ -295,41 +295,41 @@ function handleNavigateRight() {
     }
 }
 
-function handleSubmitExam() {
-    if (currentExamQuestions.length === 0) {
-        alert('Please add at least one question before submitting the exam.');
-        return;
-    }
+// function handleSubmitExam() {
+//     if (currentExamQuestions.length === 0) {
+//         alert('Please add at least one question before submitting the exam.');
+//         return;
+//     }
     
-    if (!examName?.value || !examDuration?.value) {
-        alert('Please fill in exam name and duration.');
-        return;
-    }
+//     if (!examName?.value || !examDuration?.value) {
+//         alert('Please fill in exam name and duration.');
+//         return;
+//     }
     
-    const exam = {
-        id: Date.now(),
-        name: examName.value,
-        duration: examDuration.value,
-        teacherId: teacher?.id,
-        teacherName: teacher?.username,
-        course: teacher?.course,
-        questions: currentExamQuestions, // Use current exam questions
-        createdAt: new Date().toISOString()
-    };
+//     const exam = {
+//         id: Date.now(),
+//         name: examName.value,
+//         duration: examDuration.value,
+//         teacherId: teacher?.id,
+//         teacherName: teacher?.username,
+//         course: teacher?.course,
+//         questions: currentExamQuestions, // Use current exam questions
+//         createdAt: new Date().toISOString()
+//     };
     
-    const exams = JSON.parse(localStorage.getItem("exams")) || [];
-    exams.push(exam);
-    localStorage.setItem("exams", JSON.stringify(exams));
+//     const exams = JSON.parse(localStorage.getItem("exams")) || [];
+//     exams.push(exam);
+//     localStorage.setItem("exams", JSON.stringify(exams));
     
-    // Move current exam questions to all questions
-    saveQuestionsToAllQuestions();
+//     // Move current exam questions to all questions
+//     saveQuestionsToAllQuestions();
     
-    // Clear current exam data
-    clearCurrentExamQuestions();
+//     // Clear current exam data
+//     clearCurrentExamQuestions();
     
-    alert('Exam created successfully!');
-    window.location.href = "/teacher-dashboard.html";
-}
+//     alert('Exam created successfully!');
+//     window.location.href = "/teacher-dashboard.html";
+// }
 
 function handleAddAnother() {
     currentQuestionIndex = currentExamQuestions.length;
@@ -342,7 +342,7 @@ function handlePublishExam() {
     const exam = {
         name: examName.value,
         duration: examDuration.value,
-        questionsNum: questionNumber.value,
+        questionsNum: questionsNum.value,
     };
     
     let examValidation = validateExam(exam, currentExamQuestions);
