@@ -229,7 +229,7 @@ function validateExam(exam, questions) {
     if (exam.questionsNum < 2) {
         errors.questions = 'Exam must have at least 2 questions';
         isValid = false;
-    } else if (questions.length != exam.questionsNum) {
+    } else if (questions != exam.questionsNum) {
         errors.questions = 'Number of questions must match the number of questions in the exam';
         isValid = false;
     }

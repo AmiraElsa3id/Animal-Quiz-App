@@ -12,6 +12,7 @@ let exams = [];
 if (localStorage.getItem("currentExamQuestions")) {
     currentExamQuestions = JSON.parse(localStorage.getItem("currentExamQuestions"));
 }
+
 if (localStorage.getItem("questions")) {
     allQuestions = JSON.parse(localStorage.getItem("questions"));
 }
@@ -295,41 +296,49 @@ function handleNavigateRight() {
     }
 }
 
-function handleSubmitExam() {
-    if (currentExamQuestions.length === 0) {
-        alert('Please add at least one question before submitting the exam.');
-        return;
-    }
+// function handleSubmitExam() {
+//     if (currentExamQuestions.length === 0) {
+//         alert('Please add at least one question before submitting the exam.');
+//         return;
+//     }
     
-    if (!examName?.value || !examDuration?.value) {
-        alert('Please fill in exam name and duration.');
-        return;
-    }
+//     if (!examName.value || !examDuration.value) {
+        
+//         alert('Please fill in exam name and duration.');
+//         return;
+//     }
+//     const exam = createExam();
+//     const errors = validateExam(exam, currentExamQuestions);
     
-    const exam = {
-        id: Date.now(),
-        name: examName.value,
-        duration: examDuration.value,
-        teacherId: teacher?.id,
-        teacherName: teacher?.username,
-        course: teacher?.course,
-        questions: currentExamQuestions, // Use current exam questions
-        createdAt: new Date().toISOString()
-    };
+//     if (!errors.isValid) {
+//         displayExamErrors(errors);
+//         return;
+//     }
     
-    const exams = JSON.parse(localStorage.getItem("exams")) || [];
-    exams.push(exam);
-    localStorage.setItem("exams", JSON.stringify(exams));
+//     // const exam = {
+//     //     id: Date.now(),
+//     //     name: examName.value,
+//     //     duration: examDuration.value,
+//     //     teacherId: teacher?.id,
+//     //     teacherName: teacher?.username,
+//     //     course: teacher?.course,
+//     //     questions: currentExamQuestions, // Use current exam questions
+//     //     createdAt: new Date().toISOString()
+//     // };
     
-    // Move current exam questions to all questions
-    saveQuestionsToAllQuestions();
+//     const exams = JSON.parse(localStorage.getItem("exams")) || [];
+//     exams.push(exam);
+//     localStorage.setItem("exams", JSON.stringify(exams));
     
-    // Clear current exam data
-    clearCurrentExamQuestions();
+//     // Move current exam questions to all questions
+//     saveQuestionsToAllQuestions();
     
-    alert('Exam created successfully!');
-    window.location.href = "/teacher-dashboard.html";
-}
+//     // Clear current exam data
+//     clearCurrentExamQuestions();
+    
+//     alert('Exam created successfully!');
+//     window.location.href = "/teacher-dashboard.html";
+// }
 
 function handleAddAnother() {
     currentQuestionIndex = currentExamQuestions.length;
@@ -339,13 +348,25 @@ function handleAddAnother() {
 }
 
 function handlePublishExam() {
-    const exam = {
+    // if (currentExamQuestions.length === 0) {
+    //     alert('Please add at least one question before submitting the exam.');
+    //     return;
+    // }
+    
+    // if (!examName.value || !examDuration.value) {
+        
+    //     alert('Please fill in exam name and duration.');
+    //     return;
+    // }
+    const currentExam = {
         name: examName.value,
         duration: examDuration.value,
-        questionsNum: questionNumber.value,
+        questionsNum: questionsNum.value,
     };
+    console.log(currentExamQuestions.length ,"currentExamQuestions.length");
+    console.log(currentExam.questionsNum ,"exam.questionsNum");
     
-    let examValidation = validateExam(exam, currentExamQuestions);
+    let examValidation = validateExam(currentExam, currentExamQuestions.length);
     if (!examValidation.isValid) {
         displayExamErrors(examValidation);
         return;
@@ -367,10 +388,7 @@ function handlePublishExam() {
     window.location.href = "./teacher-dashboard.html";
 }
 
-function handleLogout() {
-    localStorage.removeItem("currentUser");
-    window.location.href = "/";
-}
+
 
 // ==================== EVENT LISTENERS ====================
 addQuestion?.addEventListener('click', handleAddQuestion);
