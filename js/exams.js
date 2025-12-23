@@ -1,10 +1,11 @@
 let exams = [];
 let questions=[];
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const editModalError = document.getElementById("editModalError");
 
 function loadExams() {
   if (localStorage.getItem("exams")) {
-    exams = JSON.parse(localStorage.getItem("exams"));
+    exams = JSON.parse(localStorage.getItem("exams")).filter(e=>e.teacherId==currentUser.id);
   }   
 }
 function loadQuestions(){

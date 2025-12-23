@@ -88,6 +88,13 @@ function assignExam(){
     students = students.map(student=>{
       student=Student.fromJSON(student);
         if(selectedStudents.some(id=>id==student.id)){
+            if(student.completedExams.some(e=>{
+              console.log(e.examId,selectedExam);
+              return e.examId==selectedExam
+            })){
+                alert("exam already assigned to this student");
+                return student;
+            }
             student.assignExam(selectedExam);
         }
         return student;

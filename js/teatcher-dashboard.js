@@ -83,14 +83,16 @@ function updateTeacherUI(teacher) {
 
 // ==================== QUESTION MANAGEMENT ====================
 function createQuestion() {
+    let answers=[answer1.value, answer2.value, answer3.value, answer4.value]
+    let correct=answers[correctAnswer.find(e=>e.checked).value-1]
     return new Question(
         Date.now(),
         questionText.value,
         imageUpload.value,
         [answer1.value, answer2.value, answer3.value, answer4.value],
-        correctAnswer?.find(option => option.checked)?.value,
+        correct,
         difficulty.value,
-        5
+        0
     );
 }
 
@@ -368,6 +370,7 @@ function handlePublishExam() {
         return;
     }
     
+    saveQuestionsToAllQuestions();
     const newExam = createExam();
     clearExamErrors();
     
@@ -375,7 +378,6 @@ function handlePublishExam() {
     localStorage.setItem("exams", JSON.stringify(exams));
     
     // Move current exam questions to all questions
-    saveQuestionsToAllQuestions();
     
     // Clear current exam data
     clearCurrentExamQuestions();
