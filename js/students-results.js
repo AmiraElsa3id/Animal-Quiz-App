@@ -14,8 +14,9 @@ if(localStorage.getItem("students")){
 
 
 let searchInput=document.getElementById("searchInput");
-let examFilter=document.getElementById("examFilter");
 let examFilterInput=document.getElementById("examFilterInput");
+let examFilter=document.getElementById("examFilter");
+let assignExamBtn=document.getElementById("assignExamBtn");
 // ==================== INITIALIZATION ====================
 if (examFilter) {
     examFilter.innerHTML = exams.map(exam => `<option value="${exam.id}">${exam.name}</option>`).join("");
@@ -31,12 +32,15 @@ function displayStudents(students){
     students.forEach(student => {
         student=Student.fromJSON(student);
      box+=`
-        <tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors group">
+        <tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors group accent-surface-light dark:accent-surface-dark">
+        <td class="px-6 py-4">
+        <input type="checkbox" id="studentCheckbox-${student.id}" value="${student.id}" class="checkbox checkbox-primary">
+    </td>
                                             <td class="px-6 py-4">
                                                 <div class="flex items-center gap-3">
                                                     <img class="size-10 rounded-full bg-cover bg-center border border-border-light dark:border-border-dark"
                                                         data-alt="Portrait of student Alice Johnson"
-                                                    src="${student.profilePicture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}">
+                                                    src="${"../"+student?.profilePicture || '../assets/image/avatar.webp'}">
                                                 
                                                     <div>
                                                         <span
@@ -74,9 +78,30 @@ function displayStudents(students){
     tableBody.innerHTML=box;
 }
 
+function assignExam(){
+    let selectedExam=examFilter.value;
+    let selectedStudents=[];
+    document.querySelectorAll("input[type=checkbox]:checked").forEach(checkbox=>{
+        selectedStudents.push(checkbox.value);
+    })
+    console.log(selectedExam,selectedStudents);
+    students = students.map(student=>{
+      student=Student.fromJSON(student);
+        if(selectedStudents.some(id=>id==student.id)){
+            student.assignExam(selectedExam);
+        }
+        return student;
+    })
+    updateStudentData();
+    
+    
+}
 
+function updateStudentData(){
+  localStorage.setItem("students",JSON.stringify(students));
+}
 
-
+assignExamBtn?.addEventListener("click",assignExam);
 displayStudents(students);
 
 // ---------------------- Answers modal wiring
@@ -247,7 +272,3 @@ function searchStudents(){
 
 searchInput.addEventListener("input",searchStudents);
 
-// optional: filter UI currently is for assigning, but keep it safe
-examFilterInput?.addEventListener("change", () => {
-  // no-op for now
-});

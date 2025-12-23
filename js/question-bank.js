@@ -1,5 +1,5 @@
 let questions = [];
-
+let exams=[];
 // MODAL 
 const editQuestionModal = document.getElementById("editQuestionModal");
 const editQuestionOverlay = document.getElementById("editQuestionOverlay");
@@ -24,6 +24,12 @@ function loadQuestions() {
     questions = JSON.parse(localStorage.getItem("questions"));
  }   
 }
+function loadExams(){
+ if (localStorage.getItem("exams")) {
+    exams = JSON.parse(localStorage.getItem("exams"));
+ }   
+}
+loadExams();
 loadQuestions();
 
 let questionTableBody = document.getElementById("question-table-body");
@@ -104,7 +110,18 @@ function deleteQuestion(id){
     questions=questions.filter((question,index)=>{
         return question.id!=id
     })
+if(exams.length>0){
+    exams=exams.map((exam,index)=>{
+        exam.questions=exam.questions.filter((question,index)=>{
+          return question!=id
+      })
+    
+    return exam
+    })
+  localStorage.setItem("exams",JSON.stringify(exams));
+  }
     localStorage.setItem("questions",JSON.stringify(questions));
+    
     displayQuestions(questions);
 }
 function filterQuestion(){

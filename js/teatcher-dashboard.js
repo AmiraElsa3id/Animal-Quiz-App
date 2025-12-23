@@ -302,29 +302,21 @@ function handleNavigateRight() {
 //         return;
 //     }
     
-//     if (!examName.value || !examDuration.value) {
-        
+//     if (!examName?.value || !examDuration?.value) {
 //         alert('Please fill in exam name and duration.');
 //         return;
 //     }
-//     const exam = createExam();
-//     const errors = validateExam(exam, currentExamQuestions);
     
-//     if (!errors.isValid) {
-//         displayExamErrors(errors);
-//         return;
-//     }
-    
-//     // const exam = {
-//     //     id: Date.now(),
-//     //     name: examName.value,
-//     //     duration: examDuration.value,
-//     //     teacherId: teacher?.id,
-//     //     teacherName: teacher?.username,
-//     //     course: teacher?.course,
-//     //     questions: currentExamQuestions, // Use current exam questions
-//     //     createdAt: new Date().toISOString()
-//     // };
+//     const exam = {
+//         id: Date.now(),
+//         name: examName.value,
+//         duration: examDuration.value,
+//         teacherId: teacher?.id,
+//         teacherName: teacher?.username,
+//         course: teacher?.course,
+//         questions: currentExamQuestions, // Use current exam questions
+//         createdAt: new Date().toISOString()
+//     };
     
 //     const exams = JSON.parse(localStorage.getItem("exams")) || [];
 //     exams.push(exam);
