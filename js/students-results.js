@@ -1,37 +1,37 @@
 
 import { Student } from "./classes.js";
 
-let exams=[];
-if(localStorage.getItem("exams")){
-    exams=JSON.parse(localStorage.getItem("exams"));
+let exams = [];
+if (localStorage.getItem("exams")) {
+  exams = JSON.parse(localStorage.getItem("exams"));
 }
 
 
-let students=[];
-if(localStorage.getItem("students")){
-    students=JSON.parse(localStorage.getItem("students"));
+let students = [];
+if (localStorage.getItem("students")) {
+  students = JSON.parse(localStorage.getItem("students"));
 }
 
 
-let searchInput=document.getElementById("searchInput");
-let examFilterInput=document.getElementById("examFilterInput");
-let examFilter=document.getElementById("examFilter");
-let assignExamBtn=document.getElementById("assignExamBtn");
+let searchInput = document.getElementById("searchInput");
+let examFilterInput = document.getElementById("examFilterInput");
+let examFilter = document.getElementById("examFilter");
+let assignExamBtn = document.getElementById("assignExamBtn");
 // ==================== INITIALIZATION ====================
 if (examFilter) {
-    examFilter.innerHTML = exams.map(exam => `<option value="${exam.id}">${exam.name}</option>`).join("");
+  examFilter.innerHTML = exams.map(exam => `<option value="${exam.id}">${exam.name}</option>`).join("");
 }
 
-function displayStudents(students){
-    const tableBody=document.querySelector("#tableBody");
-    if(students.length==0){
-        tableBody.innerHTML="<tr><td colspan='6' class='text-center py-4'>No students found</td></tr>";
-        return;
-    }
-    let box='';
-    students.forEach(student => {
-        student=Student.fromJSON(student);
-     box+=`
+function displayStudents(students) {
+  const tableBody = document.querySelector("#tableBody");
+  if (students.length == 0) {
+    tableBody.innerHTML = "<tr><td colspan='6' class='text-center py-4'>No students found</td></tr>";
+    return;
+  }
+  let box = '';
+  students.forEach(student => {
+    student = Student.fromJSON(student);
+    box += `
         <tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors group accent-surface-light dark:accent-surface-dark">
         <td class="px-6 py-4">
         <input type="checkbox" id="studentCheckbox-${student.id}" value="${student.id}" class="checkbox checkbox-primary">
@@ -40,7 +40,7 @@ function displayStudents(students){
                                                 <div class="flex items-center gap-3">
                                                     <img class="size-10 rounded-full bg-cover bg-center border border-border-light dark:border-border-dark"
                                                         data-alt="Portrait of student Alice Johnson"
-                                                    src="${"../"+student.profilePicture || '../assets/image/avatar.webp'}">
+                                                    src="${"../" + student.profilePicture || '../assets/image/avatar.webp'}">
                                                 
                                                     <div>
                                                         <span
@@ -59,9 +59,9 @@ function displayStudents(students){
                                                     <span class="font-bold">${student.getAverageScore()}%</span>
                                                 </div>
                                             </td>
-                                            <td class="px-6 py-4 text-text-main-light dark:text-text-main-dark">${student.completedExams[student.completedExams.length-1]?.name||"no exam"}</td>
+                                            <td class="px-6 py-4 text-text-main-light dark:text-text-main-dark">${student.completedExams[student.completedExams.length - 1]?.name || "no exam"}</td>
                                             <td class="px-6 py-4 text-text-sec-light dark:text-text-sec-dark font-medium">
-                                                ${student.completedExams[student.completedExams.length-1]?.date.slice(0, 10)||"no date"}</td>
+                                                ${student.completedExams[student.completedExams.length - 1]?.date.slice(0, 10) || "no date"}</td>
                                             <td class="px-6 py-4 text-right">
                                                 <div class="flex items-center justify-end gap-2">
 
@@ -73,42 +73,40 @@ function displayStudents(students){
                                                 </div>
                                             </td>
                                         </tr>
-     `   
-    })
-    tableBody.innerHTML=box;
+     `
+  })
+  tableBody.innerHTML = box;
 }
 
-function assignExam(){
-    let selectedExam=examFilter.value;
-    let selectedStudents=[];
-    document.querySelectorAll("input[type=checkbox]:checked").forEach(checkbox=>{
-        selectedStudents.push(checkbox.value);
-    })
-    console.log(selectedExam,selectedStudents);
-    students = students.map(student=>{
-      student=Student.fromJSON(student);
-        if(selectedStudents.some(id=>id==student.id)){
-            if(student.completedExams.some(e=>{
-              console.log(e.examId,selectedExam);
-              return e.examId==selectedExam
-            })){
-                alert("exam already assigned to this student");
-                return student;
-            }
-            student.assignExam(selectedExam);
-        }
+function assignExam() {
+  let selectedExam = examFilter.value;
+  let selectedStudents = [];
+  document.querySelectorAll("input[type=checkbox]:checked").forEach(checkbox => {
+    selectedStudents.push(checkbox.value);
+  })
+  console.log(selectedExam, selectedStudents);
+  students = students.map(student => {
+    student = Student.fromJSON(student);
+    if (selectedStudents.some(id => id == student.id)) {
+      if (student.completedExams.some(e => {
+        console.log(e.examId, selectedExam);
+        return e.examId == selectedExam
+      })) {
+        alert("exam already assigned to this student");
         return student;
-    })
-    updateStudentData();
-    
-    
+      }
+      student.assignExam(selectedExam);
+    }
+    return student;
+  })
+  updateStudentData();
 }
 
-function updateStudentData(){
-  localStorage.setItem("students",JSON.stringify(students));
+function updateStudentData() {
+  localStorage.setItem("students", JSON.stringify(students));
 }
 
-assignExamBtn?.addEventListener("click",assignExam);
+assignExamBtn?.addEventListener("click", assignExam);
 displayStudents(students);
 
 // ---------------------- Answers modal wiring
@@ -121,7 +119,7 @@ const studentAnswersSubTitle = document.getElementById("studentAnswersSubTitle")
 const studentExamsList = document.getElementById("studentExamsList");
 const examAnswersContainer = document.getElementById("examAnswersContainer");
 
-let answers =JSON.parse(localStorage.getItem("studentAnswers"));
+let answers = JSON.parse(localStorage.getItem("studentAnswers"));
 
 function openStudentAnswersModal() {
   studentAnswersModal?.classList.remove("hidden");
@@ -154,18 +152,22 @@ function getQuestionsStore() {
 
 function getAnswersHistory() {
   // [{studentId, examId, answers, submittedAt}]
+  console.log(JSON.parse(localStorage.getItem("studentAnswers")));
+  
   return JSON.parse(localStorage.getItem("studentAnswers")) || [];
 }
 
 function renderExamAnswers(studentId, examId, examsStore, questionsStore, answersHistory) {
+  console.log(answersHistory);
   
   if (!examAnswersContainer) return;
 
   const exam = examsStore.find(e => String(e.id) === String(examId));
   const attempt = [...answersHistory]
-    .filter(r => String(r.studentId) === String(studentId) && String(r.examId) === String(examId))
-    .sort((a, b) => String(b.submittedAt || "").localeCompare(String(a.submittedAt || "")))[0];
-
+  .filter(r => String(r.studentId) === String(studentId) && String(r.examId) === String(examId))
+  .sort((a, b) => String(b.submittedAt || "").localeCompare(String(a.submittedAt || "")))[0];
+  
+  console.log(attempt);
   let questionIds = [];
   if (exam?.questions && Array.isArray(exam.questions)) {
     questionIds = exam.questions;
@@ -196,9 +198,11 @@ function renderExamAnswers(studentId, examId, examsStore, questionsStore, answer
   examAnswersContainer.innerHTML = examQuestions.map((q, idx) => {
     console.log(answers);
     const ans = answers.find(a => String(a.questionId) == String(q.id));
+    console.log(q);
     console.log(ans);
-    const selected = ans?.selectedAnswer ?? "-";
-    const correct = q.correctAnswer ?? "-";
+
+    const selected = ans?.selectedAnswer || "-";
+    const correct = q.correctAnswer || "-";
     const isCorrect = ans?.isCorrect === true;
 
     return `
@@ -230,6 +234,8 @@ function viewAnswers(id) {
   console.log(examsStore);
   const questionsStore = getQuestionsStore();
   const answersHistory = getAnswersHistory();
+  console.log(answersHistory);
+  
 
   studentAnswersTitle.textContent = `Completed Exams: ${student.username}`;
   studentAnswersSubTitle.textContent = `Student ID: ${student.id}`;
@@ -261,6 +267,10 @@ function viewAnswers(id) {
   studentExamsList.onclick = (e) => {
     const btn = e.target.closest("button[data-exam-id]");
     if (!btn) return;
+    console.log("============== test ================");
+    
+    console.log(answersHistory);
+    
     renderExamAnswers(student.id, btn.dataset.examId, examsStore, questionsStore, answersHistory);
   };
 
@@ -272,11 +282,11 @@ function viewAnswers(id) {
 }
 window.viewAnswers = viewAnswers;
 
-function searchStudents(){
-    let searchInput=document.getElementById("searchInput").value;
-    let filteredStudents=students.filter(student=>student.id==searchInput||student.username.toLowerCase().includes(searchInput.toLowerCase()));
-    displayStudents(filteredStudents);
+function searchStudents() {
+  let searchInput = document.getElementById("searchInput").value;
+  let filteredStudents = students.filter(student => student.id == searchInput || student.username.toLowerCase().includes(searchInput.toLowerCase()));
+  displayStudents(filteredStudents);
 }
 
-searchInput.addEventListener("input",searchStudents);
+searchInput.addEventListener("input", searchStudents);
 

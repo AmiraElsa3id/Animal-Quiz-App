@@ -21,9 +21,15 @@ const nextExamBtn=document.querySelector(".nextExamBtn");
 
 
 let student = JSON.parse(localStorage.getItem("currentUser"))||null;
+
 let studentAnswers =JSON.parse(localStorage.getItem("studentAnswers"))||[];
 let selectedExamId =localStorage.getItem("selectedExamId");
+console.log(student);
+
 let examData =student.completedExams.find(e=>e.examId==selectedExamId);
+
+console.log(examData);
+
 
 const correctAnswers = studentAnswers.filter(e=> e.isCorrect==true).length;
 const allAnswers = studentAnswers.length;

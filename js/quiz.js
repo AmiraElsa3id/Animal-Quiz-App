@@ -177,7 +177,7 @@ function examFinsed() {
   curentStudentObj.completeExam(currentExamId, currentExamData.name, score, timeOfFinshed)
   students = students.filter(e => e.id != student.id);
   students.push(curentStudentObj.toJSON());
-  localStorage.removeItem("selectedExamId")
+  // localStorage.removeItem("selectedExamId")
   localStorage.setItem("currentUser", JSON.stringify(curentStudentObj.toJSON()));
   localStorage.setItem("students", JSON.stringify(students));
   localStorage.setItem("studentAnswers", JSON.stringify(answers));

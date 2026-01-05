@@ -84,7 +84,7 @@ function updateTeacherUI(teacher) {
 // ==================== QUESTION MANAGEMENT ====================
 function createQuestion() {
     let answers=[answer1.value, answer2.value, answer3.value, answer4.value]
-    let correct=answers[correctAnswer.find(e=>e.checked).value-1]
+    let correct=answers[correctAnswer.find(e=>e.checked)?.value-1]
     return new Question(
         Date.now(),
         questionText.value,

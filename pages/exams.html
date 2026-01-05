@@ -3,283 +3,302 @@
 <html class="light" lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Question Bank - Teacher Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="../css/output.css" />
-    <link rel="stylesheet" href="../css/custom.css" />
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Question Bank - Teacher Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/output.css" />
+  <link rel="stylesheet" href="../css/custom.css" />
 </head>
+
 <body
-    class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 font-display transition-colors duration-200">
-    <div class="flex h-screen w-full overflow-hidden">
-        <!-- Sidebar -->
-        <aside
-            class="w-20 lg:w-72 flex-shrink-0 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark flex flex-col h-full transition-all duration-300 z-20">
-            <!-- Logo Area -->
-            <div
-                class="h-20 flex items-center justify-center lg:justify-start lg:px-8 border-b border-border-light dark:border-border-dark">
-                <div
-                    class=" size-10 bg-primary rounded-xl flex items-center justify-center text-background-dark shrink-0">
-                    <span class="material-symbols-outlined">pets</span>
-                </div>
-                <div class="hidden lg:flex flex-col ml-3">
-                    <h1 class="text-lg font-bold leading-none">ZooQuiz</h1>
-                    <p class="text-xs text-text-sec-light dark:text-text-sec-dark mt-1">Teacher Portal</p>
-                </div>
-            </div>
-            <!-- Navigation -->
-            <nav class="flex-1 flex flex-col gap-2 p-4 overflow-y-auto">
-                <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
-                    href="./teacher-dashboard.html">
-                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
-                    <span class="hidden lg:block font-medium">Dashboard</span>
-                </a>
-                <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
-                    href="./teacher-dashboard.html">
-                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">add_circle</span>
-                    <span class="hidden lg:block font-medium">Create Exam</span>
-                </a>
-                <a class="flex items-center gap-4 px-4 py-3 rounded-full bg-primary/20 text-text-main-light dark:text-white dark:bg-primary/20 transition-colors"
-                    href="./exams.html">
-                    <span
-                        class="material-symbols-outlined text-primary-dark dark:text-primary fill-1">folder_open</span>
-                    <span class="hidden lg:block font-medium">Exams Bank</span>
-                </a>
-                <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
-                    href="./question-bank.html">
-                    <span
-                        class="material-symbols-outlined group-hover:text-primary transition-colors">folder_open</span>
-                    <span class="hidden lg:block font-medium">Question Bank</span>
-                </a>
-                <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
-                    href="./studentsResults.html">
-                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">group</span>
-                    <span class="hidden lg:block font-medium">Students</span>
-                </a>
-                <button id="logOutBtn"
-                    class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group">
-                    <span
-                        class="material-symbols-outlined text-red-500 group-hover:text-red-600 hover:text-red-600 transition-colors">logout</span>
-                    <span class="hidden lg:block text-red-500 font-medium">Logout</span>
-                </button>
-            </nav>
-            <!-- User Profile (Bottom Sidebar) -->
-           <div class="p-4 border-t border-border-light dark:border-border-dark">
-            <div
-                class="flex items-center gap-3 p-2 rounded-full hover:bg-background-light dark:hover:bg-background-dark cursor-pointer transition-colors">
-                <img id="teacherImage" src="" alt="Teacher Profile" class="size-10 rounded-full object-cover shrink-0">
-                <div class="hidden lg:flex flex-col overflow-hidden">
-                    <p id="teacherName" class="text-sm font-bold truncate">Sarah Johnson</p>
-                    <p id="teacherCourse" class="text-xs text-text-sec-light dark:text-text-sec-dark truncate">Biology Dept.</p>
-                </div>
-               
-            </div>
+  class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 font-display transition-colors duration-200">
+  <div class="flex h-screen w-full overflow-hidden">
+    <!-- Sidebar -->
+    <aside
+      class="w-20 lg:w-72 shrink-0 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark flex flex-col h-full transition-all duration-300 z-20">
+      <!-- Logo Area -->
+      <div
+        class="h-20 flex items-center justify-center lg:justify-start lg:px-8 border-b border-border-light dark:border-border-dark">
+        <div class=" size-10 bg-primary rounded-xl flex items-center justify-center text-background-dark shrink-0">
+          <span class="material-symbols-outlined">pets</span>
         </div>
-        </aside>
-        <!-- Main Content -->
-        <main class="flex-1 flex flex-col h-full overflow-hidden relative">
-          
-            <div class="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth">
-                <div class="max-w-7xl mx-auto flex flex-col gap-6">
-                    <!-- Page Heading -->
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div class="flex flex-col gap-1">
-                            <h2 class="text-3xl font-black tracking-tight text-text-main dark:text-white">Exam Bank
-                            </h2>
-                            <p class="text-text-muted dark:text-gray-400">Manage and organize your Exam 
-                                database</p>
-                        </div>
-                        
-                    </div>
-                    <!-- Stats Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div
-                            class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm">
-                            <p  class="text-text-muted dark:text-gray-400 text-sm font-medium">Total Exams</p>
-                            <div class="flex items-end gap-2 mt-2">
-                                <span id="totalQuestions" class="text-3xl font-bold text-text-main dark:text-white">1,245</span>
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <!-- Filters & Search -->
-                    <div
-                        class="bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-border-light dark:border-border-dark shadow-sm flex flex-col md:flex-row gap-4 items-center">
-                        <div class="relative w-full md:flex-1">
-                            <span
-                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">search</span>
-                            <input id="searchInput"
-                                class="w-full pl-10 pr-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-text-muted text-base"
-                                placeholder="Search questions by keyword..." type="text" />
-                        </div>
-                        <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
-                            
-                            <select id="difficultyFilter"
-                                class="px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary outline-none appearance-none min-w-[140px] cursor-pointer text-sm font-medium">
-                                <option>All Difficulties</option>
-                                <option>Easy</option>
-                                <option>Medium</option>
-                                <option>Hard</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Question Table -->
-                    <div
-                        class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr
-                                        class="border-b border-border-light dark:border-border-dark bg-background-light/50 dark:bg-surface-dark">
-                                        
-                                        <th
-                                            class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400 min-w-[300px]">
-                                            Exam Name</th>
-                                        
-                                        <th
-                                            class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400">
-                                            Course</th>
-                                        <th
-                                            class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400">
-                                            Duration</th>
-                                        <th
-                                            class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400">
-                                            Number of Questions</th>
-                                        <th
-                                            class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400 text-right">
-                                            Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="question-table-body" class="divide-y divide-border-light dark:divide-border-dark">
-                                   
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </main>
-        <!-- Edit Question Modal -->
-<div id="editQuestionModal" class="fixed inset-0 z-50 hidden">
-  <!-- Overlay -->
-  <div id="editQuestionOverlay" class="absolute inset-0 bg-black/50"></div>
-
-  <!-- Dialog -->
-  <div class="relative z-10 min-h-full flex items-center justify-center p-4">
-    <div class="w-full max-w-2xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-2xl shadow-xl">
-      <div class="p-5 border-b border-border-light dark:border-border-dark flex items-center justify-between">
-        <h3 class="text-lg font-bold text-text-main dark:text-white">Edit Question</h3>
-        <button id="closeEditModalBtn" class="p-2 rounded-lg hover:bg-background-light dark:hover:bg-background-dark transition-colors" type="button">
-          <span class="material-symbols-outlined">close</span>
-        </button>
+        <div class="hidden lg:flex flex-col ml-3">
+          <h1 class="text-lg font-bold leading-none">ZooQuiz</h1>
+          <p class="text-xs text-text-sec-light dark:text-text-sec-dark mt-1">Teacher Portal</p>
+        </div>
       </div>
+      <!-- Navigation -->
+      <nav class="flex-1 flex flex-col gap-2 p-4 overflow-y-auto">
+        <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+          href="./teacher-dashboard.html">
+          <span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+          <span class="hidden lg:block font-medium">Dashboard</span>
+        </a>
+        <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+          href="./teacher-dashboard.html">
+          <span class="material-symbols-outlined group-hover:text-primary transition-colors">add_circle</span>
+          <span class="hidden lg:block font-medium">Create Exam</span>
+        </a>
+        <a class="flex items-center gap-4 px-4 py-3 rounded-full bg-primary/20 text-text-main-light dark:text-white dark:bg-primary/20 transition-colors"
+          href="./exams.html">
+          <span class="material-symbols-outlined text-primary-dark dark:text-primary fill-1">folder_open</span>
+          <span class="hidden lg:block font-medium">Exams Bank</span>
+        </a>
+        <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+          href="./question-bank.html">
+          <span class="material-symbols-outlined group-hover:text-primary transition-colors">folder_open</span>
+          <span class="hidden lg:block font-medium">Question Bank</span>
+        </a>
+        <a class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group"
+          href="./studentsResults.html">
+          <span class="material-symbols-outlined group-hover:text-primary transition-colors">group</span>
+          <span class="hidden lg:block font-medium">Students</span>
+        </a>
+        <button id="logOutBtn"
+          class="flex items-center gap-4 px-4 py-3 rounded-full text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors group">
+          <span
+            class="material-symbols-outlined text-red-500 group-hover:text-red-600 hover:text-red-600 transition-colors">logout</span>
+          <span class="hidden lg:block text-red-500 font-medium">Logout</span>
+        </button>
+      </nav>
+      <!-- User Profile (Bottom Sidebar) -->
+      <div class="p-4 border-t border-border-light dark:border-border-dark">
+        <div
+          class="flex items-center gap-3 p-2 rounded-full hover:bg-background-light dark:hover:bg-background-dark cursor-pointer transition-colors">
+          <img id="teacherImage" src="" alt="Teacher Profile" class="size-10 rounded-full object-cover shrink-0">
+          <div class="hidden lg:flex flex-col overflow-hidden">
+            <p id="teacherName" class="text-sm font-bold truncate">Sarah Johnson</p>
+            <p id="teacherCourse" class="text-xs text-text-sec-light dark:text-text-sec-dark truncate">Biology Dept.</p>
+          </div>
 
-      <div class="p-5 space-y-4">
-        <input id="editQuestionId" type="hidden" />
-
-        <div class="space-y-2">
-          <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Question Text</label>
-          <textarea id="editQuestionText"
-            class="w-full h-28 p-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none dark:text-white transition-all"
-            placeholder="Type question..."></textarea>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="space-y-2">
-            <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Difficulty</label>
-            <select id="editDifficulty"
-              class="w-full h-12 px-4 appearance-none rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none dark:text-white cursor-pointer">
-              <option>Easy</option>
-              <option>Medium</option>
-              <option>Hard</option>
-            </select>
-          </div>
-
-          <div class="space-y-2">
-            <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Image URL (optional)</label>
-            <input id="editImage"
-              class="w-full h-12 px-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none dark:text-white"
-              placeholder="https://..." type="text" />
-          </div>
-        </div>
-
-        <div class="space-y-2">
-          <div class="flex justify-between items-end">
-            <span class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Answer Options</span>
-            <span class="text-xs text-text-sec-light dark:text-text-sec-dark">Select correct answer</span>
-          </div>
-
-          <!-- Option A -->
-          <div class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
-            <label class="relative flex items-center justify-center cursor-pointer p-2">
-              <input class="peer sr-only" name="edit_correct_answer" type="radio" value="0" />
-              <div class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all"></div>
-            </label>
-            <input id="editAnswer1" class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400" placeholder="Option A" type="text" />
-          </div>
-
-          <!-- Option B -->
-          <div class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
-            <label class="relative flex items-center justify-center cursor-pointer p-2">
-              <input class="peer sr-only" name="edit_correct_answer" type="radio" value="1" />
-              <div class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all"></div>
-            </label>
-            <input id="editAnswer2" class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400" placeholder="Option B" type="text" />
-          </div>
-
-          <!-- Option C -->
-          <div class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
-            <label class="relative flex items-center justify-center cursor-pointer p-2">
-              <input class="peer sr-only" name="edit_correct_answer" type="radio" value="2" />
-              <div class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all"></div>
-            </label>
-            <input id="editAnswer3" class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400" placeholder="Option C" type="text" />
-          </div>
-
-          <!-- Option D -->
-          <div class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
-            <label class="relative flex items-center justify-center cursor-pointer p-2">
-              <input class="peer sr-only" name="edit_correct_answer" type="radio" value="3" />
-              <div class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all"></div>
-            </label>
-            <input id="editAnswer4" class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400" placeholder="Option D" type="text" />
-          </div>
-        </div>
-
-        <div id="editModalError" class="text-red-500 text-sm"></div>
       </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative">
 
-      <div class="p-5 border-t border-border-light dark:border-border-dark flex justify-end gap-3">
-        <button id="cancelEditBtn"
-          class="px-6 py-2.5 rounded-full border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-bold transition-colors"
-          type="button">
-          Cancel
-        </button>
-        <button id="saveEditBtn"
-          class="px-6 py-2.5 rounded-full bg-primary text-background-dark hover:bg-primary/90 text-sm font-bold transition-colors shadow-lg shadow-primary/20"
-          type="button">
-          Save Changes
-        </button>
+      <div class="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth">
+        <div class="max-w-7xl mx-auto flex flex-col gap-6">
+          <!-- Page Heading -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-3xl font-black tracking-tight text-text-main dark:text-white">Exam Bank
+              </h2>
+              <p class="text-text-muted dark:text-gray-400">Manage and organize your Exam
+                database</p>
+            </div>
+
+          </div>
+          <!-- Stats Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div
+              class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+              <p class="text-text-muted dark:text-gray-400 text-sm font-medium">Total Exams</p>
+              <div class="flex items-end gap-2 mt-2">
+                <span id="totalQuestions" class="text-3xl font-bold text-text-main dark:text-white"></span>
+
+              </div>
+            </div>
+
+
+          </div>
+          <!-- Filters & Search -->
+          <div
+            class="bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-border-light dark:border-border-dark shadow-sm flex flex-col md:flex-row gap-4 items-center">
+            <div class="relative w-full md:flex-1">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">search</span>
+              <input id="searchInput"
+                class="w-full pl-10 pr-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-text-muted text-base"
+                placeholder="Search questions by keyword..." type="text" />
+            </div>
+            <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+
+              <select id="difficultyFilter"
+                class="px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary outline-none appearance-none min-w-35 cursor-pointer text-sm font-medium">
+                <option>All Difficulties</option>
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+              </select>
+            </div>
+          </div>
+          <!-- Question Table -->
+          <div
+            class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr
+                    class="border-b border-border-light dark:border-border-dark bg-background-light/50 dark:bg-surface-dark">
+
+                    <th
+                      class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400 min-w-[300px]">
+                      Exam Name</th>
+
+                    <th class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400">
+                      Course</th>
+                    <th class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400">
+                      Duration</th>
+                    <th class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400">
+                      Number of Questions</th>
+                    <th
+                      class="p-4 py-5 text-xs font-bold uppercase tracking-wider text-text-muted dark:text-gray-400 text-right">
+                      Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="question-table-body" class="divide-y divide-border-light dark:divide-border-dark">
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Edit Question Modal -->
+    <div id="editQuestionModal" class="fixed inset-0 z-50 hidden">
+      <!-- Overlay -->
+      <div id="editQuestionOverlay" class="absolute inset-0 bg-black/50"></div>
+
+      <!-- Dialog -->
+      <div class="relative z-10 min-h-full flex items-center justify-center p-4">
+        <div
+          class="w-full max-w-2xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-2xl shadow-xl">
+          <div class="p-5 border-b border-border-light dark:border-border-dark flex items-center justify-between">
+            <h3 class="text-lg font-bold text-text-main dark:text-white">Edit Question</h3>
+            <button id="closeEditModalBtn"
+              class="p-2 rounded-lg hover:bg-background-light dark:hover:bg-background-dark transition-colors"
+              type="button">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+
+          <div class="p-5 space-y-4">
+            <input id="editQuestionId" type="hidden" />
+
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Question Text</label>
+              <textarea id="editQuestionText"
+                class="w-full h-28 p-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none dark:text-white transition-all"
+                placeholder="Type question..."></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Difficulty</label>
+                <select id="editDifficulty"
+                  class="w-full h-12 px-4 appearance-none rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none dark:text-white cursor-pointer">
+                  <option>Easy</option>
+                  <option>Medium</option>
+                  <option>Hard</option>
+                </select>
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Image URL
+                  (optional)</label>
+                <input id="editImage"
+                  class="w-full h-12 px-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none dark:text-white"
+                  placeholder="https://..." type="text" />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex justify-between items-end">
+                <span class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Answer Options</span>
+                <span class="text-xs text-text-sec-light dark:text-text-sec-dark">Select correct answer</span>
+              </div>
+
+              <!-- Option A -->
+              <div
+                class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
+                <label class="relative flex items-center justify-center cursor-pointer p-2">
+                  <input class="peer sr-only" name="edit_correct_answer" type="radio" value="0" />
+                  <div
+                    class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
+                  </div>
+                </label>
+                <input id="editAnswer1"
+                  class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
+                  placeholder="Option A" type="text" />
+              </div>
+
+              <!-- Option B -->
+              <div
+                class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
+                <label class="relative flex items-center justify-center cursor-pointer p-2">
+                  <input class="peer sr-only" name="edit_correct_answer" type="radio" value="1" />
+                  <div
+                    class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
+                  </div>
+                </label>
+                <input id="editAnswer2"
+                  class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
+                  placeholder="Option B" type="text" />
+              </div>
+
+              <!-- Option C -->
+              <div
+                class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
+                <label class="relative flex items-center justify-center cursor-pointer p-2">
+                  <input class="peer sr-only" name="edit_correct_answer" type="radio" value="2" />
+                  <div
+                    class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
+                  </div>
+                </label>
+                <input id="editAnswer3"
+                  class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
+                  placeholder="Option C" type="text" />
+              </div>
+
+              <!-- Option D -->
+              <div
+                class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
+                <label class="relative flex items-center justify-center cursor-pointer p-2">
+                  <input class="peer sr-only" name="edit_correct_answer" type="radio" value="3" />
+                  <div
+                    class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
+                  </div>
+                </label>
+                <input id="editAnswer4"
+                  class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
+                  placeholder="Option D" type="text" />
+              </div>
+            </div>
+
+            <div id="editModalError" class="text-red-500 text-sm"></div>
+          </div>
+
+          <div class="p-5 border-t border-border-light dark:border-border-dark flex justify-end gap-3">
+            <button id="cancelEditBtn"
+              class="px-6 py-2.5 rounded-full border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-bold transition-colors"
+              type="button">
+              Cancel
+            </button>
+            <button id="saveEditBtn"
+              class="px-6 py-2.5 rounded-full bg-primary text-background-dark hover:bg-primary/90 text-sm font-bold transition-colors shadow-lg shadow-primary/20"
+              type="button">
+              Save Changes
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-    </div>
-    <script src="../js/themeToggle.js" ></script>
-    <script src="../js/exams.js"></script>
-    <script src="../js/logout.js" type="module"></script>
-    <script src="../js/teacherData.js" type="module"></script>
+  <script src="../js/themeToggle.js"></script>
+  <script src="../js/exams.js"></script>
+  <script src="../js/logout.js" type="module"></script>
+  <script src="../js/teacherData.js" type="module"></script>
 </body>
 
 </html>

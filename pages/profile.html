@@ -3,25 +3,25 @@
 <html class="light" lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Student Profile - Animal Expert Quiz</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <!-- Tailwind -->
-    <link rel="stylesheet" href="../css/output.css">
-    <!-- Custom -->
-    <link rel="stylesheet" href="../css/custom.css">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Student Profile - Animal Expert Quiz</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind -->
+  <link rel="stylesheet" href="../css/output.css">
+  <!-- Custom -->
+  <link rel="stylesheet" href="../css/custom.css">
 </head>
 
 <body
@@ -41,19 +41,20 @@
 
         </nav>
         <div class="flex items-center gap-3 pl-6 border-l border-border-light dark:border-border-dark">
-        
-          <button  id="logOutBtn"
+
+          <button id="logOutBtn"
             class=" hidden sm:flex h-10 px-5 items-center justify-center rounded-full bg-red-500 hover:bg-red-500-hover text-white text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-red-500/20">
             Logout
           </button>
-            <button
+          <button
             class="TakeQuiz hidden sm:flex h-10 px-5 items-center justify-center rounded-full bg-primary hover:bg-primary-hover text-[#0d1b12] text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
             Take a Quiz
           </button>
           <button class="size-10 rounded-full overflow-hidden border-2 border-white dark:border-[#2a4535] shadow-sm">
             <div class="w- h-full bg-cover bg-center" data-alt="User profile avatar of a smiling young man"
               style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCGdIFTLmDfJFfenVt9e39SNVE3lxu3pc2ed-w5dY2LvzjI24XgyXo4K9f9Op7BkXihxRZfpBPR_xOajASg4GmPYSSXo1tb9Az2yA3A5uYBGC8FPU4C4h4AhQx5AwawxI67RWO7JpleeMxdSs86AqqGwuHdCsGU41wEeUVmAucOJ9T5MY63PHN4lqLsvcK-ixcRxKnncvu8QHKZcOxZf3JzRP_-0ueACPXa7ib59YHILylbZ4iSQB9S9FgkfofV5Xgv_l98gk37I8 ");'>
-              <img src="../assets/image/avatar.webp" class="w-30 h-30 object-cover" alt=""></div>
+              <img src="../assets/image/avatar.webp" class="w-30 h-30 object-cover" alt="">
+            </div>
           </button>
         </div>
       </div>
@@ -73,7 +74,8 @@
             <div class="size-28 rounded-full border-4 border-white dark:border-surface-dark shadow-md overflow-hidden">
               <div class="w-full h-full bg-cover bg-center" data-alt="Close up portrait of a student"
                 style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0oFx8vUBc2omP4kutomw9tGBbiaM9-tYCTDw_4eC6jCgpA9C1K5d3B7_lSKwKEnPW9RyEe4oeMOoJQw1lkAFsiCeVDj4E19Xg3IefZE2j4dOQv9Jly0tnmugV25amxbc7BrOk8Rw15IhOFFUXbvkpB3ADXI8U5mDIAfZ2ZRqU_ztBpXpKk-T699AxJyofY34-xYYY4p3KhCdQyn2sVxH7NG-INvXwoa74HBz54R8vNMiO8ZHNIVxFTZii_lGXVBlJgeeP5EyJcSA");'
-                id="profileCardImage"><img src="../assets/image/avatar.webp" class="w-30 h-30 object-cover" alt=""></div>
+                id="profileCardImage"><img src="../assets/image/avatar.webp" class="w-30 h-30 object-cover" alt="">
+              </div>
             </div>
             <div
               class="absolute bottom-0 right-0 bg-primary text-[#0d1b12] rounded-full p-1.5 border-2 border-white dark:border-surface-dark"
@@ -83,12 +85,8 @@
           </div>
           <h2 class="text-2xl font-bold tracking-tight StudentName"></h2>
           <p class="text-text-sub-light dark:text-text-sub-dark text-sm mb-1" id="profileCardId">Student ID:</p>
-          <!-- <div class="mt-2 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
-<span class="material-symbols-outlined text-sm">school</span>
-                        Novice Expert
-                    </div> -->
           <div class="w-full mt-6 pt-6 border-t border-border-light dark:border-border-dark grid grid-cols-3 gap-4">
-            
+
             <div class="flex flex-col gap-1">
               <span class="text-2xl font-bold" id="profileCardExamCount">0</span>
               <span class="text-xs text-text-sub-light dark:text-text-sub-dark font-medium uppercase">Quizzes</span>
@@ -96,7 +94,8 @@
 
             <div class="flex flex-col gap-1">
               <span class="text-2xl font-bold" id="profileCardScore">0%</span>
-              <span class="text-xs text-text-sub-light dark:text-text-sub-dark font-medium uppercase">Studen Score</span>
+              <span class="text-xs text-text-sub-light dark:text-text-sub-dark font-medium uppercase">Studen
+                Score</span>
             </div>
 
             <div class="flex flex-col gap-1">
@@ -104,7 +103,7 @@
               <span class="text-xs text-text-sub-light dark:text-text-sub-dark font-medium uppercase">Exams Score</span>
             </div>
 
-</div>
+          </div>
 
 
         </div>
@@ -148,7 +147,6 @@
           <div class="hidden md:block">
             <span
               class="CurrentDate text-sm font-medium text-text-sub-light dark:text-text-sub-dark bg-background-light dark:bg-background-dark px-4 py-2 rounded-full border border-border-light dark:border-border-dark">
-
             </span>
           </div>
         </div>
@@ -159,7 +157,7 @@
               <span class="material-symbols-outlined text-primary">event_upcoming</span>
               Upcoming Exams
             </h3>
-            
+
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             <!-- Exam Card 1 -->
@@ -167,22 +165,20 @@
               class="bg-surface-light dark:bg-surface-dark rounded-xl overflow-hidden border border-border-light dark:border-border-dark hover:shadow-lg hover:border-primary/50 transition-all group flex flex-col h-full ExamCard hidden"
               data-exam-id=>
               <div class="h-40 w-full relative ">
-                  <div class="h-40 w-full relative flex items-center justify-center 
-                              bg-gradient-to-br from-primary/10 to-primary/30 
+                <div class="h-40 w-full relative flex items-center justify-center 
+                              bg-linear-to-br from-primary/10 to-primary/30 
                               dark:from-primary/20 dark:to-primary/40">
 
-                    <span
-                      class="material-symbols-outlined text-[64px] text-primary dark:text-white/90">
-                      quiz
-                    </span>
+                  <span class="material-symbols-outlined text-[64px] text-primary dark:text-white/90">
+                    quiz
+                  </span>
 
-                    <div
-                      class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur 
+                  <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur 
                             text-xs font-bold px-3 py-1 rounded-full 
                             text-[#0d1b12] dark:text-white shadow-sm">
-                      Required
-                    </div>
+                    Required
                   </div>
+                </div>
 
                 <div
                   class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-full text-[#0d1b12] dark:text-white shadow-sm">
@@ -190,8 +186,8 @@
                 </div>
               </div>
 
-              <div class="p-5 flex flex-col flex-grow">
-                <div class="flex-grow">
+              <div class="p-5 flex flex-col grow">
+                <div class="grow">
                   <h4 class="font-bold text-lg mb-1 group-hover:text-primary transition-colors" id="ExamCardName"></h4>
                   <div class="flex items-center gap-2 text-sm text-text-sub-light dark:text-text-sub-dark mb-4">
                     <span class="material-symbols-outlined text-base">schedule</span>
@@ -206,26 +202,26 @@
               </div>
             </div>
             <!-- no exam yet  -->
-        <div
-          class="bg-background-light dark:bg-background-dark rounded-xl border-2 border-dashed border-border-light dark:border-border-dark flex flex-col items-center justify-center p-6 text-center h-full min-h-[300px] hidden noExamYet">
+            <div
+              class="bg-background-light dark:bg-background-dark rounded-xl border-2 border-dashed border-border-light dark:border-border-dark flex flex-col items-center justify-center p-6 text-center h-full min-h-[300px] hidden noExamYet">
 
-          <div
-            class="size-12 rounded-full bg-surface-light dark:bg-surface-dark flex items-center justify-center mb-3">
-            <span class="material-symbols-outlined text-text-sub-light dark:text-text-sub-dark">
-              sentiment_satisfied
-            </span>
-          </div>
+              <div
+                class="size-12 rounded-full bg-surface-light dark:bg-surface-dark flex items-center justify-center mb-3">
+                <span class="material-symbols-outlined text-text-sub-light dark:text-text-sub-dark">
+                  sentiment_satisfied
+                </span>
+              </div>
 
-          <h4 class="font-bold text-base mb-1">
-            No Exams Available
-          </h4>
+              <h4 class="font-bold text-base mb-1">
+                No Exams Available
+              </h4>
 
-          <p class="text-sm text-text-sub-light dark:text-text-sub-dark mb-4">
-            You don’t have any exams right now — lucky you!<br />
-            Practice regularly to stay ready.
-          </p>
+              <p class="text-sm text-text-sub-light dark:text-text-sub-dark mb-4">
+                You don’t have any exams right now — lucky you!<br />
+                Practice regularly to stay ready.
+              </p>
 
-        </div>
+            </div>
           </div>
         </section>
         <!-- History Section -->
@@ -283,10 +279,10 @@
       </div>
     </div>
   </main>
- 
+
   <script src="../js/themeToggle.js"></script>
   <script src="../js/logout.js" type="module"></script>
-  <script src="../js/studen_dashboard.js"   type="module"defer></script>
+  <script src="../js/studen_dashboard.js" type="module" defer></script>
 </body>
 
 
