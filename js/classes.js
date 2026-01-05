@@ -30,11 +30,6 @@ class Student extends User {
     this.assignedExams = assignedExams;
   }
 
-  // completeExam(examId, name ,score,timeOfFinshed ,date = new Date()) {
-  //   this.completedExams.push(new CompletedExam(examId, name,score,timeOfFinshed, date));
-  //   this.assignedExams = this.assignedExams.filter(id => id !== examId);
-  // }
-  //curentStudentObj.completeExam(completedExamsTest.examId,completedExamsTest.name,completedExamsTest.score  )
 
       completeExam(examId, name, score, timeOfFinshed) {
       const readableDate = new Date().toLocaleString("en-US", {
@@ -101,20 +96,6 @@ class Teacher extends User {
     this.darkMode = darkMode;
   }
 
-  // toggleDarkMode() {
-  //   this.darkMode = !this.darkMode;
-  // }
-
-  // toJSON() {
-  //   return {
-  //     id: this.id,
-  //     username: this.username,
-  //     password: this.password,
-  //     role: this.role,
-  //     course: this.course,
-  //     darkMode: this.darkMode
-  //   };
-  // }
 }
 
 // CompletedExam class
@@ -127,13 +108,6 @@ class CompletedExam {
     this.date = date;
   }
 
-  // toJSON() {
-  //   return {
-  //     examId: this.examId,
-  //     score: this.score,
-  //     date: this.date.toISOString()
-  //   };
-  // }
 }
 
 // Question class
@@ -179,17 +153,7 @@ static fromJSON(obj) {
       );
     }
 
-  // toJSON() {
-  //   return {
-  //     id: this.id,
-  //     text: this.text,
-  //     image: this.image,
-  //     choices: this.choices,
-  //     correctAnswer: this.correctAnswer,
-  //     difficulty: this.difficulty,
-  //     score: this.score
-  //   };
-  // }
+
 }
 
 // Exam class
@@ -276,39 +240,6 @@ calculateQuestionScores(totalExamScore = 100) {
   localStorage.setItem('questions', JSON.stringify(updatedQuestions));
 }
 
-//   calculateQuestionScores(totalExamScore = 100) {
-//   const difficultyWeight = {
-//     Easy: 1,
-//     Medium: 2,
-//     Hard: 3
-//   };
-
-//   // Calculate total weight
-//   const totalWeight = this.questions.reduce(
-//     (sum, q) => sum + difficultyWeight[q.difficulty],
-//     0
-//   );
-
-//   // Assign score to each question
-//   this.questions.forEach(q => {
-//     q.score =
-//       (difficultyWeight[q.difficulty] / totalWeight) * totalExamScore;
-//   });
-// }
-
-
-  // toJSON() {
-  //   return {
-  //     id: this.id,
-  //     name: this.name,
-  //     duration: this.duration,
-  //     teacherId: this.teacherId,
-  //     course: this.course,
-  //     createdAt: this.createdAt.toISOString(),
-  //     assignedStudents: this.assignedStudents,
-  //     questions: this.questions.map(q => q.toJSON())
-  //   };
-  // }
 }
 
 // Answer class

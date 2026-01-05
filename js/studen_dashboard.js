@@ -102,7 +102,7 @@ TrCompeleteExam.forEach((exam,index)=>{
     exam.classList.remove("hidden")
     exam.querySelector(".CompleteExamName").innerText=student.completedExams[index].name||"";
     exam.querySelector(".CompleteExamDate").innerText=student.completedExams[index].date||"";
-    exam.querySelector(".CompleteEamScore").innerText=student.completedExams[index].score||"";
+    exam.querySelector(".CompleteEamScore").innerText=student.completedExams[index].score.toFixed()||"";
 
 })
 }

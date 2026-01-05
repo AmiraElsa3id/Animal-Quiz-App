@@ -157,9 +157,7 @@ function getAnswersHistory() {
   return JSON.parse(localStorage.getItem("studentAnswers")) || [];
 }
 
-function renderExamAnswers(studentId, examId, examsStore, questionsStore, answersHistory) {
-  console.log(answersHistory);
-  
+function renderExamAnswers(studentId, examId, examsStore, questionsStore, answersHistory) {  
   if (!examAnswersContainer) return;
 
   const exam = examsStore.find(e => String(e.id) === String(examId));
@@ -267,10 +265,6 @@ function viewAnswers(id) {
   studentExamsList.onclick = (e) => {
     const btn = e.target.closest("button[data-exam-id]");
     if (!btn) return;
-    console.log("============== test ================");
-    
-    console.log(answersHistory);
-    
     renderExamAnswers(student.id, btn.dataset.examId, examsStore, questionsStore, answersHistory);
   };
 
@@ -280,6 +274,7 @@ function viewAnswers(id) {
   const firstExamId = completedSorted[0].examId;
   renderExamAnswers(student.id, firstExamId, examsStore, questionsStore, answersHistory);
 }
+
 window.viewAnswers = viewAnswers;
 
 function searchStudents() {

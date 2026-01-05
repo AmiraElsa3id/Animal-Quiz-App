@@ -45,7 +45,7 @@ examName.textContent=examData.name;
 timeTaken.textContent=examData.timeOfFinshed;
 correctAnswersEle.textContent=`${correctAnswers} / ${allAnswers}`
 setProgress(progressPercent);
-progressPercntEle.textContent=`${progressPercent}%`
+progressPercntEle.textContent=`${progressPercent.toFixed()}%`
 if (nextExamId!=0) 
 {
     
