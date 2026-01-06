@@ -100,6 +100,7 @@ function assignExam() {
     return student;
   })
   updateStudentData();
+  alert("exam assigned successfully ")
 }
 
 function updateStudentData() {

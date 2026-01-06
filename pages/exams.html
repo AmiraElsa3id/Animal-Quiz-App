@@ -120,16 +120,7 @@
                 class="w-full pl-10 pr-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-text-muted text-base"
                 placeholder="Search questions by keyword..." type="text" />
             </div>
-            <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
-
-              <select id="difficultyFilter"
-                class="px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary outline-none appearance-none min-w-35 cursor-pointer text-sm font-medium">
-                <option>All Difficulties</option>
-                <option>Easy</option>
-                <option>Medium</option>
-                <option>Hard</option>
-              </select>
-            </div>
+            
           </div>
           <!-- Question Table -->
           <div
@@ -165,138 +156,10 @@
         </div>
       </div>
     </main>
-    <!-- Edit Question Modal -->
-    <div id="editQuestionModal" class="fixed inset-0 z-50 hidden">
-      <!-- Overlay -->
-      <div id="editQuestionOverlay" class="absolute inset-0 bg-black/50"></div>
 
-      <!-- Dialog -->
-      <div class="relative z-10 min-h-full flex items-center justify-center p-4">
-        <div
-          class="w-full max-w-2xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-2xl shadow-xl">
-          <div class="p-5 border-b border-border-light dark:border-border-dark flex items-center justify-between">
-            <h3 class="text-lg font-bold text-text-main dark:text-white">Edit Question</h3>
-            <button id="closeEditModalBtn"
-              class="p-2 rounded-lg hover:bg-background-light dark:hover:bg-background-dark transition-colors"
-              type="button">
-              <span class="material-symbols-outlined">close</span>
-            </button>
-          </div>
-
-          <div class="p-5 space-y-4">
-            <input id="editQuestionId" type="hidden" />
-
-            <div class="space-y-2">
-              <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Question Text</label>
-              <textarea id="editQuestionText"
-                class="w-full h-28 p-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none dark:text-white transition-all"
-                placeholder="Type question..."></textarea>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="space-y-2">
-                <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Difficulty</label>
-                <select id="editDifficulty"
-                  class="w-full h-12 px-4 appearance-none rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none dark:text-white cursor-pointer">
-                  <option>Easy</option>
-                  <option>Medium</option>
-                  <option>Hard</option>
-                </select>
-              </div>
-
-              <div class="space-y-2">
-                <label class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Image URL
-                  (optional)</label>
-                <input id="editImage"
-                  class="w-full h-12 px-4 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary outline-none dark:text-white"
-                  placeholder="https://..." type="text" />
-              </div>
-            </div>
-
-            <div class="space-y-2">
-              <div class="flex justify-between items-end">
-                <span class="text-sm font-medium text-text-sec-light dark:text-text-sec-dark">Answer Options</span>
-                <span class="text-xs text-text-sec-light dark:text-text-sec-dark">Select correct answer</span>
-              </div>
-
-              <!-- Option A -->
-              <div
-                class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
-                <label class="relative flex items-center justify-center cursor-pointer p-2">
-                  <input class="peer sr-only" name="edit_correct_answer" type="radio" value="0" />
-                  <div
-                    class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
-                  </div>
-                </label>
-                <input id="editAnswer1"
-                  class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
-                  placeholder="Option A" type="text" />
-              </div>
-
-              <!-- Option B -->
-              <div
-                class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
-                <label class="relative flex items-center justify-center cursor-pointer p-2">
-                  <input class="peer sr-only" name="edit_correct_answer" type="radio" value="1" />
-                  <div
-                    class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
-                  </div>
-                </label>
-                <input id="editAnswer2"
-                  class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
-                  placeholder="Option B" type="text" />
-              </div>
-
-              <!-- Option C -->
-              <div
-                class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
-                <label class="relative flex items-center justify-center cursor-pointer p-2">
-                  <input class="peer sr-only" name="edit_correct_answer" type="radio" value="2" />
-                  <div
-                    class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
-                  </div>
-                </label>
-                <input id="editAnswer3"
-                  class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
-                  placeholder="Option C" type="text" />
-              </div>
-
-              <!-- Option D -->
-              <div
-                class="flex items-center gap-3 p-2 pr-3 rounded-xl bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus-within:border-primary">
-                <label class="relative flex items-center justify-center cursor-pointer p-2">
-                  <input class="peer sr-only" name="edit_correct_answer" type="radio" value="3" />
-                  <div
-                    class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-500 peer-checked:border-primary peer-checked:bg-primary transition-all">
-                  </div>
-                </label>
-                <input id="editAnswer4"
-                  class="flex-1 bg-transparent border-none focus:ring-0 text-sm h-full dark:text-white placeholder:text-gray-400"
-                  placeholder="Option D" type="text" />
-              </div>
-            </div>
-
-            <div id="editModalError" class="text-red-500 text-sm"></div>
-          </div>
-
-          <div class="p-5 border-t border-border-light dark:border-border-dark flex justify-end gap-3">
-            <button id="cancelEditBtn"
-              class="px-6 py-2.5 rounded-full border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-bold transition-colors"
-              type="button">
-              Cancel
-            </button>
-            <button id="saveEditBtn"
-              class="px-6 py-2.5 rounded-full bg-primary text-background-dark hover:bg-primary/90 text-sm font-bold transition-colors shadow-lg shadow-primary/20"
-              type="button">
-              Save Changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
   <script src="../js/themeToggle.js"></script>
-  <script src="../js/exams.js"></script>
+  <script src="../js/exams.js" ></script>
   <script src="../js/logout.js" type="module"></script>
   <script src="../js/teacherData.js" type="module"></script>
 </body>

@@ -2,7 +2,7 @@ let exams = [];
 let questions=[];
 let students =[];
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-const editModalError = document.getElementById("editModalError");
+// const editModalError = document.getElementById("editModalError");
 
 function loadExams() {
   if (localStorage.getItem("exams")) {
@@ -55,12 +55,8 @@ function displayExams(arr) {
         </td>
         <td class="p-4 text-right">
           <div class="flex items-center justify-end gap-2">
-            <button onclick="editExam('${exam.id}')"
-              class="p-2 rounded-lg text-text-muted hover:bg-primary/20 hover:text-green-700 transition-colors"
-              title="Edit">
-              <span class="material-symbols-outlined text-[20px]">edit</span>
-            </button>
-            <button onclick="deleteExam('${exam.id}')"
+            
+            <button onclick="deleteExam(${exam.id})"
               class="p-2 rounded-lg text-text-muted hover:bg-red-100 hover:text-red-600 transition-colors"
               title="Delete">
               <span class="material-symbols-outlined text-[20px]">delete</span>
@@ -76,45 +72,85 @@ function displayExams(arr) {
 
 displayExams(exams);
 
-function editExam(id) {
-  const exam = exams.find(e => String(e.id) === String(id));
-  if (!exam) return;
+// function editExam(id) {
+//   const exam = exams.find(e => String(e.id) === String(id));
+//   if (!exam) return;
 
-  document.getElementById("editExamId").value = exam.id;
-  document.getElementById("editExamName").value = exam.name || "";
-  document.getElementById("editDuration").value = exam.duration || "";
-  document.getElementById("editCourse").value = exam.course || "";
-  document.getElementById("editQuestionsNum").value = exam.questionsNum || "";
+//   document.getElementById("editExamId").value = exam.id;
+//   document.getElementById("editExamName").value = exam.name || "";
+//   document.getElementById("editDuration").value = exam.duration || "";
+//   document.getElementById("editCourse").value = exam.course || "";
+//   document.getElementById("editQuestionsNum").value = exam.questionsNum || "";
 
-  openEditModal();
-}
+//   openEditModal();
+// }
+
+// function deleteExam(id) {
+//   // Find the exam to be deleted
+//   const examToDelete = exams.find(exam => exam.id === id);
+  
+//   if (examToDelete) {
+//     // Remove questions that belong to this exam
+//     questions = questions.filter(question => 
+//       !examToDelete.questions.includes(question.id)
+//     );
+//   }
+  
+//   // Remove the exam
+//   exams = exams.filter(exam => exam.id !== id);
+
+// students = students.map(s=>{
+
+// let index=s.assignedExams.findIndex(e=>e==id);
+// if(index){
+//   s.assignedExams.splice(index,1)
+// }
+
+// } 
+//   )
+//   localStorage.setItem("exams", JSON.stringify(exams));
+//   localStorage.setItem("questions", JSON.stringify(questions));
+//   localStorage.setItem("students", JSON.stringify(students));
+//   displayExams(exams);
+// }
+
 
 function deleteExam(id) {
-  // Find the exam to be deleted
+  // Find the exam to be deleted from the current teacher's exams
   const examToDelete = exams.find(exam => exam.id === id);
   
+  console.log("test");
+  
   if (examToDelete) {
-    // Remove questions that belong to this exam
-    questions = questions.filter(question => 
+    // Remove questions that belong to this exam from localStorage
+    let allQuestions = JSON.parse(localStorage.getItem("questions")) || [];
+    allQuestions = allQuestions.filter(question => 
       !examToDelete.questions.includes(question.id)
     );
+    localStorage.setItem("questions", JSON.stringify(allQuestions));
+    questions = allQuestions;
   }
   
-  // Remove the exam
-  exams = exams.filter(exam => exam.id !== id);
-
-students = students.map(s=>{
-
-let index=s.assignedExams.findIndex(e=>e==id);
-if(index){
-  s.assignedExams.splice(index,1)
-}
-
-} 
-  )
-  localStorage.setItem("exams", JSON.stringify(exams));
-  localStorage.setItem("questions", JSON.stringify(questions));
-  localStorage.setItem("students", JSON.stringify(students));
+  // Remove the exam from ALL exams in localStorage (not just filtered ones)
+  let allExams = JSON.parse(localStorage.getItem("exams")) || [];
+  allExams = allExams.filter(exam => exam.id !== id);
+  localStorage.setItem("exams", JSON.stringify(allExams));
+  
+  // Reload the filtered exams for current teacher
+  exams = allExams.filter(e => e.teacherId == currentUser.id);
+  console.log("exams");
+  // Remove exam from ALL students' assignedExams in localStorage
+  let allStudents = JSON.parse(localStorage.getItem("students")) || [];
+  allStudents = allStudents.map(s => {
+    if (s && s.assignedExams && Array.isArray(s.assignedExams)) {
+      s.assignedExams = s.assignedExams.filter(examId => examId+"" !== id+'');
+    }
+    return s;
+  });
+  localStorage.setItem("students", JSON.stringify(allStudents));
+  students = allStudents;
+    console.log("test");
+  // Refresh the display
   displayExams(exams);
 }
 
@@ -143,77 +179,87 @@ searchInput?.addEventListener("input", () => {
   searchExam(searchInput.value);
 });
 
-function openEditModal() {
-  document.getElementById("editExamModal").classList.remove("hidden");
-}
+// function openEditModal() {
+//   document.getElementById("editExamModal").classList.remove("hidden");
+// }
 
-function closeEditModal() {
-  document.getElementById("editExamModal").classList.add("hidden");
-  editModalError.textContent = "";
-}
+// function closeEditModal() {
+//   document.getElementById("editExamModal").classList.add("hidden");
+//   editModalError.textContent = "";
+// }
 
-document.getElementById("closeEditModalBtn")?.addEventListener("click", closeEditModal);
-document.getElementById("cancelEditBtn")?.addEventListener("click", closeEditModal);
-document.getElementById("editExamOverlay")?.addEventListener("click", closeEditModal);
+// document.getElementById("closeEditModalBtn")?.addEventListener("click", closeEditModal);
+// document.getElementById("cancelEditBtn")?.addEventListener("click", closeEditModal);
+// document.getElementById("editExamOverlay")?.addEventListener("click", closeEditModal);
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !document.getElementById("editExamModal").classList.contains("hidden")) {
-    closeEditModal();
-  }
-});
+// document.addEventListener("keydown", (e) => {
+//   if (e.key === "Escape" && !document.getElementById("editExamModal").classList.contains("hidden")) {
+//     closeEditModal();
+//   }
+// });
 
-document.getElementById("saveEditBtn")?.addEventListener("click", () => {
-  editModalError.textContent = "";
+// document.getElementById("saveEditBtn")?.addEventListener("click", () => {
+//   editModalError.textContent = "";
 
-  const id = document.getElementById("editExamId").value;
-  const idx = exams.findIndex(e => String(e.id) === String(id));
-  if (idx === -1) return;
+//   const id = document.getElementById("editExamId").value;
+//   const idx = exams.findIndex(e => String(e.id) === String(id));
+//   if (idx === -1) return;
 
-  const name = document.getElementById("editExamName").value.trim();
-  const duration = document.getElementById("editDuration").value.trim();
-  const course = document.getElementById("editCourse").value.trim();
-  const questionsNum = document.getElementById("editQuestionsNum").value.trim();
+//   const name = document.getElementById("editExamName").value.trim();
+//   const duration = document.getElementById("editDuration").value.trim();
+//   const course = document.getElementById("editCourse").value.trim();
+//   const questionsNum = document.getElementById("editQuestionsNum").value.trim();
 
-  if (!name) {
-    editModalError.textContent = "Exam name is required.";
-    return;
-  }
-  if (!duration || isNaN(duration)) {
-    editModalError.textContent = "Valid duration is required.";
-    return;
-  }
-  if (!course) {
-    editModalError.textContent = "Course is required.";
-    return;
-  }
-  if (!questionsNum || isNaN(questionsNum)) {
-    editModalError.textContent = "Valid number of questions is required.";
-    return;
-  }
+//   if (!name) {
+//     editModalError.textContent = "Exam name is required.";
+//     return;
+//   }
+//   if (!duration || isNaN(duration)) {
+//     editModalError.textContent = "Valid duration is required.";
+//     return;
+//   }
+//   if (!course) {
+//     editModalError.textContent = "Course is required.";
+//     return;
+//   }
+//   if (!questionsNum || isNaN(questionsNum)) {
+//     editModalError.textContent = "Valid number of questions is required.";
+//     return;
+//   }
 
-  const updated = {
-    ...exams[idx],
-    name,
-    duration: Number(duration),
-    course,
-    questionsNum: Number(questionsNum),
-  };
+//   const updated = {
+//     ...exams[idx],
+//     name,
+//     duration: Number(duration),
+//     course,
+//     questionsNum: Number(questionsNum),
+//   };
 
-  exams[idx] = updated;
-  localStorage.setItem("exams", JSON.stringify(exams));
+//   exams[idx] = updated;
+//   localStorage.setItem("exams", JSON.stringify(exams));
 
-  // Re-render respecting current search/filter state
-  const searchTerm = searchInput.value.trim();
-  const courseValue = courseFilter?.value;
+//   // Re-render respecting current search/filter state
+//   const searchTerm = searchInput.value.trim();
+//   const courseValue = courseFilter?.value;
 
-  let view = exams;
-  if (courseValue && courseValue !== "All Courses") {
-    view = view.filter(e => String(e.course).toLowerCase() === String(courseValue).toLowerCase());
-  }
-  if (searchTerm) {
-    view = view.filter(e => String(e.name).toLowerCase().includes(searchTerm.toLowerCase()));
-  }
+//   let view = exams;
+//   if (courseValue && courseValue !== "All Courses") {
+//     view = view.filter(e => String(e.course).toLowerCase() === String(courseValue).toLowerCase());
+//   }
+//   if (searchTerm) {
+//     view = view.filter(e => String(e.name).toLowerCase().includes(searchTerm.toLowerCase()));
+//   }
 
-  displayExams(view);
-  closeEditModal();
-});
+//   displayExams(view);
+//   closeEditModal();
+// });
+
+
+
+
+
+
+
+
+
+
