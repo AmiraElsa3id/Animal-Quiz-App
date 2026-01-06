@@ -1,5 +1,6 @@
 let exams = [];
 let questions=[];
+let students =[];
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const editModalError = document.getElementById("editModalError");
 
@@ -13,8 +14,14 @@ function loadQuestions(){
     questions=JSON.parse(localStorage.getItem("questions"));
   }
 }
+function loadStudents(){
+  if(localStorage.getItem("students")){
+    students=JSON.parse(localStorage.getItem("students"));
+  }
+}
 loadExams();
 loadQuestions();
+loadStudents();
 
 let examTableBody = document.getElementById("exam-table-body") || document.getElementById("question-table-body");
 let totalExams = document.getElementById("totalExams") || document.getElementById("totalQuestions");
@@ -96,8 +103,18 @@ function deleteExam(id) {
   // Remove the exam
   exams = exams.filter(exam => exam.id !== id);
 
+students = students.map(s=>{
+
+let index=s.assignedExams.findIndex(e=>e==id);
+if(index){
+  s.assignedExams.splice(index,1)
+}
+
+} 
+  )
   localStorage.setItem("exams", JSON.stringify(exams));
   localStorage.setItem("questions", JSON.stringify(questions));
+  localStorage.setItem("students", JSON.stringify(students));
   displayExams(exams);
 }
 

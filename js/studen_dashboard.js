@@ -119,8 +119,11 @@ ExamCards.forEach(card => {
 TakeQuizBtn.addEventListener("click",function(){
   console.log("ok");
   const examId=student.assignedExams.pop();
-  localStorage.setItem("selectedExamId",examId);
-  window.location.href="./quiz.html";
+  if(examId){
+
+    localStorage.setItem("selectedExamId",examId);
+    window.location.href="./quiz.html";
+  }
 })
 
 
