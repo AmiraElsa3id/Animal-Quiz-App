@@ -4,6 +4,7 @@ import {validateSignupUsername,
   validateSignupForm,} from "./validation.js";
 
 import {Student} from "./classes.js";
+import { studentsApi } from './api.js';
 
 const userName = document.querySelector(`input[placeholder="Pick a Username"]`);
 const password = document.querySelector(`input[placeholder="Make it secure"]`);
@@ -29,15 +30,23 @@ passHide.addEventListener("click", function() {
     }
 });
 
-let users;
+let users = [];
 
-if(localStorage.getItem("students")){
-    users=JSON.parse(localStorage.getItem("students"));
-}else{
-    users=[];
+// Load users from API
+async function loadUsers() {
+    try {
+        users = await studentsApi.getAll();
+        console.log('Loaded students from API:', users);
+    } catch (error) {
+        console.error('Failed to load students from API:', error);
+        users = [];
+    }
 }
 
-const signup=()=>{
+// Load users when the script starts
+loadUsers();
+
+const signup=async ()=>{
     let userData={
  username: userName.value,
     password: password.value,
@@ -55,10 +64,14 @@ const signup=()=>{
             userData.mobile,
             userData.profilePicture
         );
-        users.push(user)
-        localStorage.setItem("students",JSON.stringify(users))
-        alert("User Added Successfully")
-        window.location.href="../index.html"
+        try {
+            await studentsApi.create(user.toJSON());
+            alert("User Added Successfully");
+            window.location.href="../index.html";
+        } catch (error) {
+            console.error('Failed to create user:', error);
+            alert("Failed to create user. Please try again.");
+        }
     }
 }
 
@@ -67,9 +80,9 @@ const signup=()=>{
 //     signup()
 // });
 
-signupBtn.addEventListener("click",function(e){
+signupBtn.addEventListener("click",async function(e){
     e.preventDefault();
-    signup();
+    await signup();
 })
 
 userName.addEventListener("input",()=>{

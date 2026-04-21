@@ -1,27 +1,45 @@
+import { examsApi, studentsApi } from './api.js';
+
 let exams = [];
 let questions=[];
 let students =[];
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 // const editModalError = document.getElementById("editModalError");
 
-function loadExams() {
-  if (localStorage.getItem("exams")) {
-    exams = JSON.parse(localStorage.getItem("exams")).filter(e=>e.teacherId==currentUser.id);
-  }   
-}
-function loadQuestions(){
-  if(localStorage.getItem("questions")){
-    questions=JSON.parse(localStorage.getItem("questions"));
+async function loadExams() {
+  try {
+    const allExams = await examsApi.getAll();
+    exams = allExams.filter(e=>e.teacherId==currentUser.id);
+  } catch (error) {
+    console.error('Failed to load exams:', error);
+    exams = [];
   }
 }
-function loadStudents(){
-  if(localStorage.getItem("students")){
-    students=JSON.parse(localStorage.getItem("students"));
+async function loadQuestions(){
+  // Questions are embedded in exams, so we'll extract them
+  questions = [];
+  exams.forEach(exam => {
+    if (exam.questions) {
+      questions.push(...exam.questions);
+    }
+  });
+}
+async function loadStudents(){
+  try {
+    students = await studentsApi.getAll();
+  } catch (error) {
+    console.error('Failed to load students:', error);
+    students = [];
   }
 }
-loadExams();
-loadQuestions();
-loadStudents();
+// Load all data
+async function loadAllData() {
+  await Promise.all([loadExams(), loadStudents()]);
+  loadQuestions(); // Load questions after exams
+  displayExams(exams); // Refresh display
+}
+
+loadAllData();
 
 let examTableBody = document.getElementById("exam-table-body") || document.getElementById("question-table-body");
 let totalExams = document.getElementById("totalExams") || document.getElementById("totalQuestions");

@@ -1,20 +1,27 @@
 
 console.log("-------------------------------------")
 
-let students;
-let teachers;
-if(localStorage.getItem("students")){
-    students=JSON.parse(localStorage.getItem("students"));
-}else{
-    students=[];
+import { studentsApi, teachersApi } from './api.js';
+
+let students = [];
+let teachers = [];
+
+// Load data from API
+async function loadUsers() {
+    try {
+        students = await studentsApi.getAll();
+        teachers = await teachersApi.getAll();
+        console.log('Loaded users from API:', { students, teachers });
+    } catch (error) {
+        console.error('Failed to load users from API:', error);
+        // Fallback to empty arrays if API fails
+        students = [];
+        teachers = [];
+    }
 }
 
-if(localStorage.getItem("teachers")){
-    teachers=JSON.parse(localStorage.getItem("teachers"));
-}else{
-    teachers=[];
-}
-console.log(students,teachers);
+// Load users when the script starts
+loadUsers();
 
 
 let roles = document.getElementsByName("role");
@@ -36,8 +43,12 @@ function checkSelectedRole() {
 }
 // checkSelectedRole();
 
-loginSubmitBtn.addEventListener("click",function()
+loginSubmitBtn.addEventListener("click", async function()
 {
+    // Wait for users to be loaded
+    while (students.length === 0 && teachers.length === 0) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
 
     checkSelectedRole();
     let user =findUser(userNameInput.value)

@@ -1,6 +1,10 @@
 {
   "dependencies": {
     "@tailwindcss/cli": "^4.1.18",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "json-server": "^0.17.4"
+  },
+  "scripts": {
+    "json-server": "json-server --watch db.json --port 3001"
   }
 }
