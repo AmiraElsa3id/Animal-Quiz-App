@@ -2,8 +2,8 @@
   "students": [
     {
       "id": "s1701234567890",
-      "username": "john_doe",
-      "password": "hashed_password_here",
+      "username": "amera",
+      "password": "123456789",
       "role": "student",
       "grade": 2,
       "mobile": "01234567890",
