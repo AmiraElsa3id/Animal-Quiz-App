@@ -22,7 +22,7 @@
   "teachers": [
     {
       "id": "t1",
-      "username": "Amera",
+      "username": " Amera",
       "password": "123456789",
       "role": "teacher",
       "course": "Animals",
