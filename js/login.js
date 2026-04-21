@@ -5,6 +5,7 @@ import { studentsApi, teachersApi } from './api.js';
 
 let students = [];
 let teachers = [];
+let usersLoaded = false;
 
 // Load data from API
 async function loadUsers() {
@@ -18,6 +19,7 @@ async function loadUsers() {
         students = [];
         teachers = [];
     }
+    usersLoaded = true;
 }
 
 // Load users when the script starts
@@ -45,8 +47,9 @@ function checkSelectedRole() {
 
 loginSubmitBtn.addEventListener("click", async function()
 {
-    // Wait for users to be loaded
-    while (students.length === 0 && teachers.length === 0) {
+    // Wait for users to be loaded (up to 5 seconds)
+    const startTime = Date.now();
+    while (!usersLoaded && (Date.now() - startTime) < 5000) {
         await new Promise(resolve => setTimeout(resolve, 100));
     }
 

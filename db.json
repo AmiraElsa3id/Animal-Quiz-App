@@ -2,8 +2,8 @@
   "students": [
     {
       "id": "s1701234567890",
-      "username": "john_doe",
-      "password": "hashed_password_here",
+      "username": "shkal",
+      "password": "123456789",
       "role": "student",
       "grade": 2,
       "mobile": "01234567890",
@@ -22,8 +22,8 @@
   "teachers": [
     {
       "id": "t1",
-      "username": "teacher_animals",
-      "password": "hashed_password_here",
+      "username": "Amera",
+      "password": "123456789",
       "role": "teacher",
       "course": "Animals",
       "darkMode": false
